@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation';
 import { TopBar } from '@/components/top-bar';
 import { Sidebar } from '@/components/sidebar';
 import { LeadList } from '@/components/lead-list';
+import { LeadDetail } from '@/components/lead-detail';
+import { loadAllScripts } from '@/lib/scripts';
 import type { SavedView, LeadRow, TeamMember } from '@/lib/types';
 
 export default async function HomePage() {
@@ -26,15 +28,15 @@ export default async function HomePage() {
     .limit(500);
   const leads = (leadsData ?? []) as LeadRow[];
 
+  const scripts = loadAllScripts();
+
   return (
     <div className="h-screen flex flex-col">
       <TopBar userName={member.full_name ?? member.email} />
       <div className="flex-1 flex overflow-hidden">
         <Sidebar views={views} />
         <LeadList leads={leads} />
-        <div className="flex-1 flex items-center justify-center text-muted-foreground">
-          Pick a lead
-        </div>
+        <LeadDetail leads={leads} scripts={scripts} />
       </div>
     </div>
   );
