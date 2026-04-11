@@ -1,0 +1,20 @@
+[
+  {
+    "id": "ovt-1",
+    "names": {"primary": "Acme Plumbing"},
+    "categories": {"primary": "plumber"},
+    "phones": ["+15555551234"],
+    "websites": ["https://acmeplumbing.com"],
+    "addresses": [{"locality": "Buffalo", "region": "NY", "freeform": "123 Main St"}],
+    "geometry": {"type": "Point", "coordinates": [-78.87, 42.88]}
+  },
+  {
+    "id": "ovt-2",
+    "names": {"primary": "Best Pipes LLC"},
+    "categories": {"primary": "plumber"},
+    "phones": [],
+    "websites": [],
+    "addresses": [{"locality": "Albany", "region": "NY", "freeform": "45 Elm"}],
+    "geometry": {"type": "Point", "coordinates": [-73.76, 42.65]}
+  }
+]
