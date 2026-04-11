@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import { TopBar } from '@/components/top-bar';
 import { Sidebar } from '@/components/sidebar';
+import { LeadList } from '@/components/lead-list';
 import type { SavedView, LeadRow, TeamMember } from '@/lib/types';
 
 export default async function HomePage() {
@@ -30,12 +31,9 @@ export default async function HomePage() {
       <TopBar userName={member.full_name ?? member.email} />
       <div className="flex-1 flex overflow-hidden">
         <Sidebar views={views} />
-        {/* Lead list + detail panel added in Task 7/8 */}
+        <LeadList leads={leads} />
         <div className="flex-1 flex items-center justify-center text-muted-foreground">
-          <div className="text-center space-y-2">
-            <div className="text-lg">{leads.length} leads loaded</div>
-            <div className="text-sm">Lead list and detail panel coming in next tasks</div>
-          </div>
+          Pick a lead
         </div>
       </div>
     </div>
