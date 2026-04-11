@@ -1,3 +1,4 @@
+import asyncio
 from playwright.async_api import BrowserContext
 from tenacity import retry, stop_after_attempt, wait_exponential
 from scraper.db import Database
@@ -9,6 +10,8 @@ from scraper.enrichment.owner import lookup_owner
 from scraper.enrichment.facebook import lookup_facebook
 
 BAD_BUILDERS = {"wix", "godaddy", "none"}
+CONCURRENCY = 5  # Number of leads enriched in parallel per run_enrich invocation
+
 
 def apply_final_icp(e: LeadEnrichment) -> bool:
     """Return True if lead passes full ICP after enrichment."""
@@ -27,12 +30,31 @@ def apply_final_icp(e: LeadEnrichment) -> bool:
         bad_signals += 1
     return bad_signals >= 1
 
+
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=16))
 async def _fetch_site(context: BrowserContext, url: str) -> str:
     return await fetch_page_html(context, url)
 
+
 async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
     assert lead.id is not None
+
+    # Step 1: Google Maps first (fastest signal of "too big" → early exit)
+    gmaps = await enrich_via_google(context, lead.company_name, lead.city or lead.state)
+    review_count = gmaps.get("review_count")
+    if review_count is not None and review_count >= 100:
+        # Early exit — too big, skip the expensive site/owner/facebook work
+        enrichment = LeadEnrichment(
+            lead_id=lead.id,
+            review_count=review_count,
+            rating=gmaps.get("rating"),
+            review_samples=gmaps.get("review_samples", []),
+        )
+        db.upsert_enrichment(enrichment)
+        db.update_lead_status(lead.id, LeadStatus.REJECTED)
+        return
+
+    # Step 2: Website analysis
     site_data: dict = {}
     if lead.website:
         try:
@@ -41,10 +63,9 @@ async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
         except Exception as e:
             print(f"[enrich] site fetch failed for {lead.website}: {e}")
     else:
-        # No website at all — strongest "needs a website" signal we can get
         site_data = {"site_builder": "none", "booking_path_quality": "none"}
 
-    gmaps = await enrich_via_google(context, lead.company_name, lead.city or lead.state)
+    # Step 3: Owner name + Facebook (can fail independently)
     owner = await lookup_owner(context, lead.website, gmaps.get("review_samples", []))
     fb = await lookup_facebook(context, lead.company_name, lead.city or lead.state)
 
@@ -54,7 +75,7 @@ async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
     enrichment = LeadEnrichment(
         lead_id=lead.id,
         owner_name=owner,
-        review_count=gmaps.get("review_count"),
+        review_count=review_count,
         rating=gmaps.get("rating"),
         site_builder=site_data.get("site_builder"),
         has_chat_widget=site_data.get("has_chat_widget"),
@@ -70,26 +91,37 @@ async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
     )
     db.upsert_enrichment(enrichment)
 
-    passed = apply_final_icp(enrichment)
-    if not passed:
+    if not apply_final_icp(enrichment):
         db.update_lead_status(lead.id, LeadStatus.REJECTED)
     else:
         if gmaps.get("place_id"):
             db.client.table("leads").update({"place_id": gmaps["place_id"]}).eq("id", str(lead.id)).execute()
         db.update_lead_status(lead.id, LeadStatus.ENRICHED)
-    await polite_wait()
+    await polite_wait(min_s=1.0, max_s=3.0)
+
+
+async def _enrich_with_sem(lead: Lead, context: BrowserContext, db: Database, sem: asyncio.Semaphore) -> str:
+    async with sem:
+        try:
+            await enrich_one(lead, context, db)
+            return "ok"
+        except Exception as e:
+            print(f"[enrich] failed {lead.company_name}: {e}")
+            if lead.id:
+                db.update_lead_status(lead.id, LeadStatus.ENRICHMENT_FAILED)
+            return "fail"
+
 
 async def run_enrich(db: Database, limit: int = 500) -> dict[str, int]:
     leads = db.fetch_leads_by_status(LeadStatus.QUALIFIED, limit=limit)
-    succeeded = failed = 0
+    if not leads:
+        return {"processed": 0, "succeeded": 0, "failed": 0}
+
+    sem = asyncio.Semaphore(CONCURRENCY)
     async with browser_context() as context:
-        for lead in leads:
-            try:
-                await enrich_one(lead, context, db)
-                succeeded += 1
-            except Exception as e:
-                print(f"[enrich] failed {lead.company_name}: {e}")
-                if lead.id:
-                    db.update_lead_status(lead.id, LeadStatus.ENRICHMENT_FAILED)
-                failed += 1
+        results = await asyncio.gather(
+            *[_enrich_with_sem(lead, context, db, sem) for lead in leads]
+        )
+    succeeded = sum(1 for r in results if r == "ok")
+    failed = sum(1 for r in results if r == "fail")
     return {"processed": len(leads), "succeeded": succeeded, "failed": failed}
