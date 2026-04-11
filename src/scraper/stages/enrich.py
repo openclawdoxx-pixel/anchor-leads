@@ -1,102 +1,85 @@
 import asyncio
 from playwright.async_api import BrowserContext
-from tenacity import retry, stop_after_attempt, wait_exponential
 from scraper.db import Database
-from scraper.models import Lead, LeadStatus, LeadEnrichment, BookingPathQuality
+from scraper.models import Lead, LeadStatus, LeadEnrichment
 from scraper.browser import browser_context, fetch_page_html, polite_wait
-from scraper.enrichment.website import analyze_html
 from scraper.enrichment.google_maps import enrich_via_google
-from scraper.enrichment.owner import lookup_owner
-from scraper.enrichment.facebook import lookup_facebook
+from scraper.enrichment.owner import extract_from_review_text, extract_from_about_page
 
-BAD_BUILDERS = {"wix", "godaddy", "none"}
-CONCURRENCY = 5  # Number of leads enriched in parallel per run_enrich invocation
+# Lite enrichment: Google Maps + light website fetch for owner name.
+# No LLM scoring, no Facebook, no full site analysis. Fast and cheap.
+CONCURRENCY = 5
 
 
 def apply_final_icp(e: LeadEnrichment) -> bool:
-    """Return True if lead passes full ICP after enrichment."""
+    """Return True if lead passes the ICP.
+
+    Rules (lite mode):
+    - review_count >= 100 → reject (too big)
+    - Otherwise → accept
+    """
     if e.review_count is not None and e.review_count >= 100:
         return False
-    if e.has_chat_widget:
-        return False
-    bad_signals = 0
-    if e.site_builder in BAD_BUILDERS:
-        bad_signals += 1
-    if e.last_site_update_year and e.last_site_update_year <= 2023:
-        bad_signals += 1
-    if e.booking_path_quality in (BookingPathQuality.WEAK, BookingPathQuality.NONE):
-        bad_signals += 1
-    if e.review_count is not None and e.review_count < 30:
-        bad_signals += 1
-    return bad_signals >= 1
+    return True
 
 
-@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=16))
-async def _fetch_site(context: BrowserContext, url: str) -> str:
-    return await fetch_page_html(context, url)
+async def _owner_from_website(context: BrowserContext, website: str) -> str | None:
+    """Try to pull an owner name from the website's About page. Fast, best-effort."""
+    base = website.rstrip("/")
+    for path in ["/about", "/about-us", "/our-team", "/team", ""]:
+        try:
+            html = await fetch_page_html(context, base + path, timeout_ms=10000)
+            name = extract_from_about_page(html)
+            if name:
+                return name
+        except Exception:
+            continue
+    return None
 
 
 async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
+    """Lite enrichment: Google Maps + owner name lookup."""
     assert lead.id is not None
 
-    # Step 1: Google Maps first (fastest signal of "too big" → early exit)
+    # Step 1: Google Maps for reviews + rating
     gmaps = await enrich_via_google(context, lead.company_name, lead.city or lead.state)
     review_count = gmaps.get("review_count")
+    review_samples = gmaps.get("review_samples", [])
+
+    # Early reject: too big
     if review_count is not None and review_count >= 100:
-        # Early exit — too big, skip the expensive site/owner/facebook work
-        enrichment = LeadEnrichment(
+        db.upsert_enrichment(LeadEnrichment(
             lead_id=lead.id,
             review_count=review_count,
             rating=gmaps.get("rating"),
-            review_samples=gmaps.get("review_samples", []),
-        )
-        db.upsert_enrichment(enrichment)
+            review_samples=review_samples,
+        ))
         db.update_lead_status(lead.id, LeadStatus.REJECTED)
         return
 
-    # Step 2: Website analysis
-    site_data: dict = {}
-    if lead.website:
-        try:
-            html = await _fetch_site(context, lead.website)
-            site_data = analyze_html(html)
-        except Exception as e:
-            print(f"[enrich] site fetch failed for {lead.website}: {e}")
-    else:
-        site_data = {"site_builder": "none", "booking_path_quality": "none"}
+    # Step 2: Owner name lookup — try review samples first (free), then website about page
+    owner = None
+    for r in review_samples:
+        candidate = extract_from_review_text(r.get("text", ""))
+        if candidate:
+            owner = candidate
+            break
 
-    # Step 3: Owner name + Facebook (can fail independently)
-    owner = await lookup_owner(context, lead.website, gmaps.get("review_samples", []))
-    fb = await lookup_facebook(context, lead.company_name, lead.city or lead.state)
-
-    booking_quality_raw = site_data.get("booking_path_quality")
-    booking_quality = BookingPathQuality(booking_quality_raw) if booking_quality_raw else None
+    if not owner and lead.website:
+        owner = await _owner_from_website(context, lead.website)
 
     enrichment = LeadEnrichment(
         lead_id=lead.id,
         owner_name=owner,
         review_count=review_count,
         rating=gmaps.get("rating"),
-        site_builder=site_data.get("site_builder"),
-        has_chat_widget=site_data.get("has_chat_widget"),
-        chat_widget_vendor=site_data.get("chat_widget_vendor"),
-        has_ai_signals=site_data.get("has_ai_signals"),
-        last_site_update_year=site_data.get("last_site_update_year"),
-        hero_snapshot=site_data.get("hero_snapshot"),
-        booking_path_quality=booking_quality,
-        facebook_url=fb.get("facebook_url"),
-        facebook_last_post=fb.get("facebook_last_post"),
-        review_samples=gmaps.get("review_samples", []),
-        raw_site_text=site_data.get("raw_site_text"),
+        review_samples=review_samples,
     )
     db.upsert_enrichment(enrichment)
 
-    if not apply_final_icp(enrichment):
-        db.update_lead_status(lead.id, LeadStatus.REJECTED)
-    else:
-        if gmaps.get("place_id"):
-            db.client.table("leads").update({"place_id": gmaps["place_id"]}).eq("id", str(lead.id)).execute()
-        db.update_lead_status(lead.id, LeadStatus.ENRICHED)
+    if gmaps.get("place_id"):
+        db.client.table("leads").update({"place_id": gmaps["place_id"]}).eq("id", str(lead.id)).execute()
+    db.update_lead_status(lead.id, LeadStatus.ENRICHED)
     await polite_wait(min_s=1.0, max_s=3.0)
 
 

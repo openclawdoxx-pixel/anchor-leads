@@ -75,5 +75,37 @@ def score(
         if not loop or result["processed"] == 0:
             break
 
+@app.command()
+def export(
+    out: str = typer.Option("leads.csv", "--out", help="Output CSV path"),
+    status: str = typer.Option("enriched", "--status", help="Lead status to export: enriched, scored, or all"),
+    limit: int = typer.Option(100000, "--limit", help="Max rows to export"),
+):
+    """Export leads to CSV for import into GHL / power dialer."""
+    import csv
+    db = _db()
+    q = db.client.table("leads_with_latest_call").select(
+        "company_name, owner_name, phone, website, city, state, review_count, rating, best_pitch, ai_summary"
+    )
+    if status == "enriched":
+        q = q.in_("status", ["enriched", "scored"])
+    elif status == "scored":
+        q = q.eq("status", "scored")
+    # 'all' = no status filter
+    q = q.limit(limit)
+    rows = q.execute().data or []
+
+    with open(out, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=[
+            "company_name", "owner_name", "phone", "website", "city", "state",
+            "review_count", "rating", "best_pitch", "ai_summary",
+        ])
+        w.writeheader()
+        for r in rows:
+            w.writerow({k: (r.get(k) if r.get(k) is not None else "") for k in w.fieldnames})
+
+    typer.echo(f"exported {len(rows)} leads to {out}")
+
+
 if __name__ == "__main__":
     app()
