@@ -20,6 +20,7 @@ class Database:
             self.client.table("leads")
             .select("*")
             .eq("status", status.value)
+            .order("website", desc=True, nullsfirst=False)
             .limit(limit)
             .execute()
         )

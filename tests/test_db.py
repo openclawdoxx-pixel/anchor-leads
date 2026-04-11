@@ -13,7 +13,7 @@ def test_database_upserts_lead_by_overture_id():
 
 def test_database_fetches_leads_by_status():
     mock_client = MagicMock()
-    mock_client.table.return_value.select.return_value.eq.return_value.limit.return_value.execute.return_value.data = [
+    mock_client.table.return_value.select.return_value.eq.return_value.order.return_value.limit.return_value.execute.return_value.data = [
         {"id": str(uuid4()), "company_name": "Acme", "state": "NY", "status": "qualified"}
     ]
     db = Database(client=mock_client)

@@ -23,6 +23,8 @@ def apply_final_icp(e: LeadEnrichment) -> bool:
         bad_signals += 1
     if e.booking_path_quality in (BookingPathQuality.WEAK, BookingPathQuality.NONE):
         bad_signals += 1
+    if e.review_count is not None and e.review_count < 30:
+        bad_signals += 1
     return bad_signals >= 1
 
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=16))
@@ -38,6 +40,9 @@ async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
             site_data = analyze_html(html)
         except Exception as e:
             print(f"[enrich] site fetch failed for {lead.website}: {e}")
+    else:
+        # No website at all — strongest "needs a website" signal we can get
+        site_data = {"site_builder": "none", "booking_path_quality": "none"}
 
     gmaps = await enrich_via_google(context, lead.company_name, lead.city or lead.state)
     owner = await lookup_owner(context, lead.website, gmaps.get("review_samples", []))
