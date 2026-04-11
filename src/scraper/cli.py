@@ -2,7 +2,7 @@ import asyncio
 import typer
 from scraper.config import load_config
 from scraper.db import Database
-from scraper.stages.discover import run_discover
+from scraper.stages.discover import run_discover, run_discover_nation
 from scraper.stages.filter import run_filter
 from scraper.stages.enrich import run_enrich
 from scraper.stages.score import run_score
@@ -35,6 +35,15 @@ def discover(state: str = typer.Option(..., "--state", help="Two-letter state co
         count = run_discover(state=state.upper(), db=db)
         db.log_run("discover", state.upper(), processed=count, succeeded=count, failed=0)
         typer.echo(f"discovered {count} leads in {state.upper()}")
+
+@app.command("discover-nation")
+def discover_nation_cmd():
+    """Single nation-wide Overture query. Gets all ~107k US plumbers (no bbox gaps)."""
+    db = _db()
+    count = run_discover_nation(db=db)
+    db.log_run("discover_nation", "US", processed=count, succeeded=count, failed=0)
+    typer.echo(f"discovered {count} leads nation-wide")
+
 
 @app.command("filter")
 def filter_cmd():

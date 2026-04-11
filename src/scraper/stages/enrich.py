@@ -85,7 +85,14 @@ async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
     db.upsert_enrichment(enrichment)
 
     if gmaps.get("place_id"):
-        db.client.table("leads").update({"place_id": gmaps["place_id"]}).eq("id", str(lead.id)).execute()
+        try:
+            db.client.table("leads").update({"place_id": gmaps["place_id"]}).eq("id", str(lead.id)).execute()
+        except Exception as e:
+            # Duplicate place_id means Overture had duplicate entries for the same
+            # Google business. Not fatal — we still enrich the lead, just don't
+            # overwrite the place_id column.
+            if "duplicate key" not in str(e):
+                print(f"[enrich] place_id update warning for {lead.company_name}: {e}")
     db.update_lead_status(lead.id, LeadStatus.ENRICHED)
     await polite_wait(min_s=1.0, max_s=3.0)
 

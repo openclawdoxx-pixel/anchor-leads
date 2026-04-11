@@ -131,3 +131,56 @@ def run_discover(state: str, db: Database, rows: Iterable[dict[str, Any]] | None
         except Exception as e:
             print(f"[discover] skip row {row.get('id')}: {e}")
     return count
+
+
+def query_overture_nation() -> list[dict[str, Any]]:
+    """Query Overture Maps for ALL US plumbers without state bbox filtering.
+
+    The state-by-state bbox approach leaves gaps at state borders and double-counts
+    overlapping bboxes. This nation-wide query is the authoritative source: every
+    US place with a plumbing-related primary category.
+    """
+    con = duckdb.connect()
+    con.execute("INSTALL httpfs; LOAD httpfs;")
+    con.execute("INSTALL spatial; LOAD spatial;")
+    con.execute("SET s3_region='us-west-2';")
+    categories_list = "', '".join(PLUMBER_CATEGORIES)
+    sql = f"""
+        SELECT
+          id,
+          names,
+          categories,
+          phones,
+          websites,
+          addresses,
+          ST_AsGeoJSON(geometry) AS geometry_json
+        FROM read_parquet('{OVERTURE_PLACES_URL}', hive_partitioning=1)
+        WHERE categories.primary IN ('{categories_list}')
+          AND addresses[1].country = 'US'
+    """
+    rows = con.execute(sql).fetchall()
+    cols = [d[0] for d in con.description]
+    import json as _json
+    result = []
+    for r in rows:
+        d = dict(zip(cols, r))
+        d["geometry"] = _json.loads(d.pop("geometry_json"))
+        result.append(d)
+    return result
+
+
+def run_discover_nation(db: Database) -> int:
+    """Run a single nation-wide discover query. Uses the address region as the state."""
+    rows = query_overture_nation()
+    count = 0
+    for row in rows:
+        try:
+            addresses = row.get("addresses") or [{}]
+            addr = addresses[0] if addresses else {}
+            state = (addr.get("region") or "US").upper()
+            lead = parse_overture_row(row, state=state)
+            db.upsert_lead(lead)
+            count += 1
+        except Exception as e:
+            print(f"[discover_nation] skip row {row.get('id')}: {e}")
+    return count
