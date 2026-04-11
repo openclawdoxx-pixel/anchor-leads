@@ -1,0 +1,64 @@
+import asyncio
+import typer
+from scraper.config import load_config
+from scraper.db import Database
+from scraper.stages.discover import run_discover
+from scraper.stages.filter import run_filter
+from scraper.stages.enrich import run_enrich
+from scraper.stages.score import run_score
+from scraper.llm import LLMScorer
+
+app = typer.Typer(help="Anchor Leads — plumber lead scraper pipeline")
+
+def _db() -> Database:
+    return Database(config=load_config())
+
+@app.command()
+def discover(state: str = typer.Option(..., "--state", help="Two-letter state code, e.g. NY")):
+    """Stage 1: pull plumber POIs from Overture Maps and insert into leads table."""
+    db = _db()
+    count = run_discover(state=state.upper(), db=db)
+    db.log_run("discover", state.upper(), processed=count, succeeded=count, failed=0)
+    typer.echo(f"discovered {count} leads in {state.upper()}")
+
+@app.command("filter")
+def filter_cmd():
+    """Stage 2: apply pre-enrichment ICP filter (phone + state)."""
+    db = _db()
+    result = run_filter(db=db)
+    total = result["qualified"] + result["rejected"]
+    db.log_run("filter", None, processed=total, succeeded=result["qualified"], failed=0,
+               notes=f"rejected={result['rejected']}")
+    typer.echo(f"qualified={result['qualified']} rejected={result['rejected']}")
+
+@app.command()
+def enrich(
+    limit: int = typer.Option(500, "--limit"),
+    loop: bool = typer.Option(False, "--loop", help="Run continuously until no qualified leads remain"),
+):
+    """Stage 3: enrich qualified leads (website + gmaps + owner + facebook)."""
+    db = _db()
+    while True:
+        result = asyncio.run(run_enrich(db=db, limit=limit))
+        db.log_run("enrich", None, **result)
+        typer.echo(f"enriched: {result}")
+        if not loop or result["processed"] == 0:
+            break
+
+@app.command()
+def score(
+    limit: int = typer.Option(500, "--limit"),
+    loop: bool = typer.Option(False, "--loop"),
+):
+    """Stage 4: LLM-score enriched leads into sales-intel notes."""
+    db = _db()
+    scorer = LLMScorer()
+    while True:
+        result = run_score(db=db, scorer=scorer, limit=limit)
+        db.log_run("score", None, **result)
+        typer.echo(f"scored: {result}")
+        if not loop or result["processed"] == 0:
+            break
+
+if __name__ == "__main__":
+    app()
