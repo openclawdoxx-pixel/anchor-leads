@@ -5,6 +5,7 @@ from scraper.models import Lead, LeadStatus, LeadEnrichment
 from scraper.browser import browser_context, fetch_page_html, polite_wait
 from scraper.enrichment.google_maps import enrich_via_google
 from scraper.enrichment.owner import extract_from_review_text, extract_from_about_page
+from scraper.enrichment.owner_search import search_owner_via_google
 
 # Lite enrichment: Google Maps + light website fetch for owner name.
 # No LLM scoring, no Facebook, no full site analysis. Fast and cheap.
@@ -67,6 +68,12 @@ async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
 
     if not owner and lead.website:
         owner = await _owner_from_website(context, lead.website)
+
+    if not owner:
+        try:
+            owner = await search_owner_via_google(context, lead.company_name, lead.city or lead.state)
+        except Exception:
+            owner = None
 
     enrichment = LeadEnrichment(
         lead_id=lead.id,
