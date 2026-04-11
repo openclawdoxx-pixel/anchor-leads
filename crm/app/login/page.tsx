@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { createClient } from '@/lib/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -18,10 +17,14 @@ export default function LoginPage() {
     setError(null);
     setPending(true);
     try {
-      const sb = createClient();
-      const { error: authErr } = await sb.auth.signInWithPassword({ email, password });
-      if (authErr) {
-        setError(authErr.message);
+      const res = await fetch('/api/auth/signin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error ?? 'Sign in failed');
         setPending(false);
         return;
       }
@@ -64,9 +67,6 @@ export default function LoginPage() {
             <Button type="submit" className="w-full" disabled={pending}>
               {pending ? 'Signing in…' : 'Sign in'}
             </Button>
-            <p className="text-xs text-muted-foreground text-center">
-              First time? Go to <a href="/bootstrap" className="underline">/bootstrap</a>
-            </p>
           </form>
         </CardContent>
       </Card>
