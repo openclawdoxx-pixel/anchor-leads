@@ -4,7 +4,7 @@ from scraper.db import Database
 from scraper.models import Lead, LeadStatus
 
 OVERTURE_PLACES_URL = (
-    "s3://overturemaps-us-west-2/release/2025-01-22.0/theme=places/type=place/*"
+    "s3://overturemaps-us-west-2/release/2026-03-18.0/theme=places/type=place/*"
 )
 
 STATE_BBOXES: dict[str, tuple[float, float, float, float]] = {
