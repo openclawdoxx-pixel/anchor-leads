@@ -14,12 +14,27 @@ def _db() -> Database:
     return Database(config=load_config())
 
 @app.command()
-def discover(state: str = typer.Option(..., "--state", help="Two-letter state code, e.g. NY")):
+def discover(state: str = typer.Option(..., "--state", help="Two-letter state code, or 'ALL' for every US state")):
     """Stage 1: pull plumber POIs from Overture Maps and insert into leads table."""
+    from scraper.stages.discover import STATE_BBOXES
     db = _db()
-    count = run_discover(state=state.upper(), db=db)
-    db.log_run("discover", state.upper(), processed=count, succeeded=count, failed=0)
-    typer.echo(f"discovered {count} leads in {state.upper()}")
+    if state.upper() == "ALL":
+        total = 0
+        for st in sorted(STATE_BBOXES.keys()):
+            typer.echo(f"--- discovering {st} ---")
+            try:
+                count = run_discover(state=st, db=db)
+                db.log_run("discover", st, processed=count, succeeded=count, failed=0)
+                typer.echo(f"  {st}: {count} leads")
+                total += count
+            except Exception as e:
+                typer.echo(f"  {st}: FAILED {e}")
+                db.log_run("discover", st, processed=0, succeeded=0, failed=1, notes=str(e)[:200])
+        typer.echo(f"TOTAL discovered across all states: {total}")
+    else:
+        count = run_discover(state=state.upper(), db=db)
+        db.log_run("discover", state.upper(), processed=count, succeeded=count, failed=0)
+        typer.echo(f"discovered {count} leads in {state.upper()}")
 
 @app.command("filter")
 def filter_cmd():
