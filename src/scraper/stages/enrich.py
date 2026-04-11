@@ -1,31 +1,35 @@
+"""Lean enrichment: email + owner name only.
+
+Sources:
+  1. Plumber's own website — primary (mailto links, Contact/About pages)
+  2. Yellow Pages listing — fallback for email only
+
+Dropped entirely:
+  - Google Maps (rate-limited / CAPTCHA)
+  - Yelp (CAPTCHA)
+  - Review count, rating, hero_snapshot, site_builder, chat widget detection
+  - Facebook lookup
+  - LLM scoring
+
+Zero Claude tokens. Pure Playwright + regex.
+"""
+
 import asyncio
 from playwright.async_api import BrowserContext
 from scraper.db import Database
 from scraper.models import Lead, LeadStatus, LeadEnrichment
 from scraper.browser import browser_context, fetch_page_html, polite_wait
-from scraper.enrichment.google_maps import enrich_via_google
-from scraper.enrichment.owner import extract_from_review_text, extract_from_about_page
-from scraper.enrichment.owner_search import search_owner_via_google
+from scraper.enrichment.owner import extract_from_about_page
+from scraper.enrichment.email_finder import find_email_from_website, find_data_from_yellowpages
 
-# Lite enrichment: Google Maps + light website fetch for owner name.
-# No LLM scoring, no Facebook, no full site analysis. Fast and cheap.
 CONCURRENCY = 5
 
 
-def apply_final_icp(e: LeadEnrichment) -> bool:
-    """Return True if lead passes the ICP.
-
-    Rules (lite mode):
-    - review_count >= 100 → reject (too big)
-    - Otherwise → accept
-    """
-    if e.review_count is not None and e.review_count >= 100:
-        return False
-    return True
-
-
 async def _owner_from_website(context: BrowserContext, website: str) -> str | None:
-    """Try to pull an owner name from the website's About page. Fast, best-effort."""
+    if not website:
+        return None
+    if not website.startswith("http"):
+        website = "https://" + website
     base = website.rstrip("/")
     for path in ["/about", "/about-us", "/our-team", "/team", ""]:
         try:
@@ -39,62 +43,47 @@ async def _owner_from_website(context: BrowserContext, website: str) -> str | No
 
 
 async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
-    """Lite enrichment: Google Maps + owner name lookup."""
+    """Lean enrichment: chase email + owner name, nothing else."""
     assert lead.id is not None
 
-    # Step 1: Google Maps for reviews + rating
-    gmaps = await enrich_via_google(context, lead.company_name, lead.city or lead.state)
-    review_count = gmaps.get("review_count")
-    review_samples = gmaps.get("review_samples", [])
+    email: str | None = None
+    owner: str | None = None
 
-    # Early reject: too big
-    if review_count is not None and review_count >= 100:
-        db.upsert_enrichment(LeadEnrichment(
-            lead_id=lead.id,
-            review_count=review_count,
-            rating=gmaps.get("rating"),
-            review_samples=review_samples,
-        ))
-        db.update_lead_status(lead.id, LeadStatus.REJECTED)
-        return
-
-    # Step 2: Owner name lookup — try review samples first (free), then website about page
-    owner = None
-    for r in review_samples:
-        candidate = extract_from_review_text(r.get("text", ""))
-        if candidate:
-            owner = candidate
-            break
-
-    if not owner and lead.website:
-        owner = await _owner_from_website(context, lead.website)
-
-    if not owner:
+    # Tier 1: plumber's own website
+    if lead.website:
         try:
-            owner = await search_owner_via_google(context, lead.company_name, lead.city or lead.state)
-        except Exception:
-            owner = None
-
-    enrichment = LeadEnrichment(
-        lead_id=lead.id,
-        owner_name=owner,
-        review_count=review_count,
-        rating=gmaps.get("rating"),
-        review_samples=review_samples,
-    )
-    db.upsert_enrichment(enrichment)
-
-    if gmaps.get("place_id"):
+            email = await find_email_from_website(context, lead.website)
+        except Exception as exc:
+            print(f"[enrich] website email fail {lead.company_name}: {exc}")
         try:
-            db.client.table("leads").update({"place_id": gmaps["place_id"]}).eq("id", str(lead.id)).execute()
-        except Exception as e:
-            # Duplicate place_id means Overture had duplicate entries for the same
-            # Google business. Not fatal — we still enrich the lead, just don't
-            # overwrite the place_id column.
-            if "duplicate key" not in str(e):
-                print(f"[enrich] place_id update warning for {lead.company_name}: {e}")
+            owner = await _owner_from_website(context, lead.website)
+        except Exception as exc:
+            print(f"[enrich] website owner fail {lead.company_name}: {exc}")
+
+    # Tier 2: Yellow Pages — email fallback only, no rating scrape
+    if not email:
+        try:
+            yp = await find_data_from_yellowpages(
+                context,
+                lead.company_name,
+                lead.city or "",
+                lead.state or "",
+            )
+            if yp.get("email"):
+                email = yp["email"]
+        except Exception as exc:
+            print(f"[enrich] yellowpages fail {lead.company_name}: {exc}")
+
+    # Write to lead_enrichment via raw upsert (bypasses pydantic for email column)
+    payload: dict = {"lead_id": str(lead.id)}
+    if owner:
+        payload["owner_name"] = owner
+    if email:
+        payload["email"] = email
+    db.client.table("lead_enrichment").upsert(payload).execute()
+
     db.update_lead_status(lead.id, LeadStatus.ENRICHED)
-    await polite_wait(min_s=1.0, max_s=3.0)
+    await polite_wait(min_s=0.8, max_s=2.0)
 
 
 async def _enrich_with_sem(lead: Lead, context: BrowserContext, db: Database, sem: asyncio.Semaphore) -> str:
@@ -122,3 +111,8 @@ async def run_enrich(db: Database, limit: int = 500) -> dict[str, int]:
     succeeded = sum(1 for r in results if r == "ok")
     failed = sum(1 for r in results if r == "fail")
     return {"processed": len(leads), "succeeded": succeeded, "failed": failed}
+
+
+# Kept for test compatibility
+def apply_final_icp(e: LeadEnrichment) -> bool:
+    return True

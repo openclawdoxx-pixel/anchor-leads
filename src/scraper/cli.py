@@ -87,33 +87,62 @@ def score(
 @app.command()
 def export(
     out: str = typer.Option("leads.csv", "--out", help="Output CSV path"),
-    status: str = typer.Option("enriched", "--status", help="Lead status to export: enriched, scored, or all"),
+    smartlead: bool = typer.Option(False, "--smartlead", help="Format for Smartlead cold email import"),
+    only_with_email: bool = typer.Option(False, "--only-with-email", help="Skip leads without an email address"),
     limit: int = typer.Option(100000, "--limit", help="Max rows to export"),
 ):
-    """Export leads to CSV for import into GHL / power dialer."""
+    """Export enriched leads to CSV for import into Smartlead / GHL / power dialer."""
     import csv
     db = _db()
-    q = db.client.table("leads_with_latest_call").select(
-        "company_name, owner_name, phone, website, city, state, review_count, rating, best_pitch, ai_summary"
+    rows = (
+        db.client.table("leads_final")
+        .select("*")
+        .limit(limit)
+        .execute()
+        .data
+        or []
     )
-    if status == "enriched":
-        q = q.in_("status", ["enriched", "scored"])
-    elif status == "scored":
-        q = q.eq("status", "scored")
-    # 'all' = no status filter
-    q = q.limit(limit)
-    rows = q.execute().data or []
 
-    with open(out, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=[
-            "company_name", "owner_name", "phone", "website", "city", "state",
-            "review_count", "rating", "best_pitch", "ai_summary",
-        ])
-        w.writeheader()
-        for r in rows:
-            w.writerow({k: (r.get(k) if r.get(k) is not None else "") for k in w.fieldnames})
+    if only_with_email:
+        rows = [r for r in rows if r.get("email")]
 
-    typer.echo(f"exported {len(rows)} leads to {out}")
+    if smartlead:
+        # Smartlead import format: email required, first_name/last_name optional,
+        # everything else becomes a custom variable
+        fieldnames = [
+            "email", "first_name", "last_name", "company_name",
+            "phone", "website", "city", "state", "rating", "review_count",
+        ]
+        with open(out, "w", newline="", encoding="utf-8") as f:
+            w = csv.DictWriter(f, fieldnames=fieldnames)
+            w.writeheader()
+            for r in rows:
+                owner = (r.get("owner_name") or "").strip()
+                first_name, _, last_name = owner.partition(" ")
+                w.writerow({
+                    "email": r.get("email") or "",
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "company_name": r.get("company_name") or "",
+                    "phone": r.get("phone") or "",
+                    "website": r.get("website") or "",
+                    "city": r.get("city") or "",
+                    "state": r.get("state") or "",
+                    "rating": r.get("rating") or "",
+                    "review_count": r.get("review_count") or "",
+                })
+    else:
+        fieldnames = [
+            "company_name", "owner_name", "phone", "email", "website",
+            "city", "state", "review_count", "rating",
+        ]
+        with open(out, "w", newline="", encoding="utf-8") as f:
+            w = csv.DictWriter(f, fieldnames=fieldnames)
+            w.writeheader()
+            for r in rows:
+                w.writerow({k: (r.get(k) if r.get(k) is not None else "") for k in fieldnames})
+
+    typer.echo(f"exported {len(rows)} leads to {out} (smartlead={smartlead}, email_only={only_with_email})")
 
 
 if __name__ == "__main__":
