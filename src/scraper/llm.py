@@ -1,4 +1,5 @@
 import json
+import os
 import subprocess
 from pathlib import Path
 from uuid import UUID
@@ -13,14 +14,17 @@ class LLMScorer:
     def score(self, lead_id: UUID, enrichment_row: dict) -> LeadNotes:
         user_payload = json.dumps(enrichment_row, default=str)
         full_prompt = f"{self.system_prompt}\n\n---\n\nLead data:\n{user_payload}"
+        # Strip ANTHROPIC_API_KEY from env so claude CLI falls back to subscription auth
+        env = {k: v for k, v in os.environ.items() if k != "ANTHROPIC_API_KEY"}
         result = subprocess.run(
             ["claude", "-p", full_prompt],
             capture_output=True,
             text=True,
-            timeout=120,
+            timeout=180,
+            env=env,
         )
         if result.returncode != 0:
-            raise RuntimeError(f"claude -p failed: {result.stderr}")
+            raise RuntimeError(f"claude -p failed: {result.stdout or result.stderr}")
         text = result.stdout.strip()
         if text.startswith("```"):
             text = text.strip("`")
