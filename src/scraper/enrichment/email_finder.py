@@ -9,12 +9,26 @@ from scraper.browser import fetch_page_html, polite_wait
 
 EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
 
-# Email addresses that are clearly not the business's contact
-EMAIL_BLACKLIST = {
+# Domains that are NEVER real business contact emails. Match by suffix so
+# subdomains like `sentry-next.wixpress.com` get caught too.
+EMAIL_BLACKLIST_SUFFIXES = (
     "example.com", "email.com", "yourcompany.com", "domain.com",
-    "sentry.io", "wixpress.com", "wix.com", "godaddy.com",
-    "google.com", "gmail.example.com",
-}
+    "sentry.io", "ingest.sentry.io",
+    "wixpress.com", "wix.com",
+    "godaddy.com", "secureserver.net",
+    "gmail.example.com",
+    "squarespace.com", "static.squarespace.com",
+    "shopify.com", "myshopify.com",
+    "googleapis.com", "gstatic.com", "google-analytics.com",
+    "facebook.com", "fbcdn.net", "instagram.com",
+    "cloudflare.com", "cloudflareinsights.com",
+    "hubspot.com", "hsforms.com",
+    "amazonaws.com", "cloudfront.net",
+    "schema.org", "w3.org",
+)
+
+# Local-parts that look like hashes/UUIDs are tracking endpoints, not real users
+HASH_LOCAL_RE = re.compile(r"^[a-f0-9]{16,}$")
 
 ROLE_PREFIXES = {"info", "contact", "hello", "office", "service", "admin",
                  "support", "sales", "billing", "reception", "enquiries"}
@@ -25,11 +39,24 @@ def _is_valid_email(email: str) -> bool:
         return False
     local, _, domain = email.partition("@")
     domain = domain.lower().strip(".")
-    if domain in EMAIL_BLACKLIST:
+    local = local.lower()
+
+    # Suffix match so subdomains get blocked
+    if any(domain == d or domain.endswith("." + d) for d in EMAIL_BLACKLIST_SUFFIXES):
         return False
+
+    # Reject hash-like local parts (Sentry/tracking endpoints)
+    if HASH_LOCAL_RE.match(local):
+        return False
+
     # Reject file extensions that sometimes match the regex
-    if any(domain.endswith(ext) for ext in [".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".js", ".css"]):
+    if any(domain.endswith(ext) for ext in [".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".js", ".css", ".ico"]):
         return False
+
+    # Reject anything with "noreply" / "no-reply" / "donotreply"
+    if any(x in local for x in ("noreply", "no-reply", "donotreply", "do-not-reply")):
+        return False
+
     return True
 
 
