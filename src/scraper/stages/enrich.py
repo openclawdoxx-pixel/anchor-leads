@@ -11,6 +11,7 @@ from scraper.browser import browser_context, fetch_page_html, polite_wait
 from scraper.enrichment.owner import extract_from_about_page
 from scraper.enrichment.website import detect_site_builder
 from scraper.enrichment.email_finder import extract_emails_from_html, find_data_from_yellowpages
+from scraper.enrichment.email_guess import guess_email
 
 CONCURRENCY = 15
 
@@ -83,6 +84,14 @@ async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
             )
             if yp.get("email"):
                 email = yp["email"]
+        except Exception:
+            pass
+
+    # Tier 3: Email pattern guessing (owner name + domain → bob@domain.com)
+    # Zero page loads, just DNS. Produces PERSONAL emails.
+    if not email and owner and lead.website:
+        try:
+            email = guess_email(owner, lead.website)
         except Exception:
             pass
 
