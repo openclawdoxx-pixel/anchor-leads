@@ -12,6 +12,7 @@ from scraper.enrichment.owner import extract_from_about_page
 from scraper.enrichment.website import detect_site_builder
 from scraper.enrichment.email_finder import extract_emails_from_html, find_data_from_yellowpages
 from scraper.enrichment.email_guess import guess_email
+from scraper.enrichment.facebook import enrich_via_facebook, has_fb_cookies
 
 CONCURRENCY = 15
 
@@ -92,6 +93,15 @@ async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
     if not email and owner and lead.website:
         try:
             email = guess_email(owner, lead.website)
+        except Exception:
+            pass
+
+    # Tier 4: Facebook business page (logged-in session, no proxy)
+    if not email and has_fb_cookies():
+        try:
+            fb = await enrich_via_facebook(context, lead.company_name, lead.city or lead.state)
+            if fb.get("email"):
+                email = fb["email"]
         except Exception:
             pass
 

@@ -1,40 +1,83 @@
+"""Facebook business page scraper — extracts email + phone from About tab.
+
+Requires saved Facebook session cookies at .fb_cookies.json.
+No proxy needed. Zero Claude tokens. Pure Python + Playwright.
+"""
+
+import json
 import re
-from datetime import date, datetime
+from pathlib import Path
 from typing import Any
+from urllib.parse import quote_plus
 from playwright.async_api import BrowserContext
-from scraper.browser import fetch_page_html
+from scraper.browser import polite_wait
 
-DATE_PATTERNS = [
-    (r'data-utime="(\d+)"', lambda m: date.fromtimestamp(int(m.group(1)))),
-    (r'(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2}),?\s+(\d{4})',
-     lambda m: datetime.strptime(f"{m.group(1)} {m.group(2)} {m.group(3)}", "%B %d %Y").date()),
-]
+COOKIES_PATH = Path(__file__).parent.parent.parent / ".fb_cookies.json"
+EMAIL_RE = re.compile(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}')
+SKIP_DOMAINS = {"facebook.com", "fbcdn.net", "instagram.com", "sentry.io", "wixpress.com"}
 
-def extract_last_post_date(html: str) -> date | None:
-    for pat, conv in DATE_PATTERNS:
-        m = re.search(pat, html)
-        if m:
-            try:
-                return conv(m)
-            except Exception:
-                continue
-    return None
 
-async def lookup_facebook(context: BrowserContext, company: str, city: str) -> dict[str, Any]:
-    from urllib.parse import quote_plus
-    query = quote_plus(f"{company} {city} plumber site:facebook.com")
-    url = f"https://www.google.com/search?q={query}"
+def _is_real_email(email: str) -> bool:
+    domain = email.split("@")[1].lower()
+    return not any(domain.endswith(d) for d in SKIP_DOMAINS)
+
+
+def has_fb_cookies() -> bool:
+    return COOKIES_PATH.exists() and COOKIES_PATH.stat().st_size > 10
+
+
+async def enrich_via_facebook(context: BrowserContext, company: str, city: str) -> dict[str, Any]:
+    """Search Facebook for a business page, visit About tab, extract email."""
+    result: dict[str, Any] = {"email": None}
+
+    if not has_fb_cookies():
+        return result
+
+    # Load cookies into this context
     try:
-        html = await fetch_page_html(context, url)
+        with open(COOKIES_PATH) as f:
+            cookies = json.load(f)
+        await context.add_cookies(cookies)
     except Exception:
-        return {"facebook_url": None, "facebook_last_post": None}
-    m = re.search(r'https://(?:www\.|m\.)?facebook\.com/[^"\s<>]+', html)
-    if not m:
-        return {"facebook_url": None, "facebook_last_post": None}
-    fb_url = m.group(0).split("&")[0]
+        return result
+
+    query = quote_plus(f"{company} {city}")
+    page = await context.new_page()
     try:
-        fb_html = await fetch_page_html(context, fb_url)
-        last = extract_last_post_date(fb_html)
+        # Search Facebook Pages
+        await page.goto(
+            f"https://www.facebook.com/search/pages?q={query}",
+            wait_until="domcontentloaded", timeout=25000,
+        )
+        await page.wait_for_timeout(3000)
+
+        # Find first matching result
+        first_word = company.split()[0]
+        link = page.locator(f'a:has-text("{first_word}")').first
+        if await link.count() == 0:
+            return result
+
+        href = await link.get_attribute("href")
+        if not href or "facebook.com" not in href:
+            return result
+
+        # Navigate to About page
+        about_url = href.split("?")[0].rstrip("/") + "/about"
+        await page.goto(about_url, wait_until="domcontentloaded", timeout=25000)
+        await page.wait_for_timeout(3000)
+
+        text = await page.inner_text("body")
+        html = await page.content()
+
+        # Extract emails
+        all_emails = EMAIL_RE.findall(text + html)
+        real = [e.lower() for e in set(all_emails) if _is_real_email(e)]
+        if real:
+            result["email"] = real[0]
+
+        return result
     except Exception:
-        last = None
-    return {"facebook_url": fb_url, "facebook_last_post": last}
+        return result
+    finally:
+        await page.close()
+        await polite_wait(min_s=4.0, max_s=8.0)
