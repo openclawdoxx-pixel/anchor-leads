@@ -64,9 +64,24 @@ STATE_BBOXES: dict[str, tuple[float, float, float, float]] = {
 
 PLUMBER_CATEGORIES = {
     "plumber", "plumbing", "plumbing_service", "plumbing_contractor",
-    # Plumber-adjacent trades — same ICP, same digital pain points
     "septic_services", "water_heater_installation_repair",
 }
+
+ELECTRICIAN_CATEGORIES = {
+    "electrician", "electrical_contractor", "electrical_service",
+    "electrical_installation", "electrical_repair",
+}
+
+# Combined set for discover-nation
+ALL_TRADE_CATEGORIES = PLUMBER_CATEGORIES | ELECTRICIAN_CATEGORIES
+
+def category_to_trade(cat: str) -> str:
+    """Map an Overture category to a trade tag for segmentation."""
+    if cat in PLUMBER_CATEGORIES:
+        return "plumber"
+    if cat in ELECTRICIAN_CATEGORIES:
+        return "electrician"
+    return "other"
 
 def parse_overture_row(row: dict[str, Any], state: str) -> Lead:
     names = row.get("names") or {}
@@ -148,7 +163,7 @@ def query_overture_nation() -> list[dict[str, Any]]:
     con.execute("INSTALL httpfs; LOAD httpfs;")
     con.execute("INSTALL spatial; LOAD spatial;")
     con.execute("SET s3_region='us-west-2';")
-    categories_list = "', '".join(PLUMBER_CATEGORIES)
+    categories_list = "', '".join(ALL_TRADE_CATEGORIES)
     sql = f"""
         SELECT
           id,
