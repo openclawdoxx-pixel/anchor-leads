@@ -155,6 +155,37 @@ def export(
     typer.echo(f"exported {len(rows)} leads to {out} (smartlead={smartlead}, email_only={only_with_email})")
 
 
+@app.command("verify-emails")
+def verify_emails_cmd():
+    """Free MX-based email verification. Nulls out emails with dead domains."""
+    from scraper.enrichment.email_verify import verify_email_free
+    db = _db()
+
+    # Pull all emails
+    all_rows: list[dict] = []
+    offset = 0
+    while True:
+        batch = db.client.table("lead_enrichment").select("lead_id,email").not_.is_("email", "null").range(offset, offset + 999).execute().data
+        if not batch:
+            break
+        all_rows.extend(batch)
+        if len(batch) < 1000:
+            break
+        offset += 1000
+
+    typer.echo(f"verifying {len(all_rows)} emails via MX lookup...")
+    valid = invalid = 0
+    for row in all_rows:
+        status = verify_email_free(row["email"])
+        if status.startswith("invalid"):
+            db.client.table("lead_enrichment").update({"email": None}).eq("lead_id", row["lead_id"]).execute()
+            invalid += 1
+        else:
+            valid += 1
+
+    typer.echo(f"done: {valid} valid, {invalid} removed (dead domains)")
+
+
 @app.command("review-count")
 def review_count_cmd(
     limit: int = typer.Option(500, "--limit"),
