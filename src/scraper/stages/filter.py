@@ -22,6 +22,12 @@ FRANCHISE_PATTERNS = [
     r"\bservice experts\b",
     r"\bwind river\b",
     r"\bmr\.?\s*handyman\b",
+    # Discovered through email-collision audit (multi-location chains)
+    r"\bzoom drain\b",
+    r"\bz\s*plumberz\b",
+    r"\bus home services\b",
+    r"\bsuperior plumbing\b",
+    r"\beyebytes\b",
 ]
 
 COMPILED_FRANCHISE_PATTERNS = [re.compile(p, re.IGNORECASE) for p in FRANCHISE_PATTERNS]
