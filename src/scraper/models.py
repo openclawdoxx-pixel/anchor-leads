@@ -37,6 +37,7 @@ class Lead(BaseModel):
     lat: float | None = None
     lng: float | None = None
     status: LeadStatus = LeadStatus.DISCOVERED
+    trade: str = "plumber"
 
 class LeadEnrichment(BaseModel):
     lead_id: UUID

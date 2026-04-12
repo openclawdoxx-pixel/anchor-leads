@@ -83,7 +83,7 @@ def category_to_trade(cat: str) -> str:
         return "electrician"
     return "other"
 
-def parse_overture_row(row: dict[str, Any], state: str) -> Lead:
+def parse_overture_row(row: dict[str, Any], state: str, trade: str = "plumber") -> Lead:
     names = row.get("names") or {}
     phones = row.get("phones") or []
     websites = row.get("websites") or []
@@ -102,6 +102,7 @@ def parse_overture_row(row: dict[str, Any], state: str) -> Lead:
         lng=coords[0],
         lat=coords[1],
         status=LeadStatus.DISCOVERED,
+        trade=trade,
     )
 
 def query_overture(state: str) -> list[dict[str, Any]]:
@@ -197,7 +198,10 @@ def run_discover_nation(db: Database) -> int:
             addresses = row.get("addresses") or [{}]
             addr = addresses[0] if addresses else {}
             state = (addr.get("region") or "US").upper()
-            lead = parse_overture_row(row, state=state)
+            categories = row.get("categories") or {}
+            primary_cat = categories.get("primary", "") if isinstance(categories, dict) else str(categories)
+            trade = category_to_trade(primary_cat)
+            lead = parse_overture_row(row, state=state, trade=trade)
             db.upsert_lead(lead)
             count += 1
         except Exception as e:

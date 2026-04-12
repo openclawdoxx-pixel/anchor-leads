@@ -90,19 +90,16 @@ def export(
     smartlead: bool = typer.Option(False, "--smartlead", help="Format for Smartlead cold email import"),
     only_with_email: bool = typer.Option(False, "--only-with-email", help="Skip leads without an email address"),
     distinct_email: bool = typer.Option(True, "--distinct-email/--allow-duplicate-email", help="Only output one row per unique email"),
+    trade: str = typer.Option("all", "--trade", help="Filter by trade: plumber, electrician, or all"),
     limit: int = typer.Option(100000, "--limit", help="Max rows to export"),
 ):
     """Export enriched leads to CSV for import into Smartlead / GHL / power dialer."""
     import csv
     db = _db()
-    rows = (
-        db.client.table("leads_final")
-        .select("*")
-        .limit(limit)
-        .execute()
-        .data
-        or []
-    )
+    q = db.client.table("leads_final").select("*")
+    if trade != "all":
+        q = q.eq("trade", trade)
+    rows = q.limit(limit).execute().data or []
 
     if only_with_email:
         rows = [r for r in rows if r.get("email")]
