@@ -131,7 +131,10 @@ async def run_enrich(db: Database, limit: int = 500) -> dict[str, int]:
         return {"processed": 0, "succeeded": 0, "failed": 0}
 
     sem = asyncio.Semaphore(CONCURRENCY)
-    async with browser_context() as context:
+    # DON'T use proxy for regular plumber websites — they don't need it
+    # and it burns proxy bandwidth ($7/GB). Proxy is reserved for
+    # Google/Yelp/Facebook only (separate commands).
+    async with browser_context(use_proxy=False) as context:
         results = await asyncio.gather(
             *[_enrich_with_sem(lead, context, db, sem) for lead in leads]
         )
