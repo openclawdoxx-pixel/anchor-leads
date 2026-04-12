@@ -28,7 +28,7 @@ def _get_proxy_config() -> dict | None:
 
 
 @asynccontextmanager
-async def browser_context(use_proxy: bool = True) -> AsyncIterator[BrowserContext]:
+async def browser_context(use_proxy: bool = False) -> AsyncIterator[BrowserContext]:
     proxy = _get_proxy_config() if use_proxy else None
     async with async_playwright() as p:
         launch_args = {
