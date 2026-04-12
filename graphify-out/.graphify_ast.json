@@ -1,0 +1,6696 @@
+{
+  "nodes": [
+    {
+      "id": "next_env_d",
+      "label": "next-env.d.ts",
+      "file_type": "code",
+      "source_file": "crm/next-env.d.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "proxy",
+      "label": "proxy.ts",
+      "file_type": "code",
+      "source_file": "crm/proxy.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "proxy_proxy",
+      "label": "proxy()",
+      "file_type": "code",
+      "source_file": "crm/proxy.ts",
+      "source_location": "L5"
+    },
+    {
+      "id": "vitest_config",
+      "label": "vitest.config.ts",
+      "file_type": "code",
+      "source_file": "crm/vitest.config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "next_config",
+      "label": "next.config.ts",
+      "file_type": "code",
+      "source_file": "crm/next.config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "layout",
+      "label": "layout.tsx",
+      "file_type": "code",
+      "source_file": "crm/app/layout.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "layout_rootlayout",
+      "label": "RootLayout()",
+      "file_type": "code",
+      "source_file": "crm/app/layout.tsx",
+      "source_location": "L11"
+    },
+    {
+      "id": "page",
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "crm/app/page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "page_homepage",
+      "label": "HomePage()",
+      "file_type": "code",
+      "source_file": "crm/app/page.tsx",
+      "source_location": "L11"
+    },
+    {
+      "id": "page",
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "crm/app/bootstrap/page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "page",
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "crm/app/team/page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "page_teampage",
+      "label": "TeamPage()",
+      "file_type": "code",
+      "source_file": "crm/app/team/page.tsx",
+      "source_location": "L11"
+    },
+    {
+      "id": "invite",
+      "label": "invite.ts",
+      "file_type": "code",
+      "source_file": "crm/app/actions/invite.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "invite_inviteteammate",
+      "label": "inviteTeammate()",
+      "file_type": "code",
+      "source_file": "crm/app/actions/invite.ts",
+      "source_location": "L9"
+    },
+    {
+      "id": "auth",
+      "label": "auth.ts",
+      "file_type": "code",
+      "source_file": "crm/app/actions/auth.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "auth_signin",
+      "label": "signIn()",
+      "file_type": "code",
+      "source_file": "crm/app/actions/auth.ts",
+      "source_location": "L8"
+    },
+    {
+      "id": "auth_bootstrap",
+      "label": "bootstrap()",
+      "file_type": "code",
+      "source_file": "crm/app/actions/auth.ts",
+      "source_location": "L19"
+    },
+    {
+      "id": "auth_signout",
+      "label": "signOut()",
+      "file_type": "code",
+      "source_file": "crm/app/actions/auth.ts",
+      "source_location": "L67"
+    },
+    {
+      "id": "call_logs",
+      "label": "call-logs.ts",
+      "file_type": "code",
+      "source_file": "crm/app/actions/call-logs.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "call_logs_logcall",
+      "label": "logCall()",
+      "file_type": "code",
+      "source_file": "crm/app/actions/call-logs.ts",
+      "source_location": "L7"
+    },
+    {
+      "id": "route",
+      "label": "route.ts",
+      "file_type": "code",
+      "source_file": "crm/app/api/auth/signin/route.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "route_post",
+      "label": "POST()",
+      "file_type": "code",
+      "source_file": "crm/app/api/auth/signin/route.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "page",
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "crm/app/login/page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "page_loginpage",
+      "label": "LoginPage()",
+      "file_type": "code",
+      "source_file": "crm/app/login/page.tsx",
+      "source_location": "L9"
+    },
+    {
+      "id": "lead_list",
+      "label": "lead-list.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/lead-list.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "lead_list_matchesfilter",
+      "label": "matchesFilter()",
+      "file_type": "code",
+      "source_file": "crm/components/lead-list.tsx",
+      "source_location": "L10"
+    },
+    {
+      "id": "lead_list_onkey",
+      "label": "onKey()",
+      "file_type": "code",
+      "source_file": "crm/components/lead-list.tsx",
+      "source_location": "L43"
+    },
+    {
+      "id": "filter_chips",
+      "label": "filter-chips.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/filter-chips.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "sidebar",
+      "label": "sidebar.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/sidebar.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "sidebar_sidebar",
+      "label": "Sidebar()",
+      "file_type": "code",
+      "source_file": "crm/components/sidebar.tsx",
+      "source_location": "L7"
+    },
+    {
+      "id": "top_bar",
+      "label": "top-bar.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/top-bar.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "top_bar_topbar",
+      "label": "TopBar()",
+      "file_type": "code",
+      "source_file": "crm/components/top-bar.tsx",
+      "source_location": "L3"
+    },
+    {
+      "id": "tabs",
+      "label": "tabs.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/ui/tabs.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "tabs_cn",
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/tabs.tsx",
+      "source_location": "L60"
+    },
+    {
+      "id": "card",
+      "label": "card.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/ui/card.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "card_cn",
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/card.tsx",
+      "source_location": "L14"
+    },
+    {
+      "id": "card_cardaction",
+      "label": "CardAction()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/card.tsx",
+      "source_location": "L59"
+    },
+    {
+      "id": "scroll_area",
+      "label": "scroll-area.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/ui/scroll-area.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "scroll_area_scrollarea",
+      "label": "ScrollArea()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/scroll-area.tsx",
+      "source_location": "L8"
+    },
+    {
+      "id": "scroll_area_scrollbar",
+      "label": "ScrollBar()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/scroll-area.tsx",
+      "source_location": "L31"
+    },
+    {
+      "id": "label",
+      "label": "label.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/ui/label.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "label_cn",
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/label.tsx",
+      "source_location": "L11"
+    },
+    {
+      "id": "sonner",
+      "label": "sonner.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/ui/sonner.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "dialog",
+      "label": "dialog.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "dialog_dialog",
+      "label": "Dialog()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L10"
+    },
+    {
+      "id": "dialog_dialogtrigger",
+      "label": "DialogTrigger()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L14"
+    },
+    {
+      "id": "dialog_dialogportal",
+      "label": "DialogPortal()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L18"
+    },
+    {
+      "id": "dialog_dialogclose",
+      "label": "DialogClose()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L22"
+    },
+    {
+      "id": "dialog_cn",
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L55"
+    },
+    {
+      "id": "badge",
+      "label": "badge.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/ui/badge.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "badge_badge",
+      "label": "Badge()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/badge.tsx",
+      "source_location": "L30"
+    },
+    {
+      "id": "table",
+      "label": "table.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/ui/table.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "table_table",
+      "label": "Table()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/table.tsx",
+      "source_location": "L7"
+    },
+    {
+      "id": "table_tableheader",
+      "label": "TableHeader()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/table.tsx",
+      "source_location": "L22"
+    },
+    {
+      "id": "table_tablebody",
+      "label": "TableBody()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/table.tsx",
+      "source_location": "L32"
+    },
+    {
+      "id": "table_cn",
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/table.tsx",
+      "source_location": "L46"
+    },
+    {
+      "id": "separator",
+      "label": "separator.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/ui/separator.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "separator_cn",
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/separator.tsx",
+      "source_location": "L16"
+    },
+    {
+      "id": "button",
+      "label": "button.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/ui/button.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "button_cn",
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/button.tsx",
+      "source_location": "L52"
+    },
+    {
+      "id": "dropdown_menu",
+      "label": "dropdown-menu.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "dropdown_menu_dropdownmenu",
+      "label": "DropdownMenu()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L9"
+    },
+    {
+      "id": "dropdown_menu_dropdownmenuportal",
+      "label": "DropdownMenuPortal()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L13"
+    },
+    {
+      "id": "dropdown_menu_dropdownmenutrigger",
+      "label": "DropdownMenuTrigger()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L17"
+    },
+    {
+      "id": "dropdown_menu_cn",
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L44"
+    },
+    {
+      "id": "dropdown_menu_dropdownmenucheckboxitem",
+      "label": "DropdownMenuCheckboxItem()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L148"
+    },
+    {
+      "id": "select",
+      "label": "select.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "select_selectgroup",
+      "label": "SelectGroup()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L11"
+    },
+    {
+      "id": "select_selectvalue",
+      "label": "SelectValue()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L21"
+    },
+    {
+      "id": "select_selecttrigger",
+      "label": "SelectTrigger()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L31"
+    },
+    {
+      "id": "select_selectcontent",
+      "label": "SelectContent()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L59"
+    },
+    {
+      "id": "select_selectlabel",
+      "label": "SelectLabel()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L98"
+    },
+    {
+      "id": "select_selectitem",
+      "label": "SelectItem()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L111"
+    },
+    {
+      "id": "select_selectseparator",
+      "label": "SelectSeparator()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L139"
+    },
+    {
+      "id": "select_selectscrollupbutton",
+      "label": "SelectScrollUpButton()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L152"
+    },
+    {
+      "id": "select_selectscrolldownbutton",
+      "label": "SelectScrollDownButton()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L171"
+    },
+    {
+      "id": "textarea",
+      "label": "textarea.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/ui/textarea.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "textarea_cn",
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/textarea.tsx",
+      "source_location": "L9"
+    },
+    {
+      "id": "input",
+      "label": "input.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/ui/input.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "input_input",
+      "label": "Input()",
+      "file_type": "code",
+      "source_file": "crm/components/ui/input.tsx",
+      "source_location": "L6"
+    },
+    {
+      "id": "index",
+      "label": "index.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/lead-detail/index.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "index_leaddetail",
+      "label": "LeadDetail()",
+      "file_type": "code",
+      "source_file": "crm/components/lead-detail/index.tsx",
+      "source_location": "L12"
+    },
+    {
+      "id": "script_tab",
+      "label": "script-tab.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/lead-detail/script-tab.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "intel_tab",
+      "label": "intel-tab.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/lead-detail/intel-tab.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "intel_tab_inteltab",
+      "label": "IntelTab()",
+      "file_type": "code",
+      "source_file": "crm/components/lead-detail/intel-tab.tsx",
+      "source_location": "L5"
+    },
+    {
+      "id": "call_log_tab",
+      "label": "call-log-tab.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/lead-detail/call-log-tab.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "call_log_tab_onsubmit",
+      "label": "onSubmit()",
+      "file_type": "code",
+      "source_file": "crm/components/lead-detail/call-log-tab.tsx",
+      "source_location": "L34"
+    },
+    {
+      "id": "call_log_tab_tolocalestring",
+      "label": "toLocaleString()",
+      "file_type": "code",
+      "source_file": "crm/components/lead-detail/call-log-tab.tsx",
+      "source_location": "L88"
+    },
+    {
+      "id": "leaderboard",
+      "label": "leaderboard.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/team/leaderboard.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "leaderboard_leaderboard",
+      "label": "Leaderboard()",
+      "file_type": "code",
+      "source_file": "crm/components/team/leaderboard.tsx",
+      "source_location": "L13"
+    },
+    {
+      "id": "calls_chart",
+      "label": "calls-chart.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/team/calls-chart.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "calls_chart_colorforid",
+      "label": "colorForId()",
+      "file_type": "code",
+      "source_file": "crm/components/team/calls-chart.tsx",
+      "source_location": "L7"
+    },
+    {
+      "id": "invite_dialog",
+      "label": "invite-dialog.tsx",
+      "file_type": "code",
+      "source_file": "crm/components/team/invite-dialog.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "invite_dialog_invitedialog",
+      "label": "InviteDialog()",
+      "file_type": "code",
+      "source_file": "crm/components/team/invite-dialog.tsx",
+      "source_location": "L12"
+    },
+    {
+      "id": "filters",
+      "label": "filters.ts",
+      "file_type": "code",
+      "source_file": "crm/lib/filters.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "filters_buildqueryfromfilters",
+      "label": "buildQueryFromFilters()",
+      "file_type": "code",
+      "source_file": "crm/lib/filters.ts",
+      "source_location": "L14"
+    },
+    {
+      "id": "filters_applyplantoquery",
+      "label": "applyPlanToQuery()",
+      "file_type": "code",
+      "source_file": "crm/lib/filters.ts",
+      "source_location": "L54"
+    },
+    {
+      "id": "filters_test",
+      "label": "filters.test.ts",
+      "file_type": "code",
+      "source_file": "crm/lib/filters.test.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts",
+      "label": "scripts.ts",
+      "file_type": "code",
+      "source_file": "crm/lib/scripts.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "scripts_loadscript",
+      "label": "loadScript()",
+      "file_type": "code",
+      "source_file": "crm/lib/scripts.ts",
+      "source_location": "L8"
+    },
+    {
+      "id": "scripts_loadallscripts",
+      "label": "loadAllScripts()",
+      "file_type": "code",
+      "source_file": "crm/lib/scripts.ts",
+      "source_location": "L17"
+    },
+    {
+      "id": "utils",
+      "label": "utils.ts",
+      "file_type": "code",
+      "source_file": "crm/lib/utils.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "utils_cn",
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "crm/lib/utils.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "types",
+      "label": "types.ts",
+      "file_type": "code",
+      "source_file": "crm/lib/types.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "store",
+      "label": "store.ts",
+      "file_type": "code",
+      "source_file": "crm/lib/store.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "client",
+      "label": "client.ts",
+      "file_type": "code",
+      "source_file": "crm/lib/supabase/client.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "client_createclient",
+      "label": "createClient()",
+      "file_type": "code",
+      "source_file": "crm/lib/supabase/client.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "proxy",
+      "label": "proxy.ts",
+      "file_type": "code",
+      "source_file": "crm/lib/supabase/proxy.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "proxy_updatesession",
+      "label": "updateSession()",
+      "file_type": "code",
+      "source_file": "crm/lib/supabase/proxy.ts",
+      "source_location": "L6"
+    },
+    {
+      "id": "server",
+      "label": "server.ts",
+      "file_type": "code",
+      "source_file": "crm/lib/supabase/server.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "server_createclient",
+      "label": "createClient()",
+      "file_type": "code",
+      "source_file": "crm/lib/supabase/server.ts",
+      "source_location": "L5"
+    },
+    {
+      "id": "test_discover",
+      "label": "test_discover.py",
+      "file_type": "code",
+      "source_file": "tests/test_discover.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_discover_test_parse_overture_row_maps_fields",
+      "label": "test_parse_overture_row_maps_fields()",
+      "file_type": "code",
+      "source_file": "tests/test_discover.py",
+      "source_location": "L6"
+    },
+    {
+      "id": "test_discover_test_parse_overture_row_handles_missing_phone_and_website",
+      "label": "test_parse_overture_row_handles_missing_phone_and_website()",
+      "file_type": "code",
+      "source_file": "tests/test_discover.py",
+      "source_location": "L18"
+    },
+    {
+      "id": "test_discover_test_run_discover_upserts_all_rows",
+      "label": "test_run_discover_upserts_all_rows()",
+      "file_type": "code",
+      "source_file": "tests/test_discover.py",
+      "source_location": "L24"
+    },
+    {
+      "id": "test_llm",
+      "label": "test_llm.py",
+      "file_type": "code",
+      "source_file": "tests/test_llm.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_llm_test_scorer_parses_claude_cli_output",
+      "label": "test_scorer_parses_claude_cli_output()",
+      "file_type": "code",
+      "source_file": "tests/test_llm.py",
+      "source_location": "L7"
+    },
+    {
+      "id": "test_llm_test_scorer_strips_code_fences",
+      "label": "test_scorer_strips_code_fences()",
+      "file_type": "code",
+      "source_file": "tests/test_llm.py",
+      "source_location": "L27"
+    },
+    {
+      "id": "test_filter",
+      "label": "test_filter.py",
+      "file_type": "code",
+      "source_file": "tests/test_filter.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_filter_test_run_filter_calls_update_on_leads_table",
+      "label": "test_run_filter_calls_update_on_leads_table()",
+      "file_type": "code",
+      "source_file": "tests/test_filter.py",
+      "source_location": "L4"
+    },
+    {
+      "id": "test_db",
+      "label": "test_db.py",
+      "file_type": "code",
+      "source_file": "tests/test_db.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_db_test_database_upserts_lead_by_overture_id",
+      "label": "test_database_upserts_lead_by_overture_id()",
+      "file_type": "code",
+      "source_file": "tests/test_db.py",
+      "source_location": "L6"
+    },
+    {
+      "id": "test_db_test_database_fetches_leads_by_status",
+      "label": "test_database_fetches_leads_by_status()",
+      "file_type": "code",
+      "source_file": "tests/test_db.py",
+      "source_location": "L14"
+    },
+    {
+      "id": "test_google_maps",
+      "label": "test_google_maps.py",
+      "file_type": "code",
+      "source_file": "tests/test_google_maps.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_google_maps_test_parse_listing_extracts_rating_and_review_count",
+      "label": "test_parse_listing_extracts_rating_and_review_count()",
+      "file_type": "code",
+      "source_file": "tests/test_google_maps.py",
+      "source_location": "L4"
+    },
+    {
+      "id": "init",
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "tests/__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_score",
+      "label": "test_score.py",
+      "file_type": "code",
+      "source_file": "tests/test_score.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_score_test_run_score_calls_llm_and_writes_notes",
+      "label": "test_run_score_calls_llm_and_writes_notes()",
+      "file_type": "code",
+      "source_file": "tests/test_score.py",
+      "source_location": "L6"
+    },
+    {
+      "id": "test_config",
+      "label": "test_config.py",
+      "file_type": "code",
+      "source_file": "tests/test_config.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_config_test_load_config_reads_required_env",
+      "label": "test_load_config_reads_required_env()",
+      "file_type": "code",
+      "source_file": "tests/test_config.py",
+      "source_location": "L4"
+    },
+    {
+      "id": "test_config_test_load_config_raises_on_missing",
+      "label": "test_load_config_raises_on_missing()",
+      "file_type": "code",
+      "source_file": "tests/test_config.py",
+      "source_location": "L14"
+    },
+    {
+      "id": "test_models",
+      "label": "test_models.py",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_models_test_lead_has_required_fields",
+      "label": "test_lead_has_required_fields()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L4"
+    },
+    {
+      "id": "test_models_test_enrichment_allows_all_fields_optional_except_lead_id",
+      "label": "test_enrichment_allows_all_fields_optional_except_lead_id()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L13"
+    },
+    {
+      "id": "test_models_test_notes_accepts_best_pitch_enum",
+      "label": "test_notes_accepts_best_pitch_enum()",
+      "file_type": "code",
+      "source_file": "tests/test_models.py",
+      "source_location": "L19"
+    },
+    {
+      "id": "test_enrich",
+      "label": "test_enrich.py",
+      "file_type": "code",
+      "source_file": "tests/test_enrich.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_enrich_test_apply_final_icp_rejects_over_100_reviews",
+      "label": "test_apply_final_icp_rejects_over_100_reviews()",
+      "file_type": "code",
+      "source_file": "tests/test_enrich.py",
+      "source_location": "L8"
+    },
+    {
+      "id": "test_enrich_test_apply_final_icp_accepts_small_shop",
+      "label": "test_apply_final_icp_accepts_small_shop()",
+      "file_type": "code",
+      "source_file": "tests/test_enrich.py",
+      "source_location": "L13"
+    },
+    {
+      "id": "test_enrich_test_apply_final_icp_accepts_when_review_count_unknown",
+      "label": "test_apply_final_icp_accepts_when_review_count_unknown()",
+      "file_type": "code",
+      "source_file": "tests/test_enrich.py",
+      "source_location": "L18"
+    },
+    {
+      "id": "test_enrich_test_enrich_one_writes_enrichment_and_updates_status",
+      "label": "test_enrich_one_writes_enrichment_and_updates_status()",
+      "file_type": "code",
+      "source_file": "tests/test_enrich.py",
+      "source_location": "L24"
+    },
+    {
+      "id": "test_facebook",
+      "label": "test_facebook.py",
+      "file_type": "code",
+      "source_file": "tests/test_facebook.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_facebook_test_extract_last_post_date_parses_written_date",
+      "label": "test_extract_last_post_date_parses_written_date()",
+      "file_type": "code",
+      "source_file": "tests/test_facebook.py",
+      "source_location": "L4"
+    },
+    {
+      "id": "test_facebook_test_extract_returns_none_when_no_date",
+      "label": "test_extract_returns_none_when_no_date()",
+      "file_type": "code",
+      "source_file": "tests/test_facebook.py",
+      "source_location": "L9"
+    },
+    {
+      "id": "test_cli",
+      "label": "test_cli.py",
+      "file_type": "code",
+      "source_file": "tests/test_cli.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_cli_test_cli_shows_help",
+      "label": "test_cli_shows_help()",
+      "file_type": "code",
+      "source_file": "tests/test_cli.py",
+      "source_location": "L6"
+    },
+    {
+      "id": "test_website",
+      "label": "test_website.py",
+      "file_type": "code",
+      "source_file": "tests/test_website.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_website_load",
+      "label": "_load()",
+      "file_type": "code",
+      "source_file": "tests/test_website.py",
+      "source_location": "L8"
+    },
+    {
+      "id": "test_website_test_detect_wix",
+      "label": "test_detect_wix()",
+      "file_type": "code",
+      "source_file": "tests/test_website.py",
+      "source_location": "L11"
+    },
+    {
+      "id": "test_website_test_detect_wordpress",
+      "label": "test_detect_wordpress()",
+      "file_type": "code",
+      "source_file": "tests/test_website.py",
+      "source_location": "L14"
+    },
+    {
+      "id": "test_website_test_detect_intercom_widget",
+      "label": "test_detect_intercom_widget()",
+      "file_type": "code",
+      "source_file": "tests/test_website.py",
+      "source_location": "L17"
+    },
+    {
+      "id": "test_website_test_no_widget_on_wix_site",
+      "label": "test_no_widget_on_wix_site()",
+      "file_type": "code",
+      "source_file": "tests/test_website.py",
+      "source_location": "L21"
+    },
+    {
+      "id": "test_website_test_extract_last_update_year",
+      "label": "test_extract_last_update_year()",
+      "file_type": "code",
+      "source_file": "tests/test_website.py",
+      "source_location": "L24"
+    },
+    {
+      "id": "test_website_test_weak_hero_snapshot",
+      "label": "test_weak_hero_snapshot()",
+      "file_type": "code",
+      "source_file": "tests/test_website.py",
+      "source_location": "L28"
+    },
+    {
+      "id": "test_website_test_strong_hero_snapshot",
+      "label": "test_strong_hero_snapshot()",
+      "file_type": "code",
+      "source_file": "tests/test_website.py",
+      "source_location": "L34"
+    },
+    {
+      "id": "test_website_test_analyze_html_end_to_end",
+      "label": "test_analyze_html_end_to_end()",
+      "file_type": "code",
+      "source_file": "tests/test_website.py",
+      "source_location": "L40"
+    },
+    {
+      "id": "test_owner",
+      "label": "test_owner.py",
+      "file_type": "code",
+      "source_file": "tests/test_owner.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_owner_test_extract_owner_from_about_page_meet",
+      "label": "test_extract_owner_from_about_page_meet()",
+      "file_type": "code",
+      "source_file": "tests/test_owner.py",
+      "source_location": "L6"
+    },
+    {
+      "id": "test_owner_test_extract_owner_from_about_page_owned_by",
+      "label": "test_extract_owner_from_about_page_owned_by()",
+      "file_type": "code",
+      "source_file": "tests/test_owner.py",
+      "source_location": "L11"
+    },
+    {
+      "id": "test_owner_test_extract_owner_from_review_two_word",
+      "label": "test_extract_owner_from_review_two_word()",
+      "file_type": "code",
+      "source_file": "tests/test_owner.py",
+      "source_location": "L16"
+    },
+    {
+      "id": "test_owner_test_extract_owner_from_review_name_first",
+      "label": "test_extract_owner_from_review_name_first()",
+      "file_type": "code",
+      "source_file": "tests/test_owner.py",
+      "source_location": "L21"
+    },
+    {
+      "id": "test_owner_test_extract_owner_single_name_with_verb",
+      "label": "test_extract_owner_single_name_with_verb()",
+      "file_type": "code",
+      "source_file": "tests/test_owner.py",
+      "source_location": "L26"
+    },
+    {
+      "id": "test_owner_test_no_owner_found_returns_none",
+      "label": "test_no_owner_found_returns_none()",
+      "file_type": "code",
+      "source_file": "tests/test_owner.py",
+      "source_location": "L31"
+    },
+    {
+      "id": "test_owner_test_blacklist_filters_junk",
+      "label": "test_blacklist_filters_junk()",
+      "file_type": "code",
+      "source_file": "tests/test_owner.py",
+      "source_location": "L36"
+    },
+    {
+      "id": "init",
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "db",
+      "label": "db.py",
+      "file_type": "code",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "db_database",
+      "label": "Database",
+      "file_type": "code",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L7"
+    },
+    {
+      "id": "db_database_init",
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L8"
+    },
+    {
+      "id": "db_database_upsert_lead",
+      "label": ".upsert_lead()",
+      "file_type": "code",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L14"
+    },
+    {
+      "id": "db_database_fetch_leads_by_status",
+      "label": ".fetch_leads_by_status()",
+      "file_type": "code",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L18"
+    },
+    {
+      "id": "db_database_update_lead_status",
+      "label": ".update_lead_status()",
+      "file_type": "code",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L29"
+    },
+    {
+      "id": "db_database_upsert_enrichment",
+      "label": ".upsert_enrichment()",
+      "file_type": "code",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L32"
+    },
+    {
+      "id": "db_database_upsert_notes",
+      "label": ".upsert_notes()",
+      "file_type": "code",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L36"
+    },
+    {
+      "id": "db_database_fetch_enrichment",
+      "label": ".fetch_enrichment()",
+      "file_type": "code",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L40"
+    },
+    {
+      "id": "db_database_log_run",
+      "label": ".log_run()",
+      "file_type": "code",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L44"
+    },
+    {
+      "id": "config",
+      "label": "config.py",
+      "file_type": "code",
+      "source_file": "src/scraper/config.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "config_config",
+      "label": "Config",
+      "file_type": "code",
+      "source_file": "src/scraper/config.py",
+      "source_location": "L6"
+    },
+    {
+      "id": "config_load_config",
+      "label": "load_config()",
+      "file_type": "code",
+      "source_file": "src/scraper/config.py",
+      "source_location": "L11"
+    },
+    {
+      "id": "models",
+      "label": "models.py",
+      "file_type": "code",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "models_leadstatus",
+      "label": "LeadStatus",
+      "file_type": "code",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L7"
+    },
+    {
+      "id": "str",
+      "label": "str",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "enum",
+      "label": "Enum",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "models_bestpitch",
+      "label": "BestPitch",
+      "file_type": "code",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L15"
+    },
+    {
+      "id": "models_bookingpathquality",
+      "label": "BookingPathQuality",
+      "file_type": "code",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L22"
+    },
+    {
+      "id": "models_lead",
+      "label": "Lead",
+      "file_type": "code",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L27"
+    },
+    {
+      "id": "basemodel",
+      "label": "BaseModel",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "models_leadenrichment",
+      "label": "LeadEnrichment",
+      "file_type": "code",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L41"
+    },
+    {
+      "id": "models_leadnotes",
+      "label": "LeadNotes",
+      "file_type": "code",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L58"
+    },
+    {
+      "id": "init",
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/scraper/__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "llm",
+      "label": "llm.py",
+      "file_type": "code",
+      "source_file": "src/scraper/llm.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "llm_llmscorer",
+      "label": "LLMScorer",
+      "file_type": "code",
+      "source_file": "src/scraper/llm.py",
+      "source_location": "L10"
+    },
+    {
+      "id": "llm_llmscorer_init",
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "src/scraper/llm.py",
+      "source_location": "L11"
+    },
+    {
+      "id": "llm_llmscorer_score",
+      "label": ".score()",
+      "file_type": "code",
+      "source_file": "src/scraper/llm.py",
+      "source_location": "L14"
+    },
+    {
+      "id": "browser",
+      "label": "browser.py",
+      "file_type": "code",
+      "source_file": "src/scraper/browser.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "browser_browser_context",
+      "label": "browser_context()",
+      "file_type": "code",
+      "source_file": "src/scraper/browser.py",
+      "source_location": "L14"
+    },
+    {
+      "id": "browser_polite_wait",
+      "label": "polite_wait()",
+      "file_type": "code",
+      "source_file": "src/scraper/browser.py",
+      "source_location": "L30"
+    },
+    {
+      "id": "browser_fetch_page_html",
+      "label": "fetch_page_html()",
+      "file_type": "code",
+      "source_file": "src/scraper/browser.py",
+      "source_location": "L33"
+    },
+    {
+      "id": "cli",
+      "label": "cli.py",
+      "file_type": "code",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "cli_db",
+      "label": "_db()",
+      "file_type": "code",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L13"
+    },
+    {
+      "id": "cli_discover",
+      "label": "discover()",
+      "file_type": "code",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L17"
+    },
+    {
+      "id": "cli_discover_nation_cmd",
+      "label": "discover_nation_cmd()",
+      "file_type": "code",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L40"
+    },
+    {
+      "id": "cli_filter_cmd",
+      "label": "filter_cmd()",
+      "file_type": "code",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L49"
+    },
+    {
+      "id": "cli_enrich",
+      "label": "enrich()",
+      "file_type": "code",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L59"
+    },
+    {
+      "id": "cli_score",
+      "label": "score()",
+      "file_type": "code",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L73"
+    },
+    {
+      "id": "cli_export",
+      "label": "export()",
+      "file_type": "code",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L88"
+    },
+    {
+      "id": "cli_rationale_18",
+      "label": "Stage 1: pull plumber POIs from Overture Maps and insert into leads table.",
+      "file_type": "rationale",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L18"
+    },
+    {
+      "id": "cli_rationale_41",
+      "label": "Single nation-wide Overture query. Gets all ~107k US plumbers (no bbox gaps).",
+      "file_type": "rationale",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L41"
+    },
+    {
+      "id": "cli_rationale_50",
+      "label": "Stage 2: apply pre-enrichment ICP filter (phone + state).",
+      "file_type": "rationale",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L50"
+    },
+    {
+      "id": "cli_rationale_63",
+      "label": "Stage 3: enrich qualified leads (website + gmaps + owner + facebook).",
+      "file_type": "rationale",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L63"
+    },
+    {
+      "id": "cli_rationale_77",
+      "label": "Stage 4: LLM-score enriched leads into sales-intel notes.",
+      "file_type": "rationale",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L77"
+    },
+    {
+      "id": "cli_rationale_93",
+      "label": "Export leads to CSV for import into GHL / power dialer.",
+      "file_type": "rationale",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L93"
+    },
+    {
+      "id": "enrich",
+      "label": "enrich.py",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "enrich_apply_final_icp",
+      "label": "apply_final_icp()",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L15"
+    },
+    {
+      "id": "enrich_owner_from_website",
+      "label": "_owner_from_website()",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L27"
+    },
+    {
+      "id": "enrich_enrich_one",
+      "label": "enrich_one()",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L41"
+    },
+    {
+      "id": "enrich_enrich_with_sem",
+      "label": "_enrich_with_sem()",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L100"
+    },
+    {
+      "id": "enrich_run_enrich",
+      "label": "run_enrich()",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L112"
+    },
+    {
+      "id": "enrich_rationale_16",
+      "label": "Return True if lead passes the ICP.      Rules (lite mode):     - review_count >",
+      "file_type": "rationale",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L16"
+    },
+    {
+      "id": "enrich_rationale_28",
+      "label": "Try to pull an owner name from the website's About page. Fast, best-effort.",
+      "file_type": "rationale",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L28"
+    },
+    {
+      "id": "enrich_rationale_42",
+      "label": "Lite enrichment: Google Maps + owner name lookup.",
+      "file_type": "rationale",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L42"
+    },
+    {
+      "id": "discover",
+      "label": "discover.py",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "discover_parse_overture_row",
+      "label": "parse_overture_row()",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L67"
+    },
+    {
+      "id": "discover_query_overture",
+      "label": "query_overture()",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L88"
+    },
+    {
+      "id": "discover_run_discover",
+      "label": "run_discover()",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L122"
+    },
+    {
+      "id": "discover_query_overture_nation",
+      "label": "query_overture_nation()",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L136"
+    },
+    {
+      "id": "discover_run_discover_nation",
+      "label": "run_discover_nation()",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L172"
+    },
+    {
+      "id": "discover_rationale_89",
+      "label": "Query Overture Maps parquet for plumber POIs in a state's bounding box.",
+      "file_type": "rationale",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L89"
+    },
+    {
+      "id": "discover_rationale_137",
+      "label": "Query Overture Maps for ALL US plumbers without state bbox filtering.      The s",
+      "file_type": "rationale",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L137"
+    },
+    {
+      "id": "discover_rationale_173",
+      "label": "Run a single nation-wide discover query. Uses the address region as the state.",
+      "file_type": "rationale",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L173"
+    },
+    {
+      "id": "init",
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "filter",
+      "label": "filter.py",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/filter.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "filter_is_franchise",
+      "label": "is_franchise()",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/filter.py",
+      "source_location": "L30"
+    },
+    {
+      "id": "filter_run_filter",
+      "label": "run_filter()",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/filter.py",
+      "source_location": "L34"
+    },
+    {
+      "id": "filter_rationale_35",
+      "label": "Apply stage-2 ICP filter: must have phone, must not be a known franchise.",
+      "file_type": "rationale",
+      "source_file": "src/scraper/stages/filter.py",
+      "source_location": "L35"
+    },
+    {
+      "id": "score",
+      "label": "score.py",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/score.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "score_run_score",
+      "label": "run_score()",
+      "file_type": "code",
+      "source_file": "src/scraper/stages/score.py",
+      "source_location": "L5"
+    },
+    {
+      "id": "google_maps",
+      "label": "google_maps.py",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "google_maps_search_and_fetch",
+      "label": "search_and_fetch()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L9"
+    },
+    {
+      "id": "google_maps_parse_listing",
+      "label": "parse_listing()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L43"
+    },
+    {
+      "id": "google_maps_enrich_via_google",
+      "label": "enrich_via_google()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L96"
+    },
+    {
+      "id": "google_maps_rationale_10",
+      "label": "Search Google Maps for the business and return the HTML of the selected place pa",
+      "file_type": "rationale",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L10"
+    },
+    {
+      "id": "google_maps_rationale_44",
+      "label": "Parse a Google Maps place HTML page. Extracts rating, review_count, review_sampl",
+      "file_type": "rationale",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L44"
+    },
+    {
+      "id": "google_maps_rationale_97",
+      "label": "Full Google Maps enrichment: search \u2192 click \u2192 parse.",
+      "file_type": "rationale",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L97"
+    },
+    {
+      "id": "owner_search",
+      "label": "owner_search.py",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/owner_search.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "owner_search_search_owner_via_google",
+      "label": "search_owner_via_google()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/owner_search.py",
+      "source_location": "L22"
+    },
+    {
+      "id": "owner_search_rationale_1",
+      "label": "Fallback: Google search \"company owner\" and parse the result snippets.",
+      "file_type": "rationale",
+      "source_file": "src/scraper/enrichment/owner_search.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "owner_search_rationale_27",
+      "label": "Try to find the owner's name by Google-searching for it. Best-effort.",
+      "file_type": "rationale",
+      "source_file": "src/scraper/enrichment/owner_search.py",
+      "source_location": "L27"
+    },
+    {
+      "id": "init",
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/__init__.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "owner",
+      "label": "owner.py",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "owner_clean_name",
+      "label": "_clean_name()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L34"
+    },
+    {
+      "id": "owner_extract_from_about_page",
+      "label": "extract_from_about_page()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L48"
+    },
+    {
+      "id": "owner_extract_from_review_text",
+      "label": "extract_from_review_text()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L59"
+    },
+    {
+      "id": "owner_lookup_owner",
+      "label": "lookup_owner()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L69"
+    },
+    {
+      "id": "owner_rationale_35",
+      "label": "Return cleaned name or None if it looks like junk.",
+      "file_type": "rationale",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L35"
+    },
+    {
+      "id": "owner_rationale_74",
+      "label": "Full owner lookup chain \u2014 kept for optional use.",
+      "file_type": "rationale",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L74"
+    },
+    {
+      "id": "facebook",
+      "label": "facebook.py",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/facebook.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "facebook_extract_last_post_date",
+      "label": "extract_last_post_date()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/facebook.py",
+      "source_location": "L13"
+    },
+    {
+      "id": "facebook_lookup_facebook",
+      "label": "lookup_facebook()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/facebook.py",
+      "source_location": "L23"
+    },
+    {
+      "id": "website",
+      "label": "website.py",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "website_detect_site_builder",
+      "label": "detect_site_builder()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L26"
+    },
+    {
+      "id": "website_detect_chat_widget",
+      "label": "detect_chat_widget()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L32"
+    },
+    {
+      "id": "website_detect_ai_signals",
+      "label": "detect_ai_signals()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L38"
+    },
+    {
+      "id": "website_extract_last_update_year",
+      "label": "extract_last_update_year()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L41"
+    },
+    {
+      "id": "website_extract_hero_snapshot",
+      "label": "extract_hero_snapshot()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L48"
+    },
+    {
+      "id": "website_score_booking_path",
+      "label": "score_booking_path()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L66"
+    },
+    {
+      "id": "website_analyze_html",
+      "label": "analyze_html()",
+      "file_type": "code",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L75"
+    }
+  ],
+  "edges": [
+    {
+      "source": "next_env_d",
+      "target": "routes_d_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/next-env.d.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "proxy",
+      "target": "proxy",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/proxy.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "proxy",
+      "target": "server",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/proxy.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "proxy",
+      "target": "proxy_proxy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/proxy.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "vitest_config",
+      "target": "config",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/vitest.config.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "vitest_config",
+      "target": "path",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/vitest.config.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "next_config",
+      "target": "next",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/next.config.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "layout",
+      "target": "next",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/layout.tsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "layout",
+      "target": "globals_css",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/layout.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "layout",
+      "target": "sonner",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/layout.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "layout",
+      "target": "layout_rootlayout",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/layout.tsx",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "server",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "top_bar",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "sidebar",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/page.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "lead_list",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "lead_detail",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "scripts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "page_homepage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "auth",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/bootstrap/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "server",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/bootstrap/page.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "navigation",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/bootstrap/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "button",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/bootstrap/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "input",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/bootstrap/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "label",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/bootstrap/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "card",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/bootstrap/page.tsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "server",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/team/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "top_bar",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/team/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "leaderboard",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/team/page.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "calls_chart",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/team/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "page_teampage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/team/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "invite",
+      "target": "server",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/actions/invite.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "invite",
+      "target": "ssr",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/actions/invite.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "invite",
+      "target": "headers",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/actions/invite.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "invite",
+      "target": "cache",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/actions/invite.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "invite",
+      "target": "invite_inviteteammate",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/actions/invite.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "auth",
+      "target": "server",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/actions/auth.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "auth",
+      "target": "supabase_js",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/actions/auth.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "auth",
+      "target": "navigation",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/actions/auth.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "auth",
+      "target": "auth_signin",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/actions/auth.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "auth",
+      "target": "auth_bootstrap",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/actions/auth.ts",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "auth",
+      "target": "auth_signout",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/actions/auth.ts",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "call_logs",
+      "target": "server",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/actions/call-logs.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "call_logs",
+      "target": "cache",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/actions/call-logs.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "call_logs",
+      "target": "call_logs_logcall",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/actions/call-logs.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "route",
+      "target": "server",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/api/auth/signin/route.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "route",
+      "target": "server",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/api/auth/signin/route.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "route",
+      "target": "route_post",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/api/auth/signin/route.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/login/page.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "button",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/login/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "input",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/login/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "label",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/login/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "card",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/login/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "page",
+      "target": "page_loginpage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/app/login/page.tsx",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "lead_list",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-list.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "lead_list",
+      "target": "store",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-list.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "lead_list",
+      "target": "types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-list.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "lead_list",
+      "target": "filter_chips",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-list.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "lead_list",
+      "target": "badge",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-list.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "lead_list",
+      "target": "utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-list.tsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "lead_list",
+      "target": "lead_list_matchesfilter",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-list.tsx",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "lead_list",
+      "target": "lead_list_onkey",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-list.tsx",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "filter_chips",
+      "target": "store",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/filter-chips.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "filter_chips",
+      "target": "badge",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/filter-chips.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "filter_chips",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/filter-chips.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "sidebar",
+      "target": "store",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/sidebar.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "sidebar",
+      "target": "types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/sidebar.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "sidebar",
+      "target": "utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/sidebar.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "sidebar",
+      "target": "sidebar_sidebar",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/sidebar.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "top_bar",
+      "target": "link",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/top-bar.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "top_bar",
+      "target": "top_bar_topbar",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/top-bar.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "tabs",
+      "target": "tabs",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/tabs.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "tabs",
+      "target": "class_variance_authority",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/tabs.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "tabs",
+      "target": "utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/tabs.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "tabs",
+      "target": "tabs_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/tabs.tsx",
+      "source_location": "L60",
+      "weight": 1.0
+    },
+    {
+      "source": "card",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/card.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "card",
+      "target": "utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/card.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "card",
+      "target": "card_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/card.tsx",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "card",
+      "target": "card_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/card.tsx",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "card",
+      "target": "card_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/card.tsx",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "card",
+      "target": "card_cardaction",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/card.tsx",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "scroll_area",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/scroll-area.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "scroll_area",
+      "target": "scroll_area",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/scroll-area.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "scroll_area",
+      "target": "utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/scroll-area.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "scroll_area",
+      "target": "scroll_area_scrollarea",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/scroll-area.tsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "scroll_area",
+      "target": "scroll_area_scrollbar",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/scroll-area.tsx",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "label",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/label.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "label",
+      "target": "utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/label.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "label",
+      "target": "label_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/label.tsx",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "sonner",
+      "target": "next_themes",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/sonner.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "sonner",
+      "target": "sonner",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/sonner.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "sonner",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/sonner.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "dialog",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "dialog",
+      "target": "dialog",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "dialog",
+      "target": "utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "dialog",
+      "target": "button",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "dialog",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "dialog",
+      "target": "dialog_dialog",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "dialog",
+      "target": "dialog_dialogtrigger",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "dialog",
+      "target": "dialog_dialogportal",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "dialog",
+      "target": "dialog_dialogclose",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "dialog",
+      "target": "dialog_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "dialog",
+      "target": "dialog_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dialog.tsx",
+      "source_location": "L104",
+      "weight": 1.0
+    },
+    {
+      "source": "badge",
+      "target": "merge_props",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/badge.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "badge",
+      "target": "use_render",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/badge.tsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "badge",
+      "target": "class_variance_authority",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/badge.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "badge",
+      "target": "utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/badge.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "badge",
+      "target": "badge_badge",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/badge.tsx",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "table",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/table.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "table",
+      "target": "utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/table.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "table",
+      "target": "table_table",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/table.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "table",
+      "target": "table_tableheader",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/table.tsx",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "table",
+      "target": "table_tablebody",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/table.tsx",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "table",
+      "target": "table_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/table.tsx",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "table",
+      "target": "table_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/table.tsx",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "table",
+      "target": "table_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/table.tsx",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "table",
+      "target": "table_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/table.tsx",
+      "source_location": "L85",
+      "weight": 1.0
+    },
+    {
+      "source": "separator",
+      "target": "separator",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/separator.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "separator",
+      "target": "utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/separator.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "separator",
+      "target": "separator_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/separator.tsx",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "button",
+      "target": "button",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/button.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "button",
+      "target": "class_variance_authority",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/button.tsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "button",
+      "target": "utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/button.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "button",
+      "target": "button_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/button.tsx",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "dropdown_menu",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "dropdown_menu",
+      "target": "menu",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "dropdown_menu",
+      "target": "utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "dropdown_menu",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "dropdown_menu",
+      "target": "dropdown_menu_dropdownmenu",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "dropdown_menu",
+      "target": "dropdown_menu_dropdownmenuportal",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "dropdown_menu",
+      "target": "dropdown_menu_dropdownmenutrigger",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "dropdown_menu",
+      "target": "dropdown_menu_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "dropdown_menu",
+      "target": "dropdown_menu_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "dropdown_menu",
+      "target": "dropdown_menu_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L138",
+      "weight": 1.0
+    },
+    {
+      "source": "dropdown_menu",
+      "target": "dropdown_menu_dropdownmenucheckboxitem",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L148",
+      "weight": 1.0
+    },
+    {
+      "source": "dropdown_menu",
+      "target": "dropdown_menu_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/dropdown-menu.tsx",
+      "source_location": "L243",
+      "weight": 1.0
+    },
+    {
+      "source": "select",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "select",
+      "target": "select",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "select",
+      "target": "utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "select",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "select",
+      "target": "select_selectgroup",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "select",
+      "target": "select_selectvalue",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "select",
+      "target": "select_selecttrigger",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "select",
+      "target": "select_selectcontent",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "select",
+      "target": "select_selectlabel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L98",
+      "weight": 1.0
+    },
+    {
+      "source": "select",
+      "target": "select_selectitem",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L111",
+      "weight": 1.0
+    },
+    {
+      "source": "select",
+      "target": "select_selectseparator",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L139",
+      "weight": 1.0
+    },
+    {
+      "source": "select",
+      "target": "select_selectscrollupbutton",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L152",
+      "weight": 1.0
+    },
+    {
+      "source": "select",
+      "target": "select_selectscrolldownbutton",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/select.tsx",
+      "source_location": "L171",
+      "weight": 1.0
+    },
+    {
+      "source": "textarea",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/textarea.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "textarea",
+      "target": "utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/textarea.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "textarea",
+      "target": "textarea_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/textarea.tsx",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "input",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/input.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "input",
+      "target": "input",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/input.tsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "input",
+      "target": "utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/input.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "input",
+      "target": "input_input",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/ui/input.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "index",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/index.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "index",
+      "target": "store",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/index.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "index",
+      "target": "types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/index.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "index",
+      "target": "client",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/index.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "index",
+      "target": "tabs",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/index.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "index",
+      "target": "intel_tab",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/index.tsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "index",
+      "target": "script_tab",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/index.tsx",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "index",
+      "target": "call_log_tab",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/index.tsx",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "index",
+      "target": "index_leaddetail",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/index.tsx",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "script_tab",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/script-tab.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "script_tab",
+      "target": "react_markdown",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/script-tab.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "script_tab",
+      "target": "types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/script-tab.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "script_tab",
+      "target": "select",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/script-tab.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "intel_tab",
+      "target": "types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/intel-tab.tsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "intel_tab",
+      "target": "badge",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/intel-tab.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "intel_tab",
+      "target": "intel_tab_inteltab",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/intel-tab.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "call_log_tab",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/call-log-tab.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "call_log_tab",
+      "target": "call_logs",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/call-log-tab.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "call_log_tab",
+      "target": "sonner",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/call-log-tab.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "call_log_tab",
+      "target": "button",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/call-log-tab.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "call_log_tab",
+      "target": "textarea",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/call-log-tab.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "call_log_tab",
+      "target": "label",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/call-log-tab.tsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "call_log_tab",
+      "target": "select",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/call-log-tab.tsx",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "call_log_tab",
+      "target": "types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/call-log-tab.tsx",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "call_log_tab",
+      "target": "call_log_tab_onsubmit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/call-log-tab.tsx",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "call_log_tab",
+      "target": "call_log_tab_tolocalestring",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/lead-detail/call-log-tab.tsx",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "leaderboard",
+      "target": "table",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/team/leaderboard.tsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "leaderboard",
+      "target": "leaderboard_leaderboard",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/team/leaderboard.tsx",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "calls_chart",
+      "target": "recharts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/team/calls-chart.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "calls_chart",
+      "target": "calls_chart_colorforid",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/team/calls-chart.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "invite_dialog",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/team/invite-dialog.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "invite_dialog",
+      "target": "invite",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/team/invite-dialog.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "invite_dialog",
+      "target": "sonner",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/team/invite-dialog.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "invite_dialog",
+      "target": "button",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/team/invite-dialog.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "invite_dialog",
+      "target": "dialog",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/team/invite-dialog.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "invite_dialog",
+      "target": "input",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/team/invite-dialog.tsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "invite_dialog",
+      "target": "label",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/team/invite-dialog.tsx",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "invite_dialog",
+      "target": "select",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/team/invite-dialog.tsx",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "invite_dialog",
+      "target": "invite_dialog_invitedialog",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/components/team/invite-dialog.tsx",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "filters",
+      "target": "types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/filters.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "filters",
+      "target": "filters_buildqueryfromfilters",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/filters.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "filters",
+      "target": "filters_applyplantoquery",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/filters.ts",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "filters_test",
+      "target": "vitest",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/filters.test.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "filters_test",
+      "target": "filters",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/filters.test.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "filters_test",
+      "target": "types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/filters.test.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts",
+      "target": "node_fs",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/scripts.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts",
+      "target": "node_path",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/scripts.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts",
+      "target": "types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/scripts.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts",
+      "target": "scripts_loadscript",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/scripts.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts",
+      "target": "scripts_loadallscripts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/scripts.ts",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "scripts_loadallscripts",
+      "target": "scripts_loadscript",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/scripts.ts",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "utils",
+      "target": "clsx",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/utils.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "utils",
+      "target": "tailwind_merge",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/utils.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "utils",
+      "target": "utils_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/utils.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "store",
+      "target": "zustand",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/store.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "store",
+      "target": "types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/store.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "client",
+      "target": "ssr",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/supabase/client.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "client",
+      "target": "client_createclient",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/supabase/client.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "proxy",
+      "target": "server",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/supabase/proxy.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "proxy",
+      "target": "proxy_updatesession",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/supabase/proxy.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "server",
+      "target": "ssr",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/supabase/server.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "server",
+      "target": "headers",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/supabase/server.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "server",
+      "target": "server_createclient",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "crm/lib/supabase/server.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "test_discover",
+      "target": "json",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_discover.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "test_discover",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_discover.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "test_discover",
+      "target": "unittest_mock",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_discover.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "test_discover",
+      "target": "scraper_stages_discover",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_discover.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "test_discover",
+      "target": "test_discover_test_parse_overture_row_maps_fields",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_discover.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "test_discover",
+      "target": "test_discover_test_parse_overture_row_handles_missing_phone_and_website",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_discover.py",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "test_discover",
+      "target": "test_discover_test_run_discover_upserts_all_rows",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_discover.py",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "test_llm",
+      "target": "json",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llm.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "test_llm",
+      "target": "unittest_mock",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llm.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "test_llm",
+      "target": "uuid",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llm.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "test_llm",
+      "target": "scraper_llm",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llm.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "test_llm",
+      "target": "scraper_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llm.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "test_llm",
+      "target": "test_llm_test_scorer_parses_claude_cli_output",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llm.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "test_llm",
+      "target": "test_llm_test_scorer_strips_code_fences",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_llm.py",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "test_filter",
+      "target": "unittest_mock",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_filter.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "test_filter",
+      "target": "scraper_stages_filter",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_filter.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "test_filter",
+      "target": "test_filter_test_run_filter_calls_update_on_leads_table",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_filter.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "test_db",
+      "target": "unittest_mock",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_db.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "test_db",
+      "target": "uuid",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_db.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "test_db",
+      "target": "scraper_db",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_db.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "test_db",
+      "target": "scraper_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_db.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "test_db",
+      "target": "test_db_test_database_upserts_lead_by_overture_id",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_db.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "test_db",
+      "target": "test_db_test_database_fetches_leads_by_status",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_db.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "test_google_maps",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_google_maps.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "test_google_maps",
+      "target": "scraper_enrichment_google_maps",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_google_maps.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "test_google_maps",
+      "target": "test_google_maps_test_parse_listing_extracts_rating_and_review_count",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_google_maps.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "test_score",
+      "target": "unittest_mock",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_score.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "test_score",
+      "target": "uuid",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_score.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "test_score",
+      "target": "scraper_stages_score",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_score.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "test_score",
+      "target": "scraper_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_score.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "test_score",
+      "target": "test_score_test_run_score_calls_llm_and_writes_notes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_score.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "test_config",
+      "target": "pytest",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_config.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "test_config",
+      "target": "scraper_config",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_config.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "test_config",
+      "target": "test_config_test_load_config_reads_required_env",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_config.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "test_config",
+      "target": "test_config_test_load_config_raises_on_missing",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_config.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "test_models",
+      "target": "uuid",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "test_models",
+      "target": "scraper_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "test_models",
+      "target": "test_models_test_lead_has_required_fields",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "test_models",
+      "target": "test_models_test_enrichment_allows_all_fields_optional_except_lead_id",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "test_models",
+      "target": "test_models_test_notes_accepts_best_pitch_enum",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_models.py",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "test_enrich",
+      "target": "unittest_mock",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_enrich.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "test_enrich",
+      "target": "uuid",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_enrich.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "test_enrich",
+      "target": "pytest",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_enrich.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "test_enrich",
+      "target": "scraper_stages_enrich",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_enrich.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "test_enrich",
+      "target": "scraper_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_enrich.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "test_enrich",
+      "target": "test_enrich_test_apply_final_icp_rejects_over_100_reviews",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_enrich.py",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "test_enrich",
+      "target": "test_enrich_test_apply_final_icp_accepts_small_shop",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_enrich.py",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "test_enrich",
+      "target": "test_enrich_test_apply_final_icp_accepts_when_review_count_unknown",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_enrich.py",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "test_enrich",
+      "target": "test_enrich_test_enrich_one_writes_enrichment_and_updates_status",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_enrich.py",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "test_facebook",
+      "target": "datetime",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_facebook.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "test_facebook",
+      "target": "scraper_enrichment_facebook",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_facebook.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "test_facebook",
+      "target": "test_facebook_test_extract_last_post_date_parses_written_date",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_facebook.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "test_facebook",
+      "target": "test_facebook_test_extract_returns_none_when_no_date",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_facebook.py",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "test_cli",
+      "target": "typer_testing",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cli.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "test_cli",
+      "target": "scraper_cli",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cli.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "test_cli",
+      "target": "test_cli_test_cli_shows_help",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_cli.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website",
+      "target": "scraper_enrichment_website",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website",
+      "target": "scraper_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website",
+      "target": "test_website_load",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website",
+      "target": "test_website_test_detect_wix",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website",
+      "target": "test_website_test_detect_wordpress",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website",
+      "target": "test_website_test_detect_intercom_widget",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website",
+      "target": "test_website_test_no_widget_on_wix_site",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website",
+      "target": "test_website_test_extract_last_update_year",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website",
+      "target": "test_website_test_weak_hero_snapshot",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website",
+      "target": "test_website_test_strong_hero_snapshot",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website",
+      "target": "test_website_test_analyze_html_end_to_end",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website_test_detect_wix",
+      "target": "test_website_load",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website_test_detect_wordpress",
+      "target": "test_website_load",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website_test_detect_intercom_widget",
+      "target": "test_website_load",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website_test_no_widget_on_wix_site",
+      "target": "test_website_load",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website_test_extract_last_update_year",
+      "target": "test_website_load",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website_test_weak_hero_snapshot",
+      "target": "test_website_load",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website_test_strong_hero_snapshot",
+      "target": "test_website_load",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "test_website_test_analyze_html_end_to_end",
+      "target": "test_website_load",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_website.py",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "test_owner",
+      "target": "scraper_enrichment_owner",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_owner.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "test_owner",
+      "target": "test_owner_test_extract_owner_from_about_page_meet",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_owner.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "test_owner",
+      "target": "test_owner_test_extract_owner_from_about_page_owned_by",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_owner.py",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "test_owner",
+      "target": "test_owner_test_extract_owner_from_review_two_word",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_owner.py",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "test_owner",
+      "target": "test_owner_test_extract_owner_from_review_name_first",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_owner.py",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "test_owner",
+      "target": "test_owner_test_extract_owner_single_name_with_verb",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_owner.py",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "test_owner",
+      "target": "test_owner_test_no_owner_found_returns_none",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_owner.py",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "test_owner",
+      "target": "test_owner_test_blacklist_filters_junk",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_owner.py",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "db",
+      "target": "typing",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "db",
+      "target": "uuid",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "db",
+      "target": "supabase",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "db",
+      "target": "scraper_config",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "db",
+      "target": "scraper_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "db",
+      "target": "db_database",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "db_database",
+      "target": "db_database_init",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "db_database",
+      "target": "db_database_upsert_lead",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "db_database",
+      "target": "db_database_fetch_leads_by_status",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "db_database",
+      "target": "db_database_update_lead_status",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
+      "source": "db_database",
+      "target": "db_database_upsert_enrichment",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "db_database",
+      "target": "db_database_upsert_notes",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "db_database",
+      "target": "db_database_fetch_enrichment",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "db_database",
+      "target": "db_database_log_run",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "config",
+      "target": "os",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/config.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "config",
+      "target": "dataclasses",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/config.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "config",
+      "target": "dotenv",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/config.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "config",
+      "target": "config_config",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/config.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "config",
+      "target": "config_load_config",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/config.py",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "config_load_config",
+      "target": "config_config",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/config.py",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "models",
+      "target": "datetime",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "models",
+      "target": "enum",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "models",
+      "target": "typing",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "models",
+      "target": "uuid",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "models",
+      "target": "pydantic",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "models",
+      "target": "models_leadstatus",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "models_leadstatus",
+      "target": "str",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "models_leadstatus",
+      "target": "enum",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "models",
+      "target": "models_bestpitch",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "models_bestpitch",
+      "target": "str",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "models_bestpitch",
+      "target": "enum",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "models",
+      "target": "models_bookingpathquality",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "models_bookingpathquality",
+      "target": "str",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "models_bookingpathquality",
+      "target": "enum",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "models",
+      "target": "models_lead",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "models_lead",
+      "target": "basemodel",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "models",
+      "target": "models_leadenrichment",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "models_leadenrichment",
+      "target": "basemodel",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "models",
+      "target": "models_leadnotes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "models_leadnotes",
+      "target": "basemodel",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/models.py",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "llm",
+      "target": "json",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/llm.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "llm",
+      "target": "os",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/llm.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "llm",
+      "target": "subprocess",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/llm.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "llm",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/llm.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "llm",
+      "target": "uuid",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/llm.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "llm",
+      "target": "scraper_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/llm.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "llm",
+      "target": "llm_llmscorer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/llm.py",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "llm_llmscorer",
+      "target": "llm_llmscorer_init",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/llm.py",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "llm_llmscorer",
+      "target": "llm_llmscorer_score",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/llm.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "browser",
+      "target": "contextlib",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/browser.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "browser",
+      "target": "typing",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/browser.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "browser",
+      "target": "playwright_async_api",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/browser.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "browser",
+      "target": "random",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/browser.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "browser",
+      "target": "asyncio",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/browser.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "browser",
+      "target": "browser_browser_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/browser.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "browser",
+      "target": "browser_polite_wait",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/browser.py",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "browser",
+      "target": "browser_fetch_page_html",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/browser.py",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "cli",
+      "target": "asyncio",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "cli",
+      "target": "typer",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "cli",
+      "target": "scraper_config",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "cli",
+      "target": "scraper_db",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "cli",
+      "target": "scraper_stages_discover",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "cli",
+      "target": "scraper_stages_filter",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "cli",
+      "target": "scraper_stages_enrich",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "cli",
+      "target": "scraper_stages_score",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "cli",
+      "target": "scraper_llm",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "cli",
+      "target": "cli_db",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "cli",
+      "target": "cli_discover",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "cli",
+      "target": "cli_discover_nation_cmd",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "cli",
+      "target": "cli_filter_cmd",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "cli",
+      "target": "cli_enrich",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "cli",
+      "target": "cli_score",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "cli",
+      "target": "cli_export",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "cli_discover",
+      "target": "cli_db",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "cli_discover_nation_cmd",
+      "target": "cli_db",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "cli_filter_cmd",
+      "target": "cli_db",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "cli_enrich",
+      "target": "cli_db",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L64",
+      "weight": 1.0
+    },
+    {
+      "source": "cli_score",
+      "target": "cli_db",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "cli_export",
+      "target": "cli_db",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L95",
+      "weight": 1.0
+    },
+    {
+      "source": "cli_rationale_18",
+      "target": "cli_discover",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "cli_rationale_41",
+      "target": "cli_discover_nation_cmd",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "cli_rationale_50",
+      "target": "cli_filter_cmd",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "cli_rationale_63",
+      "target": "cli_enrich",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L63",
+      "weight": 1.0
+    },
+    {
+      "source": "cli_rationale_77",
+      "target": "cli_score",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L77",
+      "weight": 1.0
+    },
+    {
+      "source": "cli_rationale_93",
+      "target": "cli_export",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L93",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich",
+      "target": "asyncio",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich",
+      "target": "playwright_async_api",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich",
+      "target": "scraper_db",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich",
+      "target": "scraper_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich",
+      "target": "scraper_browser",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich",
+      "target": "scraper_enrichment_google_maps",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich",
+      "target": "scraper_enrichment_owner",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich",
+      "target": "scraper_enrichment_owner_search",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich",
+      "target": "enrich_apply_final_icp",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich",
+      "target": "enrich_owner_from_website",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich",
+      "target": "enrich_enrich_one",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich",
+      "target": "enrich_enrich_with_sem",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L100",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich",
+      "target": "enrich_run_enrich",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L112",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich_enrich_one",
+      "target": "enrich_owner_from_website",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L70",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich_enrich_with_sem",
+      "target": "enrich_enrich_one",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich_run_enrich",
+      "target": "enrich_enrich_with_sem",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L120",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich_rationale_16",
+      "target": "enrich_apply_final_icp",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich_rationale_28",
+      "target": "enrich_owner_from_website",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "enrich_rationale_42",
+      "target": "enrich_enrich_one",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "discover",
+      "target": "typing",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "discover",
+      "target": "duckdb",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "discover",
+      "target": "scraper_db",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "discover",
+      "target": "scraper_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "discover",
+      "target": "discover_parse_overture_row",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "discover",
+      "target": "discover_query_overture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "discover",
+      "target": "discover_run_discover",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L122",
+      "weight": 1.0
+    },
+    {
+      "source": "discover",
+      "target": "discover_query_overture_nation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L136",
+      "weight": 1.0
+    },
+    {
+      "source": "discover",
+      "target": "discover_run_discover_nation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L172",
+      "weight": 1.0
+    },
+    {
+      "source": "discover_run_discover",
+      "target": "discover_query_overture",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L124",
+      "weight": 1.0
+    },
+    {
+      "source": "discover_run_discover",
+      "target": "discover_parse_overture_row",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L128",
+      "weight": 1.0
+    },
+    {
+      "source": "discover_run_discover_nation",
+      "target": "discover_query_overture_nation",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L174",
+      "weight": 1.0
+    },
+    {
+      "source": "discover_run_discover_nation",
+      "target": "discover_parse_overture_row",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L181",
+      "weight": 1.0
+    },
+    {
+      "source": "discover_rationale_89",
+      "target": "discover_query_overture",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L89",
+      "weight": 1.0
+    },
+    {
+      "source": "discover_rationale_137",
+      "target": "discover_query_overture_nation",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L137",
+      "weight": 1.0
+    },
+    {
+      "source": "discover_rationale_173",
+      "target": "discover_run_discover_nation",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L173",
+      "weight": 1.0
+    },
+    {
+      "source": "filter",
+      "target": "re",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/filter.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "filter",
+      "target": "scraper_db",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/filter.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "filter",
+      "target": "scraper_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/filter.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "filter",
+      "target": "filter_is_franchise",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/filter.py",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "filter",
+      "target": "filter_run_filter",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/filter.py",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "filter_run_filter",
+      "target": "filter_is_franchise",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/filter.py",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "filter_rationale_35",
+      "target": "filter_run_filter",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/filter.py",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "score",
+      "target": "scraper_db",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/score.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "score",
+      "target": "scraper_llm",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/score.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "score",
+      "target": "scraper_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/score.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "score",
+      "target": "score_run_score",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/stages/score.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "google_maps",
+      "target": "re",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "google_maps",
+      "target": "typing",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "google_maps",
+      "target": "urllib_parse",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "google_maps",
+      "target": "bs4",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "google_maps",
+      "target": "playwright_async_api",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "google_maps",
+      "target": "scraper_browser",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "google_maps",
+      "target": "google_maps_search_and_fetch",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "google_maps",
+      "target": "google_maps_parse_listing",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "google_maps",
+      "target": "google_maps_enrich_via_google",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L96",
+      "weight": 1.0
+    },
+    {
+      "source": "google_maps_enrich_via_google",
+      "target": "google_maps_search_and_fetch",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L98",
+      "weight": 1.0
+    },
+    {
+      "source": "google_maps_enrich_via_google",
+      "target": "google_maps_parse_listing",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L101",
+      "weight": 1.0
+    },
+    {
+      "source": "google_maps_rationale_10",
+      "target": "google_maps_search_and_fetch",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "google_maps_rationale_44",
+      "target": "google_maps_parse_listing",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "google_maps_rationale_97",
+      "target": "google_maps_enrich_via_google",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/google_maps.py",
+      "source_location": "L97",
+      "weight": 1.0
+    },
+    {
+      "source": "owner_search",
+      "target": "re",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner_search.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "owner_search",
+      "target": "urllib_parse",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner_search.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "owner_search",
+      "target": "playwright_async_api",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner_search.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "owner_search",
+      "target": "scraper_browser",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner_search.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "owner_search",
+      "target": "scraper_enrichment_owner",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner_search.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "owner_search",
+      "target": "owner_search_search_owner_via_google",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner_search.py",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "owner_search_rationale_1",
+      "target": "owner_search",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner_search.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "owner_search_rationale_27",
+      "target": "owner_search_search_owner_via_google",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner_search.py",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "owner",
+      "target": "re",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "owner",
+      "target": "typing",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "owner",
+      "target": "bs4",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "owner",
+      "target": "playwright_async_api",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "owner",
+      "target": "owner_clean_name",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "owner",
+      "target": "owner_extract_from_about_page",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "owner",
+      "target": "owner_extract_from_review_text",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "owner",
+      "target": "owner_lookup_owner",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "owner_extract_from_about_page",
+      "target": "owner_clean_name",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "owner_extract_from_review_text",
+      "target": "owner_clean_name",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L63",
+      "weight": 1.0
+    },
+    {
+      "source": "owner_lookup_owner",
+      "target": "owner_extract_from_about_page",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L80",
+      "weight": 1.0
+    },
+    {
+      "source": "owner_lookup_owner",
+      "target": "owner_extract_from_review_text",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L86",
+      "weight": 1.0
+    },
+    {
+      "source": "owner_rationale_35",
+      "target": "owner_clean_name",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L35",
+      "weight": 1.0
+    },
+    {
+      "source": "owner_rationale_74",
+      "target": "owner_lookup_owner",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/owner.py",
+      "source_location": "L74",
+      "weight": 1.0
+    },
+    {
+      "source": "facebook",
+      "target": "re",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/facebook.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "facebook",
+      "target": "datetime",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/facebook.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "facebook",
+      "target": "typing",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/facebook.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "facebook",
+      "target": "playwright_async_api",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/facebook.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "facebook",
+      "target": "scraper_browser",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/facebook.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "facebook",
+      "target": "facebook_extract_last_post_date",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/facebook.py",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "facebook",
+      "target": "facebook_lookup_facebook",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/facebook.py",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "facebook_lookup_facebook",
+      "target": "facebook_extract_last_post_date",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/facebook.py",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "website",
+      "target": "re",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "website",
+      "target": "typing",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "website",
+      "target": "bs4",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "website",
+      "target": "scraper_models",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "website",
+      "target": "website_detect_site_builder",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "website",
+      "target": "website_detect_chat_widget",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "website",
+      "target": "website_detect_ai_signals",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "website",
+      "target": "website_extract_last_update_year",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "website",
+      "target": "website_extract_hero_snapshot",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "website",
+      "target": "website_score_booking_path",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "website",
+      "target": "website_analyze_html",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "website_analyze_html",
+      "target": "website_extract_hero_snapshot",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "website_analyze_html",
+      "target": "website_detect_chat_widget",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "website_analyze_html",
+      "target": "website_detect_site_builder",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
+      "source": "website_analyze_html",
+      "target": "website_detect_ai_signals",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L84",
+      "weight": 1.0
+    },
+    {
+      "source": "website_analyze_html",
+      "target": "website_extract_last_update_year",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L85",
+      "weight": 1.0
+    },
+    {
+      "source": "website_analyze_html",
+      "target": "website_score_booking_path",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src/scraper/enrichment/website.py",
+      "source_location": "L87",
+      "weight": 1.0
+    },
+    {
+      "source": "db_database",
+      "target": "config_config",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "db_database",
+      "target": "models_lead",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L5",
+      "weight": 0.8
+    },
+    {
+      "source": "db_database",
+      "target": "models_leadenrichment",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L5",
+      "weight": 0.8
+    },
+    {
+      "source": "db_database",
+      "target": "models_leadnotes",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L5",
+      "weight": 0.8
+    },
+    {
+      "source": "db_database",
+      "target": "models_leadstatus",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/db.py",
+      "source_location": "L5",
+      "weight": 0.8
+    },
+    {
+      "source": "llm_llmscorer",
+      "target": "models_leadnotes",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/llm.py",
+      "source_location": "L6",
+      "weight": 0.8
+    },
+    {
+      "source": "llm_llmscorer",
+      "target": "models_bestpitch",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/llm.py",
+      "source_location": "L6",
+      "weight": 0.8
+    },
+    {
+      "source": "cli_rationale_18",
+      "target": "db_database",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "cli_rationale_41",
+      "target": "db_database",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "cli_rationale_50",
+      "target": "db_database",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "cli_rationale_63",
+      "target": "db_database",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "cli_rationale_77",
+      "target": "db_database",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "cli_rationale_93",
+      "target": "db_database",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "cli_rationale_18",
+      "target": "llm_llmscorer",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L9",
+      "weight": 0.8
+    },
+    {
+      "source": "cli_rationale_41",
+      "target": "llm_llmscorer",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L9",
+      "weight": 0.8
+    },
+    {
+      "source": "cli_rationale_50",
+      "target": "llm_llmscorer",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L9",
+      "weight": 0.8
+    },
+    {
+      "source": "cli_rationale_63",
+      "target": "llm_llmscorer",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L9",
+      "weight": 0.8
+    },
+    {
+      "source": "cli_rationale_77",
+      "target": "llm_llmscorer",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L9",
+      "weight": 0.8
+    },
+    {
+      "source": "cli_rationale_93",
+      "target": "llm_llmscorer",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/cli.py",
+      "source_location": "L9",
+      "weight": 0.8
+    },
+    {
+      "source": "enrich_rationale_16",
+      "target": "db_database",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L3",
+      "weight": 0.8
+    },
+    {
+      "source": "enrich_rationale_28",
+      "target": "db_database",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L3",
+      "weight": 0.8
+    },
+    {
+      "source": "enrich_rationale_42",
+      "target": "db_database",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L3",
+      "weight": 0.8
+    },
+    {
+      "source": "enrich_rationale_16",
+      "target": "models_lead",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "enrich_rationale_28",
+      "target": "models_lead",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "enrich_rationale_42",
+      "target": "models_lead",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "enrich_rationale_16",
+      "target": "models_leadstatus",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "enrich_rationale_28",
+      "target": "models_leadstatus",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "enrich_rationale_42",
+      "target": "models_leadstatus",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "enrich_rationale_16",
+      "target": "models_leadenrichment",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "enrich_rationale_28",
+      "target": "models_leadenrichment",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "enrich_rationale_42",
+      "target": "models_leadenrichment",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/enrich.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "discover_rationale_89",
+      "target": "db_database",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L3",
+      "weight": 0.8
+    },
+    {
+      "source": "discover_rationale_137",
+      "target": "db_database",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L3",
+      "weight": 0.8
+    },
+    {
+      "source": "discover_rationale_173",
+      "target": "db_database",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L3",
+      "weight": 0.8
+    },
+    {
+      "source": "discover_rationale_89",
+      "target": "models_lead",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "discover_rationale_137",
+      "target": "models_lead",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "discover_rationale_173",
+      "target": "models_lead",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "discover_rationale_89",
+      "target": "models_leadstatus",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "discover_rationale_137",
+      "target": "models_leadstatus",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "discover_rationale_173",
+      "target": "models_leadstatus",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/discover.py",
+      "source_location": "L4",
+      "weight": 0.8
+    },
+    {
+      "source": "filter_rationale_35",
+      "target": "db_database",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/filter.py",
+      "source_location": "L2",
+      "weight": 0.8
+    },
+    {
+      "source": "filter_rationale_35",
+      "target": "models_leadstatus",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "src/scraper/stages/filter.py",
+      "source_location": "L3",
+      "weight": 0.8
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

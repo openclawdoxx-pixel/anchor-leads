@@ -1,0 +1,38 @@
+# Big/derived folders — don't scan
+.venv/
+.git/
+node_modules/
+crm/node_modules/
+crm/.next/
+crm/.vercel/
+.next/
+.vercel/
+.pytest_cache/
+__pycache__/
+*.pyc
+dist/
+build/
+*.egg-info/
+
+# Long plan docs eat tokens via LLM subagents — skip for now
+docs/superpowers/plans/
+docs/superpowers/specs/
+
+# Generated + lock files
+package-lock.json
+crm/package-lock.json
+.DS_Store
+*.log
+*.html
+
+# Keep fixtures out
+tests/fixtures/sites/
+
+# First pass: code-only (free, no LLM tokens). Re-enable these later for richer graph.
+*.md
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.svg
