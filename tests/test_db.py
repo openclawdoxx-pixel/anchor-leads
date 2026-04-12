@@ -3,13 +3,13 @@ from uuid import uuid4
 from scraper.db import Database
 from scraper.models import Lead, LeadStatus
 
-def test_database_upserts_lead_by_overture_id():
+def test_database_inserts_new_lead():
     mock_client = MagicMock()
     db = Database(client=mock_client)
     lead = Lead(company_name="Acme", state="NY", overture_id="ovt-1")
     db.upsert_lead(lead)
     mock_client.table.assert_called_with("leads")
-    mock_client.table.return_value.upsert.assert_called_once()
+    mock_client.table.return_value.insert.assert_called_once()
 
 def test_database_fetches_leads_by_status():
     mock_client = MagicMock()
