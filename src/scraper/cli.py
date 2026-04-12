@@ -155,5 +155,80 @@ def export(
     typer.echo(f"exported {len(rows)} leads to {out} (smartlead={smartlead}, email_only={only_with_email})")
 
 
+@app.command("review-count")
+def review_count_cmd(
+    limit: int = typer.Option(500, "--limit"),
+    loop: bool = typer.Option(False, "--loop"),
+):
+    """Backfill review counts from Google Maps. Runs SLOW (1 req/15s) to avoid rate limiting."""
+    import asyncio
+    from scraper.browser import browser_context, polite_wait
+    from scraper.enrichment.google_maps import search_and_fetch, parse_listing
+
+    db = _db()
+
+    async def _run():
+        while True:
+            # Get enriched leads that don't have a review_count yet
+            rows = (
+                db.client.table("leads")
+                .select("id, company_name, city, state")
+                .eq("status", "enriched")
+                .limit(limit)
+                .execute()
+                .data or []
+            )
+            # Filter to ones where lead_enrichment.review_count is null
+            to_process = []
+            for row in rows:
+                e = db.client.table("lead_enrichment").select("review_count").eq("lead_id", row["id"]).execute().data
+                if e and e[0].get("review_count") is None:
+                    to_process.append(row)
+                if len(to_process) >= limit:
+                    break
+
+            if not to_process:
+                if loop:
+                    typer.echo("no leads needing review count, sleeping 60s...")
+                    await asyncio.sleep(60)
+                    continue
+                break
+
+            typer.echo(f"backfilling review count for {len(to_process)} leads (slow mode)...")
+            succeeded = failed = 0
+            async with browser_context() as ctx:
+                for row in to_process:
+                    try:
+                        data = await search_and_fetch(ctx, row["company_name"], row.get("city") or row["state"])
+                        if data:
+                            result = parse_listing(data)
+                            if result["review_count"] is not None:
+                                db.client.table("lead_enrichment").update({
+                                    "review_count": result["review_count"],
+                                    "rating": result.get("rating"),
+                                }).eq("lead_id", row["id"]).execute()
+
+                                # Reject if too big
+                                if result["review_count"] >= 100:
+                                    db.client.table("leads").update({"status": "rejected"}).eq("id", row["id"]).execute()
+
+                                succeeded += 1
+                            else:
+                                failed += 1
+                        else:
+                            failed += 1
+                        # SLOW: 15 seconds between requests to avoid rate limiting
+                        await polite_wait(min_s=12.0, max_s=18.0)
+                    except Exception as exc:
+                        typer.echo(f"  error {row['company_name']}: {exc}")
+                        failed += 1
+
+            typer.echo(f"review-count: {succeeded} updated, {failed} missed")
+            if not loop:
+                break
+
+    asyncio.run(_run())
+
+
 if __name__ == "__main__":
     app()

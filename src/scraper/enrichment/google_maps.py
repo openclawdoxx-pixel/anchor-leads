@@ -1,21 +1,23 @@
+"""Google Maps enrichment: rating + review count + review samples."""
+
 import re
 from typing import Any
 from urllib.parse import quote_plus
 from bs4 import BeautifulSoup
-from playwright.async_api import BrowserContext
+from playwright.async_api import BrowserContext, Page
 from scraper.browser import polite_wait
 
 
-async def search_and_fetch(context: BrowserContext, company: str, city: str) -> str | None:
-    """Search Google Maps for the business and return the HTML of the selected place panel."""
+async def search_and_fetch(context: BrowserContext, company: str, city: str) -> dict[str, Any] | None:
+    """Search Google Maps, click into the listing, extract data via page interaction."""
     query = quote_plus(f"{company} {city} plumber")
     url = f"https://www.google.com/maps/search/{query}"
     page = await context.new_page()
     try:
         await page.goto(url, wait_until="domcontentloaded", timeout=25000)
-        await page.wait_for_timeout(2500)
+        await page.wait_for_timeout(3000)
 
-        # If Google landed on a list, click the first result to get its panel
+        # Click first result to get place detail panel
         first_result = page.locator('a[href*="/maps/place/"]').first
         if await first_result.count() > 0:
             try:
@@ -24,24 +26,68 @@ async def search_and_fetch(context: BrowserContext, company: str, city: str) -> 
             except Exception:
                 pass
 
-        # Try to scroll reviews into view so owner-name extraction has data
+        # Get the full HTML for review sample extraction
+        html = await page.content()
+
+        # Get the VISIBLE TEXT of the place panel for review count extraction.
+        # The text contains "4.8 (459)" or "4.7 (1.4K)" patterns that HTML
+        # parsing misses because Google builds it with JS.
         try:
-            reviews_tab = page.get_by_role("tab", name=re.compile("reviews", re.I)).first
-            if await reviews_tab.count() > 0:
-                await reviews_tab.click()
+            panel_text = await page.inner_text('[role="main"]')
+        except Exception:
+            panel_text = await page.inner_text('body')
+
+        # Try clicking reviews tab for review samples
+        try:
+            tab = page.get_by_role("tab", name=re.compile("review", re.I)).first
+            if await tab.count() > 0:
+                await tab.click()
                 await page.wait_for_timeout(2000)
+                html = await page.content()  # re-grab with reviews loaded
         except Exception:
             pass
 
-        html = await page.content()
-        return html
+        return {"html": html, "panel_text": panel_text}
     finally:
         await page.close()
         await polite_wait()
 
 
-def parse_listing(html: str) -> dict[str, Any]:
-    """Parse a Google Maps place HTML page. Extracts rating, review_count, review_samples."""
+def _parse_review_count(text: str) -> int | None:
+    """Extract review count from visible text. Handles formats:
+       (459)  ·  (1.4K)  ·  (8.7K)  ·  459 reviews  ·  1,417 reviews
+    """
+    # Pattern 1: "(N)" or "(N.NK)" right after a rating — most reliable
+    # The text usually reads like "4.8(459)" or "4.8 (1.4K)"
+    for m in re.finditer(r'(\d\.\d)\s*\((\d[\d,.]*[Kk]?)\)', text):
+        raw = m.group(2).strip()
+        return _parse_count_value(raw)
+
+    # Pattern 2: "N reviews" in visible text
+    for m in re.finditer(r'(\d[\d,.]*[Kk]?)\s*reviews?', text, re.IGNORECASE):
+        return _parse_count_value(m.group(1))
+
+    # Pattern 3: aria-label="N reviews" in HTML (original approach)
+    # (this is called on html, not text, so handled in parse_listing)
+    return None
+
+
+def _parse_count_value(raw: str) -> int | None:
+    """Parse '459', '1.4K', '8,700', '1,417' into an integer."""
+    raw = raw.strip().replace(",", "")
+    try:
+        if raw.upper().endswith("K"):
+            return int(float(raw[:-1]) * 1000)
+        return int(float(raw))
+    except (ValueError, TypeError):
+        return None
+
+
+def parse_listing(data: dict[str, Any]) -> dict[str, Any]:
+    """Parse Google Maps data from search_and_fetch output."""
+    html = data.get("html", "")
+    panel_text = data.get("panel_text", "")
+
     result: dict[str, Any] = {
         "place_id": None,
         "rating": None,
@@ -49,40 +95,35 @@ def parse_listing(html: str) -> dict[str, Any]:
         "review_samples": [],
     }
 
-    # Review count: the selected place's total review count appears exactly once
-    # as `aria-label="1,417 reviews"` on the histogram summary bar. This is unique
-    # vs sidebar places (which use a different pattern).
-    m = re.search(r'aria-label="([\d,]+)\s*reviews?"', html)
-    if m:
-        try:
-            result["review_count"] = int(m.group(1).replace(",", ""))
-        except ValueError:
-            pass
-
-    # Rating: the big rating display uses class="fontDisplayLarge". There may be
-    # multiple on the page (for sidebar places), so prefer the FIRST one which is
-    # the selected place.
-    m = re.search(r'class="[^"]*fontDisplayLarge[^"]*"[^>]*>([\d.]+)<', html)
+    # Rating from aria-label (most reliable)
+    m = re.search(r'aria-label="(\d+\.?\d*)\s*stars?\s*"', html)
     if m:
         try:
             result["rating"] = float(m.group(1))
         except ValueError:
             pass
 
-    # Place ID: the permalink data attribute. Best-effort; Google changes this.
+    # Review count: try panel text first (visible text), then aria-label fallback
+    rc = _parse_review_count(panel_text)
+    if rc is None:
+        # Fallback: aria-label in HTML
+        m = re.search(r'aria-label="([\d,]+)\s*reviews?"', html)
+        if m:
+            rc = _parse_count_value(m.group(1))
+    result["review_count"] = rc
+
+    # Place ID
     m = re.search(r'!1s(0x[0-9a-f]+:0x[0-9a-f]+)', html)
     if m:
         result["place_id"] = m.group(1)
 
-    # Review samples: Google renders review text in elements with data-review-id.
-    # Grab up to 5 samples for owner-name extraction downstream.
+    # Review samples
     soup = BeautifulSoup(html, "html.parser")
     samples: list[dict[str, Any]] = []
     for block in soup.select('[data-review-id]')[:5]:
         text = block.get_text(" ", strip=True)[:500]
         if text:
             samples.append({"text": text})
-    # Fallback: if Google re-structured review elements, try a generic review class
     if not samples:
         for block in soup.select('div[jsaction*="review"]')[:5]:
             text = block.get_text(" ", strip=True)[:500]
@@ -94,8 +135,8 @@ def parse_listing(html: str) -> dict[str, Any]:
 
 
 async def enrich_via_google(context: BrowserContext, company: str, city: str) -> dict[str, Any]:
-    """Full Google Maps enrichment: search → click → parse."""
-    html = await search_and_fetch(context, company, city)
-    if not html:
+    """Full Google Maps enrichment."""
+    data = await search_and_fetch(context, company, city)
+    if not data:
         return {"place_id": None, "rating": None, "review_count": None, "review_samples": []}
-    return parse_listing(html)
+    return parse_listing(data)
