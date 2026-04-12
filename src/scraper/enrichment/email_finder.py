@@ -2,12 +2,29 @@
 
 import re
 from typing import Any
-from urllib.parse import quote_plus, urlparse
+from urllib.parse import quote_plus, urlparse, unquote
 from bs4 import BeautifulSoup
 from playwright.async_api import BrowserContext
 from scraper.browser import fetch_page_html, polite_wait
 
 EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+LEADING_JUNK_RE = re.compile(r"^[^A-Za-z0-9]+")
+
+
+def _clean_email(raw: str) -> str | None:
+    """URL-decode and strip leading garbage from a captured email string."""
+    if not raw:
+        return None
+    # URL-decode (handles %20 → space, %40 → @, etc)
+    decoded = unquote(raw).strip()
+    # Strip any leading non-alphanumeric characters from the local part
+    decoded = LEADING_JUNK_RE.sub("", decoded)
+    # Lower-case for canonical form
+    decoded = decoded.lower()
+    # Sanity: must still look like an email after cleaning
+    if not EMAIL_RE.fullmatch(decoded):
+        return None
+    return decoded
 
 # Domains that are NEVER real business contact emails. Match by suffix so
 # subdomains like `sentry-next.wixpress.com` get caught too.
@@ -75,13 +92,17 @@ def extract_emails_from_html(html: str) -> list[str]:
     """Pull all unique valid emails from a page, best-scored first."""
     found = set()
 
-    # 1. mailto: links are the most reliable
-    for m in re.finditer(r'mailto:([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})', html):
-        found.add(m.group(1).lower())
+    # 1. mailto: links — URL-decode and strip leading junk
+    for m in re.finditer(r'mailto:([^"\'<>\s]+@[^"\'<>\s]+)', html):
+        cleaned = _clean_email(m.group(1))
+        if cleaned:
+            found.add(cleaned)
 
     # 2. plain text @ patterns
     for m in EMAIL_RE.finditer(html):
-        found.add(m.group(0).lower())
+        cleaned = _clean_email(m.group(0))
+        if cleaned:
+            found.add(cleaned)
 
     valid = [e for e in found if _is_valid_email(e)]
     valid.sort(key=_score_email, reverse=True)
