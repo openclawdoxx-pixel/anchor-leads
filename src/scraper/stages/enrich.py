@@ -1,15 +1,6 @@
-"""Enrichment: email + owner name + site_builder (for ICP tiering).
+"""Fast enrichment: email + owner + site_builder + ICP tier.
 
-Sources:
-  1. Plumber's own website — email, owner name, site builder detection
-  2. Yellow Pages listing — email fallback
-
-ICP tier (written to lead_enrichment.icp_tier):
-  HOT  = no website OR bad site (wix/godaddy) → needs Anchor Frame most
-  WARM = has website, quality unknown → probably good lead
-  COLD = has modern custom website → less likely to need service
-
-Zero Claude tokens. Pure Playwright + regex.
+Optimized: 3-4 page loads per lead (down from 13). CONCURRENCY=15.
 """
 
 import asyncio
@@ -19,95 +10,81 @@ from scraper.models import Lead, LeadStatus, LeadEnrichment
 from scraper.browser import browser_context, fetch_page_html, polite_wait
 from scraper.enrichment.owner import extract_from_about_page
 from scraper.enrichment.website import detect_site_builder
-from scraper.enrichment.email_finder import find_email_from_website, find_data_from_yellowpages
+from scraper.enrichment.email_finder import extract_emails_from_html, find_data_from_yellowpages
 
-CONCURRENCY = 5
+CONCURRENCY = 15
 
 BAD_BUILDERS = {"wix", "godaddy", "squarespace", "none"}
 GOOD_BUILDERS = {"custom"}
 
 
 def compute_icp_tier(site_builder: str | None, has_website: bool, review_count: int | None) -> str:
-    """Determine ICP tier from available signals."""
-    # Big fish check first
     if review_count is not None and review_count >= 100:
         return "cold"
-    # No website at all = strongest signal they need one
     if not has_website:
         return "hot"
-    # Bad website builder = strong signal
     if site_builder and site_builder in BAD_BUILDERS:
         return "hot"
-    # Good custom website = probably doesn't need us
     if site_builder and site_builder in GOOD_BUILDERS:
         return "cold"
-    # Can't tell = warm (benefit of doubt)
     return "warm"
 
 
-async def _owner_from_website(context: BrowserContext, website: str) -> str | None:
-    if not website:
+async def _fetch(context: BrowserContext, url: str) -> str | None:
+    try:
+        return await fetch_page_html(context, url, timeout_ms=10000)
+    except Exception:
         return None
-    if not website.startswith("http"):
-        website = "https://" + website
-    base = website.rstrip("/")
-    for path in ["/about", "/about-us", "/our-team", "/team", ""]:
-        try:
-            html = await fetch_page_html(context, base + path, timeout_ms=10000)
-            name = extract_from_about_page(html)
-            if name:
-                return name
-        except Exception:
-            continue
-    return None
 
 
 async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
-    """Enrichment: email + owner + site_builder + ICP tier."""
+    """Streamlined enrichment: 3-4 page loads max per lead."""
     assert lead.id is not None
 
     email: str | None = None
     owner: str | None = None
     site_builder: str | None = None
-    homepage_html: str | None = None
 
-    # Tier 1: plumber's own website
     if lead.website:
         ws = lead.website if lead.website.startswith("http") else "https://" + lead.website
-        try:
-            homepage_html = await fetch_page_html(context, ws, timeout_ms=12000)
-        except Exception:
-            homepage_html = None
+        base = ws.rstrip("/")
 
-        if homepage_html:
-            # Email from homepage + contact/about pages
-            try:
-                email = await find_email_from_website(context, lead.website)
-            except Exception as exc:
-                print(f"[enrich] website email fail {lead.company_name}: {exc}")
+        # Page 1: Homepage — extract email + site_builder in one shot
+        homepage = await _fetch(context, base)
+        if homepage:
+            site_builder = detect_site_builder(homepage)
+            emails = extract_emails_from_html(homepage)
+            if emails:
+                email = emails[0]
 
-            # Owner from about pages
-            try:
-                owner = await _owner_from_website(context, lead.website)
-            except Exception as exc:
-                print(f"[enrich] website owner fail {lead.company_name}: {exc}")
+        # Page 2: /contact — only if no email from homepage
+        if not email:
+            contact = await _fetch(context, base + "/contact")
+            if contact:
+                emails = extract_emails_from_html(contact)
+                if emails:
+                    email = emails[0]
 
-            # Site builder detection (piggybacked, zero extra cost)
-            site_builder = detect_site_builder(homepage_html)
+        # Page 3: /about — for owner name
+        about = await _fetch(context, base + "/about")
+        if about:
+            owner = extract_from_about_page(about)
+            # Also try email from about page if still missing
+            if not email:
+                emails = extract_emails_from_html(about)
+                if emails:
+                    email = emails[0]
 
-    # Tier 2: Yellow Pages — email fallback
+    # Page 4: Yellow Pages — only if still no email
     if not email:
         try:
             yp = await find_data_from_yellowpages(
-                context,
-                lead.company_name,
-                lead.city or "",
-                lead.state or "",
+                context, lead.company_name, lead.city or "", lead.state or "",
             )
             if yp.get("email"):
                 email = yp["email"]
-        except Exception as exc:
-            print(f"[enrich] yellowpages fail {lead.company_name}: {exc}")
+        except Exception:
+            pass
 
     # Compute ICP tier
     existing = db.client.table("lead_enrichment").select("review_count").eq("lead_id", str(lead.id)).execute().data
@@ -115,18 +92,16 @@ async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
     icp_tier = compute_icp_tier(site_builder, bool(lead.website), review_count)
 
     # Write enrichment
-    payload: dict = {"lead_id": str(lead.id)}
+    payload: dict = {"lead_id": str(lead.id), "icp_tier": icp_tier}
     if owner:
         payload["owner_name"] = owner
     if email:
         payload["email"] = email
     if site_builder:
         payload["site_builder"] = site_builder
-    payload["icp_tier"] = icp_tier
     db.client.table("lead_enrichment").upsert(payload).execute()
-
     db.update_lead_status(lead.id, LeadStatus.ENRICHED)
-    await polite_wait(min_s=0.8, max_s=2.0)
+    await polite_wait(min_s=0.3, max_s=1.0)
 
 
 async def _enrich_with_sem(lead: Lead, context: BrowserContext, db: Database, sem: asyncio.Semaphore) -> str:
