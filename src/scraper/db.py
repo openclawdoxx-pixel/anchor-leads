@@ -13,7 +13,19 @@ class Database:
 
     def upsert_lead(self, lead: Lead) -> None:
         payload = lead.model_dump(mode="json", exclude_none=True)
-        self.client.table("leads").upsert(payload, on_conflict="overture_id").execute()
+        # Don't overwrite status on existing leads — discover should never
+        # reset an enriched/qualified/rejected lead back to "discovered".
+        # Try insert first; if overture_id conflict, skip entirely.
+        try:
+            self.client.table("leads").insert(payload).execute()
+        except Exception as e:
+            if "duplicate key" in str(e) or "23505" in str(e):
+                # Lead already exists — only update non-status fields
+                update_payload = {k: v for k, v in payload.items() if k not in ("id", "status", "overture_id")}
+                if update_payload and lead.overture_id:
+                    self.client.table("leads").update(update_payload).eq("overture_id", lead.overture_id).execute()
+            else:
+                raise
 
     def fetch_leads_by_status(self, status: LeadStatus, limit: int = 500) -> list[Lead]:
         resp = (
