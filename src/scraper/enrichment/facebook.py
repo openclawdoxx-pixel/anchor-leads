@@ -26,9 +26,15 @@ def has_fb_cookies() -> bool:
     return COOKIES_PATH.exists() and COOKIES_PATH.stat().st_size > 10
 
 
+OWNER_PATTERNS = [
+    r"(?:Founded by|Owner|Founder|Owned by|Operated by)\s+([A-Z][a-z]{2,}\s+[A-Z][a-z]{2,})",
+    r"([A-Z][a-z]{2,}\s+[A-Z][a-z]{2,})\s*[-—,]\s*(?:Owner|Founder|President)",
+]
+
+
 async def enrich_via_facebook(context: BrowserContext, company: str, city: str) -> dict[str, Any]:
-    """Search Facebook for a business page, visit About tab, extract email."""
-    result: dict[str, Any] = {"email": None}
+    """Search Facebook for a business page, visit About tab, extract email + owner."""
+    result: dict[str, Any] = {"email": None, "owner_name": None}
 
     if not has_fb_cookies():
         return result
@@ -74,6 +80,13 @@ async def enrich_via_facebook(context: BrowserContext, company: str, city: str) 
         real = [e.lower() for e in set(all_emails) if _is_real_email(e)]
         if real:
             result["email"] = real[0]
+
+        # Extract owner name
+        for pat in OWNER_PATTERNS:
+            m = re.search(pat, text)
+            if m:
+                result["owner_name"] = m.group(1).strip()
+                break
 
         return result
     except Exception:

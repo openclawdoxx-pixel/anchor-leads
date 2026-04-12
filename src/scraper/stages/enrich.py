@@ -97,11 +97,13 @@ async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
             pass
 
     # Tier 4: Facebook business page (logged-in session, no proxy)
-    if not email and has_fb_cookies():
+    if has_fb_cookies() and (not email or not owner):
         try:
             fb = await enrich_via_facebook(context, lead.company_name, lead.city or lead.state)
-            if fb.get("email"):
+            if fb.get("email") and not email:
                 email = fb["email"]
+            if fb.get("owner_name") and not owner:
+                owner = fb["owner_name"]
         except Exception:
             pass
 
