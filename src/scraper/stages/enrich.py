@@ -1,15 +1,13 @@
-"""Lean enrichment: email + owner name only.
+"""Enrichment: email + owner name + site_builder (for ICP tiering).
 
 Sources:
-  1. Plumber's own website — primary (mailto links, Contact/About pages)
-  2. Yellow Pages listing — fallback for email only
+  1. Plumber's own website — email, owner name, site builder detection
+  2. Yellow Pages listing — email fallback
 
-Dropped entirely:
-  - Google Maps (rate-limited / CAPTCHA)
-  - Yelp (CAPTCHA)
-  - Review count, rating, hero_snapshot, site_builder, chat widget detection
-  - Facebook lookup
-  - LLM scoring
+ICP tier (written to lead_enrichment.icp_tier):
+  HOT  = no website OR bad site (wix/godaddy) → needs Anchor Frame most
+  WARM = has website, quality unknown → probably good lead
+  COLD = has modern custom website → less likely to need service
 
 Zero Claude tokens. Pure Playwright + regex.
 """
@@ -20,9 +18,31 @@ from scraper.db import Database
 from scraper.models import Lead, LeadStatus, LeadEnrichment
 from scraper.browser import browser_context, fetch_page_html, polite_wait
 from scraper.enrichment.owner import extract_from_about_page
+from scraper.enrichment.website import detect_site_builder
 from scraper.enrichment.email_finder import find_email_from_website, find_data_from_yellowpages
 
 CONCURRENCY = 5
+
+BAD_BUILDERS = {"wix", "godaddy", "squarespace", "none"}
+GOOD_BUILDERS = {"custom"}
+
+
+def compute_icp_tier(site_builder: str | None, has_website: bool, review_count: int | None) -> str:
+    """Determine ICP tier from available signals."""
+    # Big fish check first
+    if review_count is not None and review_count >= 100:
+        return "cold"
+    # No website at all = strongest signal they need one
+    if not has_website:
+        return "hot"
+    # Bad website builder = strong signal
+    if site_builder and site_builder in BAD_BUILDERS:
+        return "hot"
+    # Good custom website = probably doesn't need us
+    if site_builder and site_builder in GOOD_BUILDERS:
+        return "cold"
+    # Can't tell = warm (benefit of doubt)
+    return "warm"
 
 
 async def _owner_from_website(context: BrowserContext, website: str) -> str | None:
@@ -43,24 +63,39 @@ async def _owner_from_website(context: BrowserContext, website: str) -> str | No
 
 
 async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
-    """Lean enrichment: chase email + owner name, nothing else."""
+    """Enrichment: email + owner + site_builder + ICP tier."""
     assert lead.id is not None
 
     email: str | None = None
     owner: str | None = None
+    site_builder: str | None = None
+    homepage_html: str | None = None
 
     # Tier 1: plumber's own website
     if lead.website:
+        ws = lead.website if lead.website.startswith("http") else "https://" + lead.website
         try:
-            email = await find_email_from_website(context, lead.website)
-        except Exception as exc:
-            print(f"[enrich] website email fail {lead.company_name}: {exc}")
-        try:
-            owner = await _owner_from_website(context, lead.website)
-        except Exception as exc:
-            print(f"[enrich] website owner fail {lead.company_name}: {exc}")
+            homepage_html = await fetch_page_html(context, ws, timeout_ms=12000)
+        except Exception:
+            homepage_html = None
 
-    # Tier 2: Yellow Pages — email fallback only, no rating scrape
+        if homepage_html:
+            # Email from homepage + contact/about pages
+            try:
+                email = await find_email_from_website(context, lead.website)
+            except Exception as exc:
+                print(f"[enrich] website email fail {lead.company_name}: {exc}")
+
+            # Owner from about pages
+            try:
+                owner = await _owner_from_website(context, lead.website)
+            except Exception as exc:
+                print(f"[enrich] website owner fail {lead.company_name}: {exc}")
+
+            # Site builder detection (piggybacked, zero extra cost)
+            site_builder = detect_site_builder(homepage_html)
+
+    # Tier 2: Yellow Pages — email fallback
     if not email:
         try:
             yp = await find_data_from_yellowpages(
@@ -74,12 +109,20 @@ async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
         except Exception as exc:
             print(f"[enrich] yellowpages fail {lead.company_name}: {exc}")
 
-    # Write to lead_enrichment via raw upsert (bypasses pydantic for email column)
+    # Compute ICP tier
+    existing = db.client.table("lead_enrichment").select("review_count").eq("lead_id", str(lead.id)).execute().data
+    review_count = existing[0].get("review_count") if existing else None
+    icp_tier = compute_icp_tier(site_builder, bool(lead.website), review_count)
+
+    # Write enrichment
     payload: dict = {"lead_id": str(lead.id)}
     if owner:
         payload["owner_name"] = owner
     if email:
         payload["email"] = email
+    if site_builder:
+        payload["site_builder"] = site_builder
+    payload["icp_tier"] = icp_tier
     db.client.table("lead_enrichment").upsert(payload).execute()
 
     db.update_lead_status(lead.id, LeadStatus.ENRICHED)
@@ -111,8 +154,3 @@ async def run_enrich(db: Database, limit: int = 500) -> dict[str, int]:
     succeeded = sum(1 for r in results if r == "ok")
     failed = sum(1 for r in results if r == "fail")
     return {"processed": len(leads), "succeeded": succeeded, "failed": failed}
-
-
-# Kept for test compatibility
-def apply_final_icp(e: LeadEnrichment) -> bool:
-    return True
