@@ -62,7 +62,11 @@ STATE_BBOXES: dict[str, tuple[float, float, float, float]] = {
     "DC": (-77.12, 38.79, -76.91, 38.99),
 }
 
-PLUMBER_CATEGORIES = {"plumber", "plumbing", "plumbing_service", "plumbing_contractor"}
+PLUMBER_CATEGORIES = {
+    "plumber", "plumbing", "plumbing_service", "plumbing_contractor",
+    # Plumber-adjacent trades — same ICP, same digital pain points
+    "septic_services", "water_heater_installation_repair",
+}
 
 def parse_overture_row(row: dict[str, Any], state: str) -> Lead:
     names = row.get("names") or {}
