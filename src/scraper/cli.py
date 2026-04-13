@@ -61,8 +61,9 @@ def enrich(
     loop: bool = typer.Option(False, "--loop", help="Run continuously until no qualified leads remain"),
 ):
     """Stage 3: enrich qualified leads (website + gmaps + owner + facebook)."""
-    db = _db()
     while True:
+        # Fresh DB connection EVERY batch — prevents stale connection after hours
+        db = _db()
         result = asyncio.run(run_enrich(db=db, limit=limit))
         db.log_run("enrich", None, **result)
         typer.echo(f"enriched: {result}")
