@@ -156,6 +156,83 @@ def export(
     typer.echo(f"exported {len(rows)} leads to {out} (smartlead={smartlead}, email_only={only_with_email})")
 
 
+@app.command("facebook-enrich")
+def facebook_enrich_cmd(
+    limit: int = typer.Option(500, "--limit"),
+    loop: bool = typer.Option(False, "--loop"),
+):
+    """Targeted Facebook pass: only hits enriched leads with NO email. Slow (3 concurrent)."""
+    import asyncio
+    from scraper.enrichment.facebook import enrich_via_facebook, has_fb_cookies
+    from scraper.enrichment.email_guess import guess_email
+
+    if not has_fb_cookies():
+        typer.echo("no Facebook cookies found — run login first")
+        return
+
+    async def _run():
+        while True:
+            db = _db()
+            # Get enriched leads with no email
+            rows = (
+                db.client.table("leads")
+                .select("id, company_name, city, state, website")
+                .eq("status", "enriched")
+                .limit(limit)
+                .execute().data or []
+            )
+            # Filter to ones without email
+            to_process = []
+            for row in rows:
+                e = db.client.table("lead_enrichment").select("email,owner_name").eq("lead_id", row["id"]).execute().data
+                if e and not e[0].get("email"):
+                    to_process.append({**row, "owner_name": e[0].get("owner_name")})
+                if len(to_process) >= limit:
+                    break
+
+            if not to_process:
+                if loop:
+                    typer.echo("no email-less leads, sleeping 60s...")
+                    await asyncio.sleep(60)
+                    continue
+                break
+
+            typer.echo(f"facebook-enriching {len(to_process)} leads...")
+            from scraper.browser import browser_context, polite_wait
+            succeeded = 0
+            async with browser_context(use_proxy=False) as ctx:
+                import json
+                from scraper.enrichment.facebook import COOKIES_PATH
+                with open(COOKIES_PATH) as f:
+                    await ctx.add_cookies(json.load(f))
+                for row in to_process:
+                    try:
+                        fb = await enrich_via_facebook(ctx, row["company_name"], row.get("city") or row.get("state", ""))
+                        update: dict = {}
+                        if fb.get("email"):
+                            update["email"] = fb["email"]
+                        if fb.get("owner_name") and not row.get("owner_name"):
+                            update["owner_name"] = fb["owner_name"]
+                        # Also try email guess if we got an owner from FB
+                        if not update.get("email") and fb.get("owner_name") and row.get("website"):
+                            guessed = guess_email(fb["owner_name"], row["website"])
+                            if guessed:
+                                update["email"] = guessed
+                                update["owner_name"] = fb["owner_name"]
+                        if update:
+                            db.client.table("lead_enrichment").update(update).eq("lead_id", row["id"]).execute()
+                            succeeded += 1
+                    except Exception as exc:
+                        typer.echo(f"  fail {row['company_name']}: {exc}")
+                    await polite_wait(min_s=3.0, max_s=6.0)
+
+            typer.echo(f"facebook: {succeeded}/{len(to_process)} found data")
+            if not loop:
+                break
+
+    asyncio.run(_run())
+
+
 @app.command("verify-emails")
 def verify_emails_cmd():
     """Free MX-based email verification. Nulls out emails with dead domains."""

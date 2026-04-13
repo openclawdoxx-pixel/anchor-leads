@@ -14,7 +14,7 @@ from scraper.enrichment.email_finder import extract_emails_from_html, find_data_
 from scraper.enrichment.email_guess import guess_email
 from scraper.enrichment.facebook import enrich_via_facebook, has_fb_cookies
 
-CONCURRENCY = 5  # Keep low — Facebook pages are heavy JS, 15 crashes Chromium
+CONCURRENCY = 15  # Facebook removed from main loop — safe to run fast again
 
 BAD_BUILDERS = {"wix", "godaddy", "squarespace", "none"}
 GOOD_BUILDERS = {"custom"}
@@ -96,16 +96,9 @@ async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
         except Exception:
             pass
 
-    # Tier 4: Facebook business page (logged-in session, no proxy)
-    if has_fb_cookies() and (not email or not owner):
-        try:
-            fb = await enrich_via_facebook(context, lead.company_name, lead.city or lead.state)
-            if fb.get("email") and not email:
-                email = fb["email"]
-            if fb.get("owner_name") and not owner:
-                owner = fb["owner_name"]
-        except Exception:
-            pass
+    # Facebook is NOT in the main loop — runs as a separate targeted pass
+    # via `scraper facebook-enrich` after the main loop finishes.
+    # This keeps the main loop fast (~2,500/hr) instead of 240/hr.
 
     # Compute ICP tier
     existing = db.client.table("lead_enrichment").select("review_count").eq("lead_id", str(lead.id)).execute().data
