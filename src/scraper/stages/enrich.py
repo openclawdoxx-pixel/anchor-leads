@@ -1,20 +1,20 @@
 """Fast enrichment: email + owner + site_builder + ICP tier.
 
-Optimized: 3-4 page loads per lead (down from 13). CONCURRENCY=15.
+Uses httpx (lightweight HTTP) for website scraping instead of Playwright.
+Playwright was crashing Chromium at any concurrency on the Mac mini.
+httpx uses ~0 RAM per request and handles 20+ concurrent easily.
 """
 
 import asyncio
-from playwright.async_api import BrowserContext
 from scraper.db import Database
 from scraper.models import Lead, LeadStatus, LeadEnrichment
-from scraper.browser import browser_context, fetch_page_html, polite_wait
+from scraper.http_fetch import fetch_html
 from scraper.enrichment.owner import extract_from_about_page
 from scraper.enrichment.website import detect_site_builder
 from scraper.enrichment.email_finder import extract_emails_from_html, find_data_from_yellowpages
 from scraper.enrichment.email_guess import guess_email
-from scraper.enrichment.facebook import enrich_via_facebook, has_fb_cookies
 
-CONCURRENCY = 15  # Facebook removed from main loop — safe to run fast again
+CONCURRENCY = 20  # httpx handles 20 easily — no browser, no RAM pressure
 
 BAD_BUILDERS = {"wix", "godaddy", "squarespace", "none"}
 GOOD_BUILDERS = {"custom"}
@@ -32,15 +32,8 @@ def compute_icp_tier(site_builder: str | None, has_website: bool, review_count: 
     return "warm"
 
 
-async def _fetch(context: BrowserContext, url: str) -> str | None:
-    try:
-        return await fetch_page_html(context, url, timeout_ms=10000)
-    except Exception:
-        return None
-
-
-async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
-    """Streamlined enrichment: 3-4 page loads max per lead."""
+async def enrich_one(lead: Lead, db: Database) -> None:
+    """Enrichment via httpx (no browser). 3 pages max per lead."""
     assert lead.id is not None
 
     email: str | None = None
@@ -48,57 +41,44 @@ async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
     site_builder: str | None = None
 
     if lead.website:
-        ws = lead.website if lead.website.startswith("http") else "https://" + lead.website
-        base = ws.rstrip("/")
+        base = lead.website if lead.website.startswith("http") else "https://" + lead.website
+        base = base.rstrip("/")
 
-        # Page 1: Homepage — extract email + site_builder in one shot
-        homepage = await _fetch(context, base)
+        # Page 1: Homepage
+        homepage = await fetch_html(base)
         if homepage:
             site_builder = detect_site_builder(homepage)
             emails = extract_emails_from_html(homepage)
             if emails:
                 email = emails[0]
 
-        # Page 2: /contact — only if no email from homepage
+        # Page 2: /contact (only if no email yet)
         if not email:
-            contact = await _fetch(context, base + "/contact")
+            contact = await fetch_html(base + "/contact")
             if contact:
                 emails = extract_emails_from_html(contact)
                 if emails:
                     email = emails[0]
 
-        # Page 3: /about — for owner name
-        about = await _fetch(context, base + "/about")
+        # Page 3: /about (for owner name)
+        about = await fetch_html(base + "/about")
         if about:
             owner = extract_from_about_page(about)
-            # Also try email from about page if still missing
             if not email:
                 emails = extract_emails_from_html(about)
                 if emails:
                     email = emails[0]
 
-    # Page 4: Yellow Pages — only if still no email
-    if not email:
-        try:
-            yp = await find_data_from_yellowpages(
-                context, lead.company_name, lead.city or "", lead.state or "",
-            )
-            if yp.get("email"):
-                email = yp["email"]
-        except Exception:
-            pass
+    # Tier 2: Yellow Pages (uses httpx internally too — no browser needed)
+    # Skip YP for now to keep it pure httpx — YP needs Playwright for JS rendering
+    # We'll add it back in the Facebook pass if needed.
 
-    # Tier 3: Email pattern guessing (owner name + domain → bob@domain.com)
-    # Zero page loads, just DNS. Produces PERSONAL emails.
+    # Tier 3: Email pattern guessing
     if not email and owner and lead.website:
         try:
             email = guess_email(owner, lead.website)
         except Exception:
             pass
-
-    # Facebook is NOT in the main loop — runs as a separate targeted pass
-    # via `scraper facebook-enrich` after the main loop finishes.
-    # This keeps the main loop fast (~2,500/hr) instead of 240/hr.
 
     # Compute ICP tier
     existing = db.client.table("lead_enrichment").select("review_count").eq("lead_id", str(lead.id)).execute().data
@@ -115,13 +95,12 @@ async def enrich_one(lead: Lead, context: BrowserContext, db: Database) -> None:
         payload["site_builder"] = site_builder
     db.client.table("lead_enrichment").upsert(payload).execute()
     db.update_lead_status(lead.id, LeadStatus.ENRICHED)
-    await polite_wait(min_s=0.3, max_s=1.0)
 
 
-async def _enrich_with_sem(lead: Lead, context: BrowserContext, db: Database, sem: asyncio.Semaphore) -> str:
+async def _enrich_with_sem(lead: Lead, db: Database, sem: asyncio.Semaphore) -> str:
     async with sem:
         try:
-            await enrich_one(lead, context, db)
+            await enrich_one(lead, db)
             return "ok"
         except Exception as e:
             print(f"[enrich] failed {lead.company_name}: {e}")
@@ -136,13 +115,9 @@ async def run_enrich(db: Database, limit: int = 500) -> dict[str, int]:
         return {"processed": 0, "succeeded": 0, "failed": 0}
 
     sem = asyncio.Semaphore(CONCURRENCY)
-    # DON'T use proxy for regular plumber websites — they don't need it
-    # and it burns proxy bandwidth ($7/GB). Proxy is reserved for
-    # Google/Yelp/Facebook only (separate commands).
-    async with browser_context(use_proxy=False) as context:
-        results = await asyncio.gather(
-            *[_enrich_with_sem(lead, context, db, sem) for lead in leads]
-        )
+    results = await asyncio.gather(
+        *[_enrich_with_sem(lead, db, sem) for lead in leads]
+    )
     succeeded = sum(1 for r in results if r == "ok")
     failed = sum(1 for r in results if r == "fail")
     return {"processed": len(leads), "succeeded": succeeded, "failed": failed}
