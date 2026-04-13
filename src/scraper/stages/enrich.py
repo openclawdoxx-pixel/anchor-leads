@@ -14,7 +14,7 @@ from scraper.enrichment.email_finder import extract_emails_from_html, find_data_
 from scraper.enrichment.email_guess import guess_email
 from scraper.enrichment.facebook import enrich_via_facebook, has_fb_cookies
 
-CONCURRENCY = 15
+CONCURRENCY = 5  # Keep low — Facebook pages are heavy JS, 15 crashes Chromium
 
 BAD_BUILDERS = {"wix", "godaddy", "squarespace", "none"}
 GOOD_BUILDERS = {"custom"}
