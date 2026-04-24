@@ -12,7 +12,8 @@ This file is read automatically by Claude when working in this repo. Global rule
 ## Project-specific rules
 
 - **No LLM scoring** — the `scraper score` stage burns ~3k tokens per lead. Never run unless Kurt explicitly asks. Keep `best_pitch`/`ai_summary`/`attack_angles` null.
-- **Lite enrichment only** — Google Maps for rating/reviews/owner, website About page for owner, Google search fallback for owner. Skip: facebook, site_builder detection, chat_widget, hero_snapshot, booking_path_quality.
+- **Lite enrichment only** — Google Maps for rating/reviews/owner, website About page for owner, Google search fallback for owner. Skip: site_builder detection, chat_widget, hero_snapshot, booking_path_quality.
+- **Facebook pass is active** — `scraper facebook-enrich --mode hybrid` uses mbasic.facebook.com (httpx) first, Playwright fallback on misses. Leads get `lead_enrichment.fb_checked_at` stamped after every attempt so empty-result leads aren't re-scanned next loop.
 - **CSV → GHL is the product**, not the Next.js CRM. The CRM at `crm/` is a sunk-cost artifact; don't invest more there unless Kurt asks.
 - **Preserve existing leads** — 44k+ leads in Supabase took real time to discover. Never wipe the `leads` table.
 - **Secrets at `.env`** — never commit. Already in `.gitignore`.

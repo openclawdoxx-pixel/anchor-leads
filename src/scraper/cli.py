@@ -2,7 +2,7 @@ import asyncio
 import typer
 from scraper.config import load_config
 from scraper.db import Database
-from scraper.stages.discover import run_discover, run_discover_nation
+from scraper.stages.discover import run_discover, run_discover_nation, run_discover_carpentry
 from scraper.stages.filter import run_filter
 from scraper.stages.enrich import run_enrich
 from scraper.stages.score import run_score
@@ -43,6 +43,34 @@ def discover_nation_cmd():
     count = run_discover_nation(db=db)
     db.log_run("discover_nation", "US", processed=count, succeeded=count, failed=0)
     typer.echo(f"discovered {count} leads nation-wide")
+
+
+@app.command("discover-carpentry")
+def discover_carpentry_cmd(
+    country: str = typer.Option("US", "--country", help="Country code: US or CA"),
+):
+    """Discover carpentry/cabinetry/remodeling businesses into carpentry_leads table."""
+    db = _db()
+    count = run_discover_carpentry(db=db, country=country.upper())
+    typer.echo(f"discovered {count} carpentry leads in {country.upper()}")
+
+
+@app.command("export-carpentry")
+def export_carpentry_cmd(
+    out: str = typer.Option("carpentry_leads.csv", "--out"),
+    limit: int = typer.Option(100000, "--limit"),
+):
+    """Export carpentry_leads table to CSV."""
+    import csv
+    db = _db()
+    rows = db.client.table("carpentry_leads").select("*").limit(limit).execute().data or []
+    fieldnames = ["company_name", "phone", "website", "address", "city", "state", "category"]
+    with open(out, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=fieldnames)
+        w.writeheader()
+        for r in rows:
+            w.writerow({k: (r.get(k) if r.get(k) is not None else "") for k in fieldnames})
+    typer.echo(f"exported {len(rows)} carpentry leads to {out}")
 
 
 @app.command("filter")
@@ -160,73 +188,157 @@ def export(
 def facebook_enrich_cmd(
     limit: int = typer.Option(500, "--limit"),
     loop: bool = typer.Option(False, "--loop"),
+    mode: str = typer.Option("hybrid", "--mode", help="hybrid | fast | playwright"),
+    concurrency: int = typer.Option(20, "--concurrency", help="mbasic concurrent requests"),
 ):
-    """Targeted Facebook pass: only hits enriched leads with NO email. Slow (3 concurrent)."""
+    """Targeted Facebook pass: enriched leads with NO email.
+
+    - fast:       mbasic.facebook.com only, ~20 concurrent, no browser
+    - hybrid:     mbasic first, Playwright fallback on misses (default)
+    - playwright: legacy Chromium path only (slow, pre-2026-04-24 behavior)
+    """
     import asyncio
-    from scraper.enrichment.facebook import enrich_via_facebook, has_fb_cookies
+    import json
+    import random
+    import time
+    from datetime import datetime, timezone
+    from scraper.enrichment.facebook import enrich_via_facebook, has_fb_cookies, COOKIES_PATH
+    from scraper.enrichment.facebook_fast import (
+        enrich_via_mbasic,
+        make_client,
+        FacebookCookieExpired,
+    )
     from scraper.enrichment.email_guess import guess_email
+
+    if mode not in {"hybrid", "fast", "playwright"}:
+        typer.echo(f"unknown mode: {mode}")
+        raise typer.Exit(1)
 
     if not has_fb_cookies():
         typer.echo("no Facebook cookies found — run login first")
         return
 
+    def _apply_update(db, row, fb) -> bool:
+        """Always stamps fb_checked_at. Returns True when data was found."""
+        update: dict = {"fb_checked_at": datetime.now(timezone.utc).isoformat()}
+        if fb.get("email"):
+            update["email"] = fb["email"]
+        if fb.get("owner_name") and not row.get("owner_name"):
+            update["owner_name"] = fb["owner_name"]
+        if not update.get("email") and fb.get("owner_name") and row.get("website"):
+            guessed = guess_email(fb["owner_name"], row["website"])
+            if guessed:
+                update["email"] = guessed
+                update["owner_name"] = fb["owner_name"]
+        db.client.table("lead_enrichment").update(update).eq("lead_id", row["id"]).execute()
+        return bool(update.get("email") or update.get("owner_name"))
+
+    checked: set[str] = set()
+
     async def _run():
+        offset = 0
         while True:
             db = _db()
-            # Get enriched leads with no email
             rows = (
                 db.client.table("leads")
                 .select("id, company_name, city, state, website")
                 .eq("status", "enriched")
-                .limit(limit)
+                .order("website", nullsfirst=True)
+                .range(offset, offset + limit * 2)
                 .execute().data or []
             )
-            # Filter to ones without email
             to_process = []
             for row in rows:
-                e = db.client.table("lead_enrichment").select("email,owner_name").eq("lead_id", row["id"]).execute().data
-                if e and not e[0].get("email"):
+                if row["id"] in checked:
+                    continue
+                e = db.client.table("lead_enrichment").select("email,owner_name,fb_checked_at").eq("lead_id", row["id"]).execute().data
+                if e and not e[0].get("email") and not e[0].get("fb_checked_at"):
                     to_process.append({**row, "owner_name": e[0].get("owner_name")})
+                checked.add(row["id"])
                 if len(to_process) >= limit:
                     break
 
             if not to_process:
+                if loop and len(rows) > 0:
+                    offset += limit * 2
+                    continue
                 if loop:
-                    typer.echo("no email-less leads, sleeping 60s...")
-                    await asyncio.sleep(60)
+                    typer.echo("scanned all leads, sleeping 300s before restarting...")
+                    checked.clear()
+                    offset = 0
+                    await asyncio.sleep(300)
                     continue
                 break
 
-            typer.echo(f"facebook-enriching {len(to_process)} leads...")
-            from scraper.browser import browser_context, polite_wait
-            succeeded = 0
-            async with browser_context(use_proxy=False) as ctx:
-                import json
-                from scraper.enrichment.facebook import COOKIES_PATH
-                with open(COOKIES_PATH) as f:
-                    await ctx.add_cookies(json.load(f))
-                for row in to_process:
-                    try:
-                        fb = await enrich_via_facebook(ctx, row["company_name"], row.get("city") or row.get("state", ""))
-                        update: dict = {}
-                        if fb.get("email"):
-                            update["email"] = fb["email"]
-                        if fb.get("owner_name") and not row.get("owner_name"):
-                            update["owner_name"] = fb["owner_name"]
-                        # Also try email guess if we got an owner from FB
-                        if not update.get("email") and fb.get("owner_name") and row.get("website"):
-                            guessed = guess_email(fb["owner_name"], row["website"])
-                            if guessed:
-                                update["email"] = guessed
-                                update["owner_name"] = fb["owner_name"]
-                        if update:
-                            db.client.table("lead_enrichment").update(update).eq("lead_id", row["id"]).execute()
-                            succeeded += 1
-                    except Exception as exc:
-                        typer.echo(f"  fail {row['company_name']}: {exc}")
-                    await polite_wait(min_s=3.0, max_s=6.0)
+            typer.echo(f"facebook-enriching {len(to_process)} leads (mode={mode})...")
+            t0 = time.time()
+            mbasic_hits = fallback_hits = 0
+            fallback_pool: list[dict] = []
 
-            typer.echo(f"facebook: {succeeded}/{len(to_process)} found data")
+            # Pass 1: concurrent mbasic (skipped in playwright mode)
+            if mode in {"fast", "hybrid"}:
+                sem = asyncio.Semaphore(concurrency)
+
+                async def _mb_one(client, row):
+                    async with sem:
+                        await asyncio.sleep(random.uniform(0.4, 1.0))
+                        try:
+                            return row, await enrich_via_mbasic(
+                                client, row["company_name"], row.get("city") or row.get("state", "")
+                            )
+                        except FacebookCookieExpired:
+                            raise
+                        except Exception as exc:
+                            typer.echo(f"  mbasic fail {row['company_name']}: {exc}")
+                            return row, {"email": None, "owner_name": None}
+
+                try:
+                    async with make_client() as client:
+                        results = await asyncio.gather(
+                            *[_mb_one(client, r) for r in to_process]
+                        )
+                except FacebookCookieExpired as exc:
+                    typer.echo(f"cookie expired: {exc}")
+                    return
+
+                for row, fb in results:
+                    if fb.get("email") or fb.get("owner_name"):
+                        if _apply_update(db, row, fb):
+                            mbasic_hits += 1
+                    elif mode == "hybrid":
+                        fallback_pool.append(row)
+                    else:
+                        # fast mode miss: stamp so we don't retry next loop
+                        _apply_update(db, row, fb)
+            else:
+                fallback_pool = list(to_process)
+
+            # Pass 2: Playwright fallback (hybrid + playwright modes)
+            if fallback_pool and mode in {"hybrid", "playwright"}:
+                from scraper.browser import browser_context, polite_wait
+                typer.echo(f"  fallback to playwright for {len(fallback_pool)} misses...")
+                async with browser_context(use_proxy=False) as ctx:
+                    with open(COOKIES_PATH) as f:
+                        await ctx.add_cookies(json.load(f))
+                    for row in fallback_pool:
+                        try:
+                            fb = await enrich_via_facebook(
+                                ctx, row["company_name"], row.get("city") or row.get("state", "")
+                            )
+                            if _apply_update(db, row, fb):
+                                fallback_hits += 1
+                        except Exception as exc:
+                            typer.echo(f"  playwright fail {row['company_name']}: {exc}")
+                        await polite_wait(min_s=2.0, max_s=4.0)
+
+            elapsed = time.time() - t0
+            rate = len(to_process) / elapsed if elapsed > 0 else 0
+            total_hits = mbasic_hits + fallback_hits
+            typer.echo(
+                f"facebook ({mode}): {total_hits}/{len(to_process)} hits "
+                f"[mbasic={mbasic_hits} fallback={fallback_hits}] "
+                f"in {elapsed:.1f}s ({rate:.1f} leads/s)"
+            )
             if not loop:
                 break
 
