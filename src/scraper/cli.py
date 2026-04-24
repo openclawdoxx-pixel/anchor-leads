@@ -235,6 +235,25 @@ def facebook_enrich_cmd(
 
     checked: set[str] = set()
 
+    def _fetch_enrichments(db, lead_ids: list[str]) -> dict[str, dict]:
+        """Batch-fetch lead_enrichment rows for a list of lead IDs.
+
+        Chunks to 100 ids per query to stay under the PostgREST URL length cap.
+        Returns {lead_id: row}. Cuts egress ~50x vs per-lead SELECT.
+        """
+        out: dict[str, dict] = {}
+        for i in range(0, len(lead_ids), 100):
+            chunk = lead_ids[i : i + 100]
+            rows = (
+                db.client.table("lead_enrichment")
+                .select("lead_id,email,owner_name,fb_checked_at")
+                .in_("lead_id", chunk)
+                .execute().data or []
+            )
+            for r in rows:
+                out[r["lead_id"]] = r
+        return out
+
     async def _run():
         offset = 0
         while True:
@@ -247,13 +266,13 @@ def facebook_enrich_cmd(
                 .range(offset, offset + limit * 2)
                 .execute().data or []
             )
+            candidates = [r for r in rows if r["id"] not in checked]
+            enrichments = _fetch_enrichments(db, [r["id"] for r in candidates])
             to_process = []
-            for row in rows:
-                if row["id"] in checked:
-                    continue
-                e = db.client.table("lead_enrichment").select("email,owner_name,fb_checked_at").eq("lead_id", row["id"]).execute().data
-                if e and not e[0].get("email") and not e[0].get("fb_checked_at"):
-                    to_process.append({**row, "owner_name": e[0].get("owner_name")})
+            for row in candidates:
+                e = enrichments.get(row["id"])
+                if e and not e.get("email") and not e.get("fb_checked_at"):
+                    to_process.append({**row, "owner_name": e.get("owner_name")})
                 checked.add(row["id"])
                 if len(to_process) >= limit:
                     break
