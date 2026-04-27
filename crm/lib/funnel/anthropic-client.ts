@@ -1,8 +1,20 @@
 import Anthropic from "@anthropic-ai/sdk";
 
-export const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-  dangerouslyAllowBrowser: true,
+let _client: Anthropic | null = null;
+export function getAnthropic(): Anthropic {
+  if (!_client) {
+    _client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  }
+  return _client;
+}
+
+// Backwards compat: tests vi.mock this entire module and provide their own `anthropic`.
+// Production code should call getAnthropic() — but the existing agents import `anthropic`,
+// so re-export a Proxy that lazily delegates. This keeps callsites unchanged.
+export const anthropic = new Proxy({} as Anthropic, {
+  get(_target, prop) {
+    return (getAnthropic() as unknown as Record<string | symbol, unknown>)[prop];
+  },
 });
 
 export type RetryOptions = { maxRetries?: number; baseDelayMs?: number };

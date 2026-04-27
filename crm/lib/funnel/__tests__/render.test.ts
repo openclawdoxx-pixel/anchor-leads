@@ -70,6 +70,23 @@ describe("applyDiffs", () => {
     const twice = applyDiffs(once, PERSON);
     expect(twice).toBe(once);
   });
+
+  it("strips <script> and event-handler attributes from review_block_html", () => {
+    const evil: PersonalizationOutput = {
+      ...PERSON,
+      review_block_html: `<blockquote>Saved our basement.<script>alert(1)</script><img src=x onerror=alert(1)></blockquote>`,
+    };
+    const out = applyDiffs(TEMPLATE, evil);
+    expect(out).not.toContain("<script>");
+    expect(out).not.toContain("onerror");
+    expect(out).toContain("Saved our basement");
+  });
+
+  it("rejects non-hex color overrides", () => {
+    const out = applyDiffs(TEMPLATE, { ...PERSON, color_overrides: { primary: "red; }/* injected */" } });
+    expect(out).toContain("--primary: #000000"); // unchanged
+    expect(out).not.toContain("injected");
+  });
 });
 
 describe("uploadPersonalizedHtml", () => {

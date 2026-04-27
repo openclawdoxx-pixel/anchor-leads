@@ -2,9 +2,17 @@ import { put } from "@vercel/blob";
 import { readFileSync } from "fs";
 import { join } from "path";
 import * as cheerio from "cheerio";
+import sanitizeHtml from "sanitize-html";
 import type { PersonalizationOutput } from "./types";
 
 const TEMPLATE_PATH = join(process.cwd(), "public", "templates", "plumber-homepage.html");
+
+const REVIEW_BLOCK_OPTS: sanitizeHtml.IOptions = {
+  allowedTags: ["blockquote", "p", "span", "br", "b", "i", "em", "strong", "cite"],
+  allowedAttributes: { blockquote: ["cite"] },
+  allowedSchemes: [],
+  disallowedTagsMode: "discard",
+};
 
 let cachedTemplate: string | null = null;
 export function getTemplate(): string {
@@ -54,11 +62,12 @@ function substituteCityCallout($: cheerio.CheerioAPI, callout: string): void {
 
 function applyColorOverrides(html: string, overrides: PersonalizationOutput["color_overrides"]): string {
   if (!overrides) return html;
+  const HEX = /^#[0-9a-f]{3,8}$/i;
   let out = html;
-  if (overrides.primary) {
+  if (overrides.primary && HEX.test(overrides.primary)) {
     out = out.replace(/(--primary\s*:\s*)[^;]+(;)/g, `$1${overrides.primary}$2`);
   }
-  if (overrides.accent) {
+  if (overrides.accent && HEX.test(overrides.accent)) {
     out = out.replace(/(--accent\s*:\s*)[^;]+(;)/g, `$1${overrides.accent}$2`);
   }
   return out;
@@ -71,7 +80,7 @@ export function applyDiffs(template: string, p: PersonalizationOutput): string {
   if (h1.length) h1.text(p.hero_tagline);
 
   if (p.review_block_html) {
-    injectReviewBlock($, p.review_block_html);
+    injectReviewBlock($, sanitizeHtml(p.review_block_html, REVIEW_BLOCK_OPTS));
   }
 
   if (p.city_callout) {
