@@ -41,4 +41,12 @@ describe("pushLeads", () => {
     fetchMock.mockResolvedValueOnce({ ok: false, status: 500, json: async () => ({ error: "server" }) });
     await expect(pushLeads([lead])).rejects.toThrow(/500/);
   });
+
+  it("chunks pushes into batches of 50", async () => {
+    const big = Array.from({ length: 125 }, (_, i) => ({ ...lead, email: `lead${i}@x.com` }));
+    fetchMock.mockResolvedValue({ ok: true, status: 200, json: async () => ({ uploaded: 50 }) });
+    const r = await pushLeads(big);
+    expect(fetchMock).toHaveBeenCalledTimes(3); // 50 + 50 + 25
+    expect(r.uploaded).toBe(150); // mock returns 50 each call, 3 calls
+  });
 });

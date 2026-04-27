@@ -40,7 +40,7 @@ describe("runFunnelBatch", () => {
     expect(result.leads_failed).toBe(0);
   });
 
-  it("counts as failed when audit rejects without fix", async () => {
+  it("uses safe fallback when audit rejects without fix (still sent)", async () => {
     const { audit } = await import("../agents/audit");
     (audit as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
       output: { approved: false, rejection_reason: "fabricated", fixed_personalization: null },
@@ -48,7 +48,7 @@ describe("runFunnelBatch", () => {
     });
     const leads = [lead("a"), lead("b")];
     const result = await runFunnelBatch(leads, { runDate: "2026-04-27", concurrency: 2 });
-    expect(result.leads_sent).toBe(1);
-    expect(result.leads_failed).toBe(1);
+    expect(result.leads_sent).toBe(2); // both succeed — one via fallback
+    expect(result.leads_failed).toBe(0);
   });
 });

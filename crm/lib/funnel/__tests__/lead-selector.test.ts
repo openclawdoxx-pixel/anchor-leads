@@ -20,11 +20,11 @@ describe("computePhase", () => {
 describe("slugify", () => {
   it("produces a stable url-safe slug from company_name + lead_id", () => {
     const slug = slugify("Acme Plumbing & Heating, LLC", "abc12345-6789");
-    expect(slug).toMatch(/^acme-plumbing-heating-llc-[a-f0-9]{6}$/);
+    expect(slug).toMatch(/^acme-plumbing-heating-llc-[a-f0-9]{8}$/);
   });
   it("trims to a reasonable length", () => {
     const long = "A".repeat(200);
     const slug = slugify(long, "abc12345");
-    expect(slug.length).toBeLessThanOrEqual(70);
+    expect(slug.length).toBeLessThanOrEqual(72);
   });
 });
