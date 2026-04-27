@@ -88,6 +88,34 @@ export const SMARTLEAD_CAMPAIGNS = {
 
 export const SMARTLEAD_MAILBOX_IDS = [17733583, 17733579, 17733543] as const;
 
+/**
+ * Threaded replies the orchestrator sends via `smartlead inbox reply` —
+ * NOT part of Smartlead's sequence. The orchestrator fires these at
+ * Day 3 (Email 2, threaded under Email 1) and Day 21 (Email 6, threaded
+ * under Email 5). Each reply uses the original message's email_stats_id
+ * to maintain the actual Gmail/Outlook thread.
+ *
+ * Path A vs Path B for Email 2 is decided at reply time by checking
+ * EMAIL_CLICKED webhook history per lead.
+ */
+export const THREADED_REPLIES = {
+  /** Day 3 reply, threaded under Email 1. Fires for leads who DIDN'T click Email 1. */
+  email_2_path_a: {
+    delay_days_after_email_1: 3,
+    body: `<p>You skipped my last email. Probably busy. I get it.</p><p>Probably also figured it was another "free" pitch… the kind where free means $97 a month after they've got your card.</p><p>Or "free setup" — and you're locked into a 12-month contract while they own your domain, your hosting, and every word of your website.</p><p>Bullshit.</p><p>Newsflash. I'm not the IRS. I'm not gonna hunt you down if you don't pay me — because you ain't paying me jack shit.</p><p>You own the site. The domain, the hosting, the whole thing.</p><p>After I hand it off, you don't ever have to hear my name again. It's yours, brother. Completely yours.</p><p>Link's below. Take a look. Book 10 minutes and the login's yours.</p><p><a href="{{custom_fields.landing_url}}">{{custom_fields.landing_url}}</a></p><p>— Kurt</p>`,
+  },
+  /** Day 3 reply, threaded under Email 1. Fires for leads who CLICKED Email 1. */
+  email_2_path_b: {
+    delay_days_after_email_1: 3,
+    body: `<p>You saw what I built for {{company_name}} but didn't book. <em>What gives??</em></p><p>Newsflash. I'm not the IRS. I'm not gonna hunt you down if you don't pay me — because you ain't paying me jack shit.</p><p>You saw the site. If something on it isn't right — wrong service area, headline you'd word different, photos you'd swap — tell me on the call. I'll change it. Free. It's your site, it should look how you want.</p><p>Site's still here. Login's still in my hands. Ten minutes and that flips.</p><p><a href="{{custom_fields.landing_url}}">{{custom_fields.landing_url}}</a></p><p>— Kurt</p>`,
+  },
+  /** Day 3-after-Email-5 (=Day 21 from Email 1) reply, threaded under Email 5. */
+  email_6: {
+    delay_days_after_email_5: 3,
+    body: `<p>pulling it at midnight.</p><p><a href="{{custom_fields.landing_url}}">{{custom_fields.landing_url}}</a></p><p>— Kurt</p>`,
+  },
+} as const;
+
 export const funnelConfig: FunnelConfig = {
   max_daily_sends: 75,
   min_reply_rate_pct: 1.5,
