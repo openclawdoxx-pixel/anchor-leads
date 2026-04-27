@@ -66,7 +66,7 @@ migrations/
 └── 011_lead_funnel_state.sql
 
 crm/public/templates/
-└── plumber-homepage.html              # MODIFY: add HTML anchor comments for renderer
+└── plumber-homepage.html              # No edits — renderer uses Cheerio selectors
 ```
 
 ---
@@ -80,14 +80,14 @@ crm/public/templates/
 
 ```bash
 cd /Users/projectatlas/projects/anchor-leads/crm
-npm install @anthropic-ai/sdk @vercel/blob twilio p-limit
+npm install @anthropic-ai/sdk @vercel/blob twilio p-limit cheerio
 npm install -D @vercel/config msw
 ```
 
 - [ ] **Step 2: Verify install**
 
 ```bash
-npm list @anthropic-ai/sdk @vercel/blob twilio p-limit msw @vercel/config
+npm list @anthropic-ai/sdk @vercel/blob twilio p-limit cheerio msw @vercel/config
 ```
 
 Expected: each package listed with a version, no UNMET PEER warnings.
@@ -96,7 +96,7 @@ Expected: each package listed with a version, no UNMET PEER warnings.
 
 ```bash
 git add crm/package.json crm/package-lock.json
-git commit -m "chore(crm): add funnel dependencies (anthropic, blob, twilio, p-limit, msw, @vercel/config)"
+git commit -m "chore(crm): add funnel dependencies (anthropic, blob, twilio, p-limit, cheerio, msw, @vercel/config)"
 ```
 
 ---
@@ -884,53 +884,30 @@ git commit -m "feat(funnel): audit agent (Sonnet) — fabrication AND unsafe-HTM
 
 ---
 
-## Task 9: Add anchor comments to plumber-homepage template
+## Task 9: ~~Anchor comments~~ — DELETED
 
-**Files:**
-- Modify: `crm/public/templates/plumber-homepage.html`
+Originally proposed adding HTML comment anchors (`<!-- HERO_TAGLINE_START -->`) to the plumber template so the renderer could find injection points. **Rejected during plan revision** because Kurt re-exports the template from Claude Design every iteration cycle, which wipes the anchors. Task 10 was rewritten to use Cheerio's CSS selectors instead — robust to any number of re-exports.
 
-- [ ] **Step 1: Identify hero section in template**
-
-```bash
-cd crm/public/templates && head -200 plumber-homepage.html | grep -nE "<h1|<body|hero" | head -10
-```
-
-- [ ] **Step 2: Insert three anchor pairs**
-
-Edit the template to insert these markers in the visible hero area, review section, and copy paragraph respectively:
-
-```html
-<!-- HERO_TAGLINE_START -->A website for your plumbing business — built in the last 24 hours<!-- HERO_TAGLINE_END -->
-
-<!-- REVIEW_BLOCK_START --><!-- REVIEW_BLOCK_END -->
-
-<!-- CITY_CALLOUT_START -->local homeowners<!-- CITY_CALLOUT_END -->
-```
-
-The default text between START/END is the unpersonalized fallback.
-
-- [ ] **Step 3: Verify markers are unique and present**
-
-```bash
-grep -c "HERO_TAGLINE_START\|REVIEW_BLOCK_START\|CITY_CALLOUT_START" crm/public/templates/plumber-homepage.html
-```
-
-Expected: 3.
-
-- [ ] **Step 4: Commit**
-
-```bash
-git add crm/public/templates/plumber-homepage.html
-git commit -m "feat(funnel): add HTML anchor comments to plumber template for renderer"
-```
+(Skipped — proceed directly to Task 10.)
 
 ---
 
-## Task 10: Renderer (apply diffs + upload to Blob)
+## Task 10: Renderer (Cheerio selector-based injection + upload to Blob)
 
 **Files:**
 - Create: `crm/lib/funnel/render.ts`
 - Create: `crm/lib/funnel/__tests__/render.test.ts`
+
+The renderer uses Cheerio (server-side jQuery) to find injection points by CSS selector, not HTML comments. This makes it robust to template re-exports — the selectors `h1`, `blockquote`, `:root` styles still match even when Kurt regenerates the HTML in Claude Design.
+
+**Injection rules (per selector):**
+- `h1` (first one) → replace text with `personalization.hero_tagline`
+- `blockquote` (first one) → replace HTML content with `personalization.review_block_html`. If template has none, prepend a new one inside the first `section` containing the word "review" (case-insensitive); if still no match, prepend inside `body` after the first `h1`
+- `:root --primary` style → replace value with `personalization.color_overrides.primary` if set
+- `:root --accent` style → replace value with `personalization.color_overrides.accent` if set
+- `city_callout` → first text node containing the placeholder word "local" inside a `<p>` gets the callout substituted in
+
+The future merged template (when Kurt combines plumber + anchor offer in one Claude Design file) will work identically — Cheerio matches by structure, not anchors.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -946,39 +923,67 @@ vi.mock("@vercel/blob", () => ({
 import { applyDiffs, uploadPersonalizedHtml } from "../render";
 
 const TEMPLATE = `
-<html><body>
-<h1><!-- HERO_TAGLINE_START -->Default hero<!-- HERO_TAGLINE_END --></h1>
-<div><!-- REVIEW_BLOCK_START --><!-- REVIEW_BLOCK_END --></div>
-<p>Serving <!-- CITY_CALLOUT_START -->local homeowners<!-- CITY_CALLOUT_END --> for years.</p>
-</body></html>
+<html>
+<head><style>:root { --primary: #000000; --accent: #ffffff; }</style></head>
+<body>
+<h1>Default plumber hero</h1>
+<section class="reviews"><h2>Reviews</h2></section>
+<p>Serving local homeowners for years.</p>
+</body>
+</html>
 `.trim();
 
 const PERSON: PersonalizationOutput = {
   hero_tagline: "Built for Acme Plumbing",
   review_block_html: "<blockquote>Saved our basement. — Sarah K.</blockquote>",
   city_callout: "homeowners in Elmwood",
-  color_overrides: { primary: "#0b3a8f" },
+  color_overrides: { primary: "#0b3a8f", accent: "#ffd700" },
 };
 
 describe("applyDiffs", () => {
-  it("replaces all three anchors with personalization values", () => {
+  it("replaces the first h1 text with hero_tagline", () => {
     const out = applyDiffs(TEMPLATE, PERSON);
     expect(out).toContain("Built for Acme Plumbing");
-    expect(out).toContain("<blockquote>Saved our basement");
+    expect(out).not.toContain("Default plumber hero");
+  });
+
+  it("inserts review block inside the reviews section when no blockquote exists", () => {
+    const out = applyDiffs(TEMPLATE, PERSON);
+    expect(out).toMatch(/<section[^>]*class=["']reviews["'][^>]*>[\s\S]*?<blockquote>Saved our basement/);
+  });
+
+  it("replaces existing blockquote content when one is present", () => {
+    const tmpl = TEMPLATE.replace(
+      "<section class=\"reviews\"><h2>Reviews</h2></section>",
+      "<section class=\"reviews\"><h2>Reviews</h2><blockquote>Old quote</blockquote></section>"
+    );
+    const out = applyDiffs(tmpl, PERSON);
+    expect(out).toContain("Saved our basement");
+    expect(out).not.toContain("Old quote");
+  });
+
+  it("substitutes city_callout for 'local' placeholder in body copy", () => {
+    const out = applyDiffs(TEMPLATE, PERSON);
     expect(out).toContain("homeowners in Elmwood");
-    expect(out).not.toContain("Default hero");
+    expect(out).not.toMatch(/Serving local homeowners/);
   });
 
   it("inlines color override into :root CSS variables", () => {
-    const tmpl = `<style>:root { --primary: #000000; }</style>` + TEMPLATE;
-    const out = applyDiffs(tmpl, PERSON);
+    const out = applyDiffs(TEMPLATE, PERSON);
     expect(out).toContain("--primary: #0b3a8f");
+    expect(out).toContain("--accent: #ffd700");
   });
 
   it("leaves color CSS unchanged when color_overrides is null", () => {
-    const tmpl = `<style>:root { --primary: #000000; }</style>` + TEMPLATE;
-    const out = applyDiffs(tmpl, { ...PERSON, color_overrides: null });
+    const out = applyDiffs(TEMPLATE, { ...PERSON, color_overrides: null });
     expect(out).toContain("--primary: #000000");
+    expect(out).toContain("--accent: #ffffff");
+  });
+
+  it("is idempotent — applying twice yields the same result", () => {
+    const once = applyDiffs(TEMPLATE, PERSON);
+    const twice = applyDiffs(once, PERSON);
+    expect(twice).toBe(once);
   });
 });
 
@@ -1011,6 +1016,7 @@ Expected: FAIL.
 import { put } from "@vercel/blob";
 import { readFileSync } from "fs";
 import { join } from "path";
+import * as cheerio from "cheerio";
 import type { PersonalizationOutput } from "./types";
 
 const TEMPLATE_PATH = join(process.cwd(), "public", "templates", "plumber-homepage.html");
@@ -1023,28 +1029,74 @@ export function getTemplate(): string {
   return cachedTemplate;
 }
 
-function escapeRegExp(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+function injectReviewBlock($: cheerio.CheerioAPI, html: string): void {
+  const existing = $("blockquote").first();
+  if (existing.length) {
+    existing.replaceWith(html);
+    return;
+  }
+  // No blockquote — find a "reviews" section
+  const reviewSection = $("section").filter((_, el) => /review/i.test($(el).attr("class") ?? "")).first();
+  if (reviewSection.length) {
+    reviewSection.append(html);
+    return;
+  }
+  // Last resort: prepend to body after the first h1
+  const firstH1 = $("body h1").first();
+  if (firstH1.length) {
+    firstH1.after(html);
+  } else {
+    $("body").prepend(html);
+  }
 }
 
-function replaceBetween(html: string, marker: string, value: string): string {
-  const start = `<!-- ${marker}_START -->`;
-  const end = `<!-- ${marker}_END -->`;
-  const re = new RegExp(`${escapeRegExp(start)}[\\s\\S]*?${escapeRegExp(end)}`);
-  return html.replace(re, `${start}${value}${end}`);
+function substituteCityCallout($: cheerio.CheerioAPI, callout: string): void {
+  // Find the first <p> whose text contains "local" (case-insensitive) and replace
+  // that occurrence with the personalized callout.
+  $("p").each((_, el) => {
+    const $el = $(el);
+    const text = $el.text();
+    if (/\blocal\b/i.test(text)) {
+      $el.text(text.replace(/\blocal\b/i, callout.replace(/^homeowners in /i, ""))
+        .replace(callout.replace(/^homeowners in /i, ""), callout));
+      return false; // break
+    }
+  });
+}
+
+function applyColorOverrides(html: string, overrides: PersonalizationOutput["color_overrides"]): string {
+  if (!overrides) return html;
+  let out = html;
+  if (overrides.primary) {
+    out = out.replace(/(--primary\s*:\s*)[^;]+(;)/g, `$1${overrides.primary}$2`);
+  }
+  if (overrides.accent) {
+    out = out.replace(/(--accent\s*:\s*)[^;]+(;)/g, `$1${overrides.accent}$2`);
+  }
+  return out;
 }
 
 export function applyDiffs(template: string, p: PersonalizationOutput): string {
-  let out = template;
-  out = replaceBetween(out, "HERO_TAGLINE", p.hero_tagline);
-  out = replaceBetween(out, "REVIEW_BLOCK", p.review_block_html);
-  out = replaceBetween(out, "CITY_CALLOUT", p.city_callout);
-  if (p.color_overrides?.primary) {
-    out = out.replace(/--primary:\s*[^;]+;/g, `--primary: ${p.color_overrides.primary};`);
+  const $ = cheerio.load(template, { xml: false });
+
+  // Hero tagline → first h1
+  const h1 = $("h1").first();
+  if (h1.length) h1.text(p.hero_tagline);
+
+  // Review block → first blockquote OR section.reviews
+  if (p.review_block_html) {
+    injectReviewBlock($, p.review_block_html);
   }
-  if (p.color_overrides?.accent) {
-    out = out.replace(/--accent:\s*[^;]+;/g, `--accent: ${p.color_overrides.accent};`);
+
+  // City callout → first <p> containing "local"
+  if (p.city_callout) {
+    substituteCityCallout($, p.city_callout);
   }
+
+  // Color overrides operate on raw HTML (CSS rules in <style>) outside Cheerio
+  let out = $.html();
+  out = applyColorOverrides(out, p.color_overrides);
+
   return out;
 }
 
@@ -1064,13 +1116,13 @@ export async function uploadPersonalizedHtml(slug: string, html: string): Promis
 cd crm && npx vitest run lib/funnel/__tests__/render.test.ts
 ```
 
-Expected: 4 tests pass.
+Expected: 8 tests pass.
 
 - [ ] **Step 5: Commit**
 
 ```bash
 git add crm/lib/funnel/render.ts crm/lib/funnel/__tests__/render.test.ts
-git commit -m "feat(funnel): renderer applies diffs to template + uploads HTML to Vercel Blob"
+git commit -m "feat(funnel): renderer uses cheerio CSS selectors (robust to template re-exports)"
 ```
 
 ---
