@@ -75,6 +75,19 @@ export type FunnelConfig = {
   }>;
 };
 
+export const SMARTLEAD_CAMPAIGNS = {
+  /** Parent campaign for leads with no existing website. Email 1 uses Version A. */
+  no_site: 3224195,
+  /** Parent campaign for leads with an existing website. Email 1 uses Version B. */
+  has_site: 3238040,
+  /** Subsequence for No Site clickers (Path B Email 2). Trigger configured in UI. */
+  no_site_path_b: 3238049,
+  /** Subsequence for Has Site clickers (Path B Email 2). Trigger configured in UI. */
+  has_site_path_b: 3238050,
+} as const;
+
+export const SMARTLEAD_MAILBOX_IDS = [17733583, 17733579, 17733543] as const;
+
 export const funnelConfig: FunnelConfig = {
   max_daily_sends: 75,
   min_reply_rate_pct: 1.5,

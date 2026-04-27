@@ -1,0 +1,59 @@
+{
+  "sequences": [
+    {
+      "seq_number": 1,
+      "subject": "Re: {{custom_fields.subject_lead_part}} / Kurt Intro",
+      "email_body": "{{custom_fields.body_opener}}<p>Tuesday night, some guy at a bar starts telling his neighbor about that plumber who saved his basement last spring\u2026 and the neighbor \u2014 already half-curious \u2014 pulls out his phone right there and types your name in.</p><p>What pops up in the next four seconds either gets you the call Wednesday morning\u2026 or hands the job to Mike from down the road.</p><p>I saw {{company_name}} already has a site. Doesn't matter \u2014 I built you a different one, and it's free.</p><p>No monthly fee. No hosting bill buried in fine print like those other pricks pull. Yours.</p><p>Link's below. Take a look. Then book 10 minutes with me and I'll hand you the login.</p><p><a href=\"{{custom_fields.landing_url}}\">{{custom_fields.landing_url}}</a></p><p>\u2014 Kurt</p><p>P.S. Ten minutes is what you wasted on hold with Ferguson this morning. This ten minutes makes sure your next referral doesn't go to Mike.</p>",
+      "seq_delay_details": {
+        "delay_in_days": 0
+      },
+      "seq_variants": [
+        {
+          "subject": "Re: saw your crew on {{custom_fields.street_name}}",
+          "email_body": "{{custom_fields.body_opener}}<p>Tuesday night, some guy at a bar starts telling his neighbor about that plumber who saved his basement last spring\u2026 and the neighbor \u2014 already half-curious \u2014 pulls out his phone right there and types your name in.</p><p>What pops up in the next four seconds either gets you the call Wednesday morning\u2026 or hands the job to Mike from down the road.</p><p>I saw {{company_name}} already has a site. Doesn't matter \u2014 I built you a different one, and it's free.</p><p>No monthly fee. No hosting bill buried in fine print like those other pricks pull. Yours.</p><p>Link's below. Take a look. Then book 10 minutes with me and I'll hand you the login.</p><p><a href=\"{{custom_fields.landing_url}}\">{{custom_fields.landing_url}}</a></p><p>\u2014 Kurt</p><p>P.S. Ten minutes is what you wasted on hold with Ferguson this morning. This ten minutes makes sure your next referral doesn't go to Mike.</p>",
+          "variant_label": "B"
+        }
+      ]
+    },
+    {
+      "seq_number": 2,
+      "subject": "",
+      "email_body": "<p>You skipped my last email. Probably busy. I get it.</p><p>Probably also figured it was another \"free\" pitch\u2026 the kind where free means $97 a month after they've got your card.</p><p>Or \"free setup\" \u2014 and you're locked into a 12-month contract while they own your domain, your hosting, and every word of your website.</p><p>Bullshit.</p><p>Newsflash. I'm not the IRS. I'm not gonna hunt you down if you don't pay me \u2014 because you ain't paying me jack shit.</p><p>You own the site. The domain, the hosting, the whole thing.</p><p>After I hand it off, you don't ever have to hear my name again. It's yours, brother. Completely yours.</p><p>Link's below. Take a look. Book 10 minutes and the login's yours.</p><p><a href=\"{{custom_fields.landing_url}}\">{{custom_fields.landing_url}}</a></p><p>\u2014 Kurt</p>",
+      "seq_delay_details": {
+        "delay_in_days": 3
+      }
+    },
+    {
+      "seq_number": 3,
+      "subject": "Mike still owes you",
+      "email_body": "<p>{{custom_fields.body_opener_inline}}your head's a goddamn mess right now.</p><p>Not in a bad way \u2014 in the way any guy running a shop off his phone knows too well. Three callbacks you keep meaning to make. A gas station receipt in your pocket with somebody's number on it. Mike still owes you for the water heater. And you're trying to remember all of it while you're elbow deep in someone else's drain.</p><p>I've got something that takes it out of your head.</p><p>One place for {{company_name}} to live. Every call, every text, every job, every callback \u2014 all sitting on your phone.</p><p>You do clean work. Time your shop ran clean too.</p><p>It's free. Link's below. Website's in there. So is this.</p><p><a href=\"{{custom_fields.landing_url}}\">{{custom_fields.landing_url}}</a></p><p>\u2014 Kurt</p><p>P.S. No contracts. No credit card. Just go see.</p>",
+      "seq_delay_details": {
+        "delay_in_days": 4
+      }
+    },
+    {
+      "seq_number": 4,
+      "subject": "Re: Inquiry \u2014 {{company_name}}",
+      "email_body": "<p>I'm tired, slightly annoyed, and disappointed in myself for not making this easier on you.</p><p>Two weeks ago I built {{company_name}} a website. Free. Yours.</p><p>No card. No contract. No monthly anything. The site, the hosting \u2014 all of it, no strings.</p><p>And the only thing standing between you and the login was 10 minutes on the phone with me. Any hour. Any day.</p><p>And I'm sitting here two weeks later wondering what I missed\u2026</p><p>Maybe my emails got buried.</p><p>Maybe life just got in the way. Shit happens.</p><p>Maybe the offer just sounds too good to be true.</p><p>I don't know. I just know it's real. The link still works.</p><p><a href=\"{{custom_fields.landing_url}}\">{{custom_fields.landing_url}}</a></p><p>\u2014 Kurt</p>",
+      "seq_delay_details": {
+        "delay_in_days": 7
+      }
+    },
+    {
+      "seq_number": 5,
+      "subject": "honestly, I apologize",
+      "email_body": "<p>{{custom_fields.body_opener_inline}}{{custom_fields.deadline_date}}. The last day free is on the table.</p><p>Honestly\u2026 whether you take it or not doesn't matter to me. It's just code on my computer. It's not like I'm making money from it anyway.</p><p>I'm not trying to corner you either \u2014 a yes is a small 10-minute risk on something free. A no is keeping your dashboard stacked with sticky notes like a line cook.</p><p>It is what it is.</p><p>It's all done for you.</p><p>You don't have to understand anything.</p><p>Just answer questions about the business that you run.</p><p>Have a little trust\u2026 a man can still be a man of his word.</p><p><a href=\"{{custom_fields.landing_url}}\">{{custom_fields.landing_url}}</a></p><p>Have a good one.</p><p>\u2014 Kurt</p><p>P.S. No catch. No fine print. Delete at midnight.</p>",
+      "seq_delay_details": {
+        "delay_in_days": 4
+      }
+    },
+    {
+      "seq_number": 6,
+      "subject": "",
+      "email_body": "<p>pulling it at midnight.</p><p><a href=\"{{custom_fields.landing_url}}\">{{custom_fields.landing_url}}</a></p><p>\u2014 Kurt</p>",
+      "seq_delay_details": {
+        "delay_in_days": 3
+      }
+    }
+  ]
+}

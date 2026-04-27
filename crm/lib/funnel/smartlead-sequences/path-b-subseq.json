@@ -1,0 +1,13 @@
+{
+  "name": "Anchor Frame — Plumbers (No Site) — Path B (Clicked E1)",
+  "trigger_event_type": "EMAIL_CLICKED",
+  "trigger_seq_number": 1,
+  "sequences": [
+    {
+      "seq_number": 1,
+      "subject": "",
+      "email_body": "<p>You saw what I built for {{company_name}} but didn't book. <em>What gives??</em></p><p>Newsflash. I'm not the IRS. I'm not gonna hunt you down if you don't pay me — because you ain't paying me jack shit.</p><p>You saw the site. If something on it isn't right — wrong service area, headline you'd word different, photos you'd swap — tell me on the call. I'll change it. Free. It's your site, it should look how you want.</p><p>Site's still here. Login's still in my hands. Ten minutes and that flips.</p><p><a href=\"{{custom_fields.landing_url}}\">{{custom_fields.landing_url}}</a></p><p>— Kurt</p>",
+      "seq_delay_details": { "delay_in_days": 3 }
+    }
+  ]
+}
