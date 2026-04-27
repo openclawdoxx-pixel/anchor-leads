@@ -42,7 +42,7 @@ The personalization is on the **landing page**, not the email body. Email bodies
         ▼            ▼                        ▼            │
   ┌─────────┐  ┌─────────┐              ┌─────────┐        │
   │RESEARCH │  │PERSONALI│              │ AUDIT   │        │
-  │Sonnet4.6│→ │Opus 4.7 │ ───────────→ │Sonnet4.6│        │
+  │Haiku 4.5│→ │Opus 4.7 │ ───────────→ │Sonnet4.6│        │
   │JSON out │  │HTML diff│              │approve/ │        │
   │         │  │         │              │reject   │        │
   └─────────┘  └─────────┘              └─────────┘        │
@@ -95,7 +95,7 @@ The personalization is on the **landing page**, not the email body. Email bodies
 **File:** `crm/lib/funnel/agents/research.ts`
 
 - Inputs: lead row (`company_name`, `owner_name`, `city`, `state`, `phone`, `website`, `raw_site_text`, `review_samples`, `facebook_url`)
-- Model: Sonnet 4.6 via `@anthropic-ai/sdk`
+- Model: Haiku 4.5 via `@anthropic-ai/sdk` — structured extraction is exactly what Haiku is built for; Sonnet would be quota waste here
 - System prompt: "extract personalization hooks from this small business data — the owner's likely tone, a quotable review, distinctive services, anything that would make a personalized landing page feel hand-researched"
 - Output: structured JSON via Anthropic's tool-use mode:
   ```ts
@@ -285,11 +285,13 @@ limit 75;
 
 At 75 leads/day:
 - 75 Opus calls (personalize): ~25 per 5-hour window
-- 150 Sonnet calls (research + audit): ~50 per 5-hour window
-- Max plan capacity per window: ~150-200 Opus messages, ~250-400 Sonnet messages
-- Utilization: ~15% of Opus quota, ~15% of Sonnet quota
+- 75 Haiku calls (research): ~25 per 5-hour window
+- 75 Sonnet calls (audit): ~25 per 5-hour window
+- Max plan capacity per window: ~150-200 Opus, ~250-400 Sonnet, ~600+ Haiku
+- Utilization: ~15% of Opus quota, ~10% of Sonnet quota, ~4% of Haiku quota
 - Marginal cost: $0 (covered by Max subscription)
 
 At 500 leads/day (future):
-- 500 Opus + 1000 Sonnet daily, ~167 Opus + 333 Sonnet per window
-- Opus tight on Max — trigger to switch to API billing ($0.075/lead Opus = $37.50/day) or downgrade non-HOT leads to Sonnet
+- 500 Opus + 500 Haiku + 500 Sonnet daily, ~167 of each per window
+- Opus tight on Max — trigger to switch to API billing ($0.075/lead Opus = $37.50/day) or downgrade non-HOT leads to Sonnet for the personalizer
+- Sonnet and Haiku still comfortable on Max even at this volume
