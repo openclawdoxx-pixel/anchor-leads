@@ -24,6 +24,10 @@ vi.mock("../render", () => ({
 }));
 vi.mock("../smartlead", () => ({
   pushLeads: vi.fn(async (leads: unknown[]) => ({ uploaded: leads.length, failed: 0 })),
+  sendInboxReply: vi.fn(async () => undefined),
+  getMessageHistory: vi.fn(async () => []),
+  listCampaignMailboxes: vi.fn(async () => []),
+  countWarmedMailboxes: vi.fn(() => 0),
 }));
 vi.mock("../supabase-funnel", () => ({ upsertLeadState: vi.fn(async () => {}) }));
 
@@ -50,5 +54,27 @@ describe("runFunnelBatch", () => {
     const result = await runFunnelBatch(leads, { runDate: "2026-04-27", concurrency: 2 });
     expect(result.leads_sent).toBe(2); // both succeed — one via fallback
     expect(result.leads_failed).toBe(0);
+  });
+
+  it("routes leads to no_site or has_site campaign based on lead.website", async () => {
+    const { pushLeads } = await import("../smartlead");
+    const noSite = lead("a", { website: null });
+    const hasSite = lead("b", { website: "https://acme.com" });
+    await runFunnelBatch([noSite, hasSite], { runDate: "2026-04-27", concurrency: 2 });
+
+    const calls = (pushLeads as ReturnType<typeof vi.fn>).mock.calls;
+    // Two pushLeads calls — one per group.
+    expect(calls.length).toBe(2);
+    const seenCampaignIds = calls.map((c) => (c[1] as { campaignId: number }).campaignId).sort();
+    expect(seenCampaignIds).toEqual([3224195, 3238040]);
+  });
+
+  it("stamps campaign_id at personalize time so threading uses the right campaign", async () => {
+    const { upsertLeadState } = await import("../supabase-funnel");
+    await runFunnelBatch([lead("a", { website: null })], { runDate: "2026-04-27", concurrency: 1 });
+    const personalizeCall = (upsertLeadState as ReturnType<typeof vi.fn>).mock.calls
+      .find((c) => (c[0] as { status: string }).status === "personalized");
+    expect(personalizeCall).toBeDefined();
+    expect((personalizeCall![0] as { campaign_id: number }).campaign_id).toBe(3224195);
   });
 });

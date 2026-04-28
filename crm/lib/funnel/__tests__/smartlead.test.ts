@@ -1,5 +1,11 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { pushLeads, type SmartleadLead } from "../smartlead";
+import {
+  pushLeads,
+  sendInboxReply,
+  countWarmedMailboxes,
+  type SmartleadLead,
+  type SmartleadMailbox,
+} from "../smartlead";
 
 const fetchMock = vi.fn();
 
@@ -48,5 +54,42 @@ describe("pushLeads", () => {
     const r = await pushLeads(big);
     expect(fetchMock).toHaveBeenCalledTimes(3); // 50 + 50 + 25
     expect(r.uploaded).toBe(150); // mock returns 50 each call, 3 calls
+  });
+
+  it("uses passed campaignId over env var", async () => {
+    fetchMock.mockResolvedValueOnce({ ok: true, status: 200, json: async () => ({ uploaded: 1 }) });
+    await pushLeads([lead], { campaignId: 9999 });
+    expect(fetchMock).toHaveBeenCalledWith(
+      expect.stringContaining("/campaigns/9999/leads?api_key=sl-test"),
+      expect.objectContaining({ method: "POST" })
+    );
+  });
+});
+
+describe("sendInboxReply", () => {
+  it("posts to reply-email-thread with email_stats_id and email_body", async () => {
+    fetchMock.mockResolvedValueOnce({ ok: true, status: 200, json: async () => ({}) });
+    await sendInboxReply({ campaignId: 3224195, emailStatsId: "stats-abc", body: "<p>hi</p>" });
+    expect(fetchMock).toHaveBeenCalledWith(
+      expect.stringContaining("/campaigns/3224195/reply-email-thread?api_key=sl-test"),
+      expect.objectContaining({
+        method: "POST",
+        body: expect.stringContaining("stats-abc"),
+      }),
+    );
+  });
+});
+
+describe("countWarmedMailboxes", () => {
+  it("counts only mailboxes with successful SMTP+IMAP and a warmup status that's progressing", () => {
+    const mboxes: SmartleadMailbox[] = [
+      { id: 1, is_smtp_success: true, is_imap_success: true, warmup_details: { status: "ACTIVE" } },
+      { id: 2, is_smtp_success: true, is_imap_success: true, warmup_details: { status: "1-WEEK" } },
+      { id: 3, is_smtp_success: false, is_imap_success: true, warmup_details: { status: "ACTIVE" } }, // SMTP fail → not warmed
+      { id: 4, is_smtp_success: true, is_imap_success: true, warmup_details: { status: "PAUSED" } }, // paused → not warmed
+      { id: 5, is_smtp_success: true, is_imap_success: true, warmup_details: { status: "SETUP" } }, // not ready
+      { id: 6, is_smtp_success: true, is_imap_success: true }, // missing warmup_details → status=""=not warmed
+    ];
+    expect(countWarmedMailboxes(mboxes)).toBe(2);
   });
 });

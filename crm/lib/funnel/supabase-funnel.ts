@@ -45,6 +45,9 @@ export type LeadStateUpdate = {
   status: "personalized" | "sent";
   personalized_blob_url?: string;
   smartlead_lead_id?: string;
+  /** 3224195 (no_site) or 3238040 (has_site) — set at personalize time so the
+   * threading runner knows which campaign to call reply-email-thread on. */
+  campaign_id?: number;
 };
 
 export async function upsertLeadState(args: LeadStateUpdate): Promise<void> {
@@ -60,6 +63,7 @@ export async function upsertLeadState(args: LeadStateUpdate): Promise<void> {
   if (args.status === "sent") update.pushed_to_smartlead_at = new Date().toISOString();
   if (args.personalized_blob_url) update.personalized_blob_url = args.personalized_blob_url;
   if (args.smartlead_lead_id) update.smartlead_lead_id = args.smartlead_lead_id;
+  if (args.campaign_id != null) update.campaign_id = args.campaign_id;
   await sb.from("lead_funnel_state").upsert(update, { onConflict: "lead_id" });
 }
 
