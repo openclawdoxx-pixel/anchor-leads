@@ -4,7 +4,55 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title><span class="ph-company">Redline Plumbing</span></title>
-<!-- Fonts intentionally omitted: this file uses system stacks (Lora→Georgia, Inter→Manrope→system-ui, Caveat→cursive, Permanent Marker→Caveat→cursive) so the file is fully self-contained, JS-disabled-friendly, and editable as plain HTML. -->
+<!-- Fonts: self-hosted .woff2 files sit alongside this HTML in production.
+     No external network calls (no fonts.googleapis.com / fonts.gstatic.com).
+     Caveat = casual handwriting (marginalia like "FREE", "$12 a year", "READ THIS PART", brush numerals).
+     Permanent Marker = bold marker headlines ("DO THIS NOW", "WHOLE CATCH", "EITHER WAY"). -->
+<style>
+  @font-face {
+    font-family: 'Permanent Marker';
+    src: url('./permanent-marker.woff2') format('woff2');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Caveat';
+    src: url('./caveat.woff2') format('woff2');
+    font-weight: 400 700;
+    font-display: swap;
+  }
+
+  /* Optional: drop these woff2 files alongside the HTML to upgrade the body type
+     beyond system fallbacks. The page renders correctly without them — Manrope
+     falls back to system-ui, Lora to Georgia, JetBrains Mono to monospace. */
+  /*
+  @font-face {
+    font-family: 'Manrope';
+    src: url('./manrope.woff2') format('woff2');
+    font-weight: 400 800;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Lora';
+    src: url('./lora.woff2') format('woff2');
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Lora';
+    src: url('./lora-italic.woff2') format('woff2');
+    font-weight: 400 700;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'JetBrains Mono';
+    src: url('./jetbrains-mono.woff2') format('woff2');
+    font-weight: 400 700;
+    font-display: swap;
+  }
+  */
+</style>
 
 <style>
   :root{
@@ -2186,14 +2234,14 @@
   <!-- LETTER FOOTER -->
   <footer class="ls-footer">
     <div class="ls-footer-inner">
-      Anchor Frame · <a href="/cdn-cgi/l/email-protection#452e30373105222031242b262d2a3723372428206b262a28"><span class="__cf_email__" data-cfemail="7d16080f093d1a18091c131e15120f1b0f1c1018531e1210">[email&#160;protected]</span></a> · <a href="https://anchorframe.com/privacy">Privacy</a> · <a href="https://anchorframe.com/tc">Terms</a>
+      Anchor Frame · <a href="mailto:kurt@getanchorframe.com">kurt@getanchorframe.com</a> · <a href="https://anchorframe.com/privacy">Privacy</a> · <a href="https://anchorframe.com/tc">Terms</a>
     </div>
   </footer>
 
 </div>
 <!-- ============ END LETTER SECTION ============ -->
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Once the user reaches the lock band (start of the letter), the page nav
   // stops being sticky and stays scrolled away above the letter content.
   // We compare window.scrollY against the lock-band's offsetTop and toggle
