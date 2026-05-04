@@ -1,15 +1,7 @@
 import { notFound } from "next/navigation";
-import leadsJson from "./leads.json";
+import { lookupLead, type LeadView } from "./_lookup";
 
-type Lead = {
-  company_name: string;
-  owner_name?: string | null;
-  city: string;
-  state: string;
-  phone: string;
-};
-
-const leads = leadsJson as Record<string, Lead>;
+type Lead = LeadView;
 
 export async function generateMetadata({
   params,
@@ -17,13 +9,13 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const lead = leads[slug];
+  const lead = await lookupLead(slug);
   if (!lead) return { title: "Anchor Frame" };
   return {
     title: `A new website for ${lead.company_name} — Anchor Frame`,
     description: lead.owner_name
-      ? `Built in the last 24 hours for ${lead.owner_name} at ${lead.company_name} in ${lead.city}, ${lead.state}.`
-      : `Built in the last 24 hours for ${lead.company_name} in ${lead.city}, ${lead.state}.`,
+      ? `Built in the last 24 hours for ${lead.owner_name} at ${lead.company_name} in ${lead.city ?? ""}, ${lead.state}.`
+      : `Built in the last 24 hours for ${lead.company_name} in ${lead.city ?? ""}, ${lead.state}.`,
   };
 }
 
@@ -33,7 +25,7 @@ export default async function LandingPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const lead = leads[slug];
+  const lead = await lookupLead(slug);
   if (!lead) notFound();
 
   return (
@@ -100,7 +92,7 @@ function PersonalizedBanner({ lead, slug }: { lead: Lead; slug: string }) {
         {lead.owner_name ? `${lead.owner_name} at ${lead.company_name}` : lead.company_name}
       </h1>
       <p style={{ margin: 0, color: "#cfe8ff", fontSize: 16 }}>
-        Serving {lead.city}, {lead.state} · {lead.phone}
+        Serving {lead.city ? `${lead.city}, ` : ""}{lead.state} · {lead.phone}
       </p>
       <p
         style={{
