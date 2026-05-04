@@ -1,0 +1,23 @@
+{
+  "demo-acme-plumbing": {
+    "company_name": "Acme Plumbing",
+    "owner_name": "John Doe",
+    "city": "Buffalo",
+    "state": "NY",
+    "phone": "(716) 555-0123"
+  },
+  "demo-redline-plumbing": {
+    "company_name": "Redline Plumbing",
+    "owner_name": "Mike Russo",
+    "city": "Syracuse",
+    "state": "NY",
+    "phone": "(315) 555-0199"
+  },
+  "demo-tradesmen": {
+    "company_name": "Tradesmen Plumbing & Heating",
+    "owner_name": "Sam Hill",
+    "city": "Rochester",
+    "state": "NY",
+    "phone": "(585) 555-0144"
+  }
+}

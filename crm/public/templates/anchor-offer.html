@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>The Anchor Zero Plan</title>
+<meta name="description" content="Recover missed jobs with $0 upfront. Your first 3 recovered jobs are free." />
+<style>
+  :root {
+    --ink:#0a1628; --ink-2:#102840;
+    --accent:#2db4ff; --accent-2:#0d82ca;
+    --gold:#f7c948; --paper:#f6f7f9; --paper-2:#fff;
+    --warn:#ff5b5b;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font:400 17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  h1,h2,h3{line-height:1.15;font-weight:800;letter-spacing:-.01em;margin:0 0 .6em}
+  h1{font-size:clamp(32px,5vw,56px)}
+  h2{font-size:clamp(26px,3.5vw,40px)}
+  h3{font-size:clamp(20px,2.5vw,28px)}
+  p{margin:0 0 1em}
+  strong{font-weight:700} em{font-style:italic}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  .wrap-narrow{max-width:780px;margin:0 auto;padding:0 24px}
+
+  .hero{background:linear-gradient(180deg,var(--ink) 0%,var(--ink-2) 100%);color:#fff;padding:72px 0 56px;text-align:center}
+  .hero h1 strong{color:var(--accent)}
+  .hero .sound{margin:12px 0 28px;font-size:16px;color:#cfe8ff;font-weight:600}
+  .video-slot{background:#000;aspect-ratio:16/9;max-width:780px;margin:0 auto 40px;
+    border-radius:16px;box-shadow:0 30px 60px rgba(0,0,0,.35);
+    display:grid;place-items:center;color:#556;font-size:14px;outline:1px dashed #334}
+  .video-slot::before{content:"▶ video slot — replace with embed"}
+  .mascot-slot{margin:0 auto 32px;width:min(320px,60vw);aspect-ratio:1/1;
+    background:#1a2e4a;border-radius:50%;display:grid;place-items:center;
+    color:#7aa;font-size:13px;outline:1px dashed #334}
+  .mascot-slot::before{content:"mascot image slot"}
+
+  .checkout{background:var(--paper-2);color:var(--ink);border-radius:18px;
+    box-shadow:0 24px 50px rgba(0,0,0,.25);padding:28px;max-width:640px;margin:0 auto;text-align:left}
+  .checkout h3{margin-bottom:4px;font-size:22px}
+  .checkout .lede{font-size:14px;color:#567;margin-bottom:20px}
+  .checkout label{display:block;font-size:13px;font-weight:600;color:#234;margin:10px 0 4px}
+  .checkout input{width:100%;padding:12px 14px;border:1px solid #d8dde3;border-radius:10px;font:inherit;outline:none}
+  .checkout input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(45,180,255,.18)}
+  .checkout .payment-box{margin-top:20px;padding:16px;background:#f4f6fa;border-radius:12px;font-size:14px}
+  .checkout .payment-box .row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #d8dde3}
+  .checkout .payment-box .row:last-child{border:0;font-weight:700;padding-top:12px}
+  .checkout .payment-placeholder{margin-top:16px;padding:20px;background:#fafbfc;
+    border:1px dashed #ccd3da;border-radius:10px;font-size:13px;color:#789;text-align:center}
+  .checkout .terms{font-size:13px;color:#567;margin-top:14px;display:flex;align-items:flex-start;gap:8px}
+  .checkout .terms input{width:auto;margin-top:3px}
+  .cta-btn{display:block;width:100%;margin-top:16px;padding:18px 20px;border:0;border-radius:12px;
+    background:var(--accent);color:#001a2e;font:700 18px/1 inherit;cursor:pointer;
+    transition:transform .08s ease,background .15s ease}
+  .cta-btn:hover{background:var(--accent-2);color:#fff}
+  .cta-btn:active{transform:translateY(1px)}
+  .cta-btn small{display:block;margin-top:6px;font-weight:500;font-size:13px;opacity:.8}
+  .no-hostage{text-align:center;font-size:13px;color:#678;margin-top:14px}
+
+  .bottom-line{padding:72px 0 48px;text-align:center}
+  .bottom-line h2{font-size:clamp(28px,4vw,44px);text-transform:uppercase}
+  .bottom-line h2 .accent{color:var(--accent);display:block}
+  .bottom-line p{font-size:18px;max-width:720px;margin-left:auto;margin-right:auto}
+  .own-badge{width:140px;height:140px;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;
+    display:grid;place-items:center;margin:24px auto 0;font-weight:800;font-size:14px;text-align:center;
+    box-shadow:0 10px 30px rgba(45,180,255,.35);position:relative}
+  .own-badge::before{content:"";position:absolute;inset:4px;border:2px solid rgba(255,255,255,.4);border-radius:50%}
+
+  .whatyouget{padding:56px 0}
+  .whatyouget .lead{text-align:center;max-width:760px;margin:0 auto 32px}
+  .pillar{background:var(--ink);color:#fff;border-radius:14px;padding:28px;margin:16px 0;
+    box-shadow:0 8px 20px rgba(10,22,40,.12)}
+  .pillar h3{color:var(--accent);margin-bottom:10px}
+
+  .guarantee{padding:32px 0}
+  .guarantee-card{background:var(--paper-2);border-left:6px solid var(--gold);
+    border-radius:12px;padding:28px;box-shadow:0 6px 18px rgba(10,22,40,.08);margin-bottom:20px}
+  .guarantee-card.safety{border-left-color:var(--accent)}
+  .guarantee-card.hostage{border-left-color:var(--ink)}
+  .guarantee-card h2{font-size:26px}
+  .guarantee-card h2 .icon{margin-right:8px}
+  .jobrow{display:grid;grid-template-columns:1fr auto;padding:10px 0;border-bottom:1px dashed #d8dde3}
+  .jobrow:last-child{border:0}
+  .jobrow .tiny{color:var(--warn);font-weight:800}
+
+  .final{background:var(--ink);color:#fff;padding:64px 0;text-align:center}
+  .final h2{font-size:clamp(28px,4vw,44px)}
+  .final h2 .accent{color:var(--accent)}
+  .final .lede{max-width:680px;margin:0 auto 32px;color:#cfe8ff;font-size:17px}
+  .final .you-will-not{margin-top:28px;font-weight:700;color:#fff}
+
+  footer{background:#050b18;color:#7a8ba0;padding:56px 0 32px;font-size:14px}
+  footer .tagline{color:#fff;max-width:680px;font-size:16px;line-height:1.6}
+  footer .tagline strong{color:var(--accent)}
+  footer .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px;margin-top:40px}
+  footer h4{color:#fff;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 12px}
+  footer ul{list-style:none;padding:0;margin:0}
+  footer li{margin:6px 0}
+  footer a{color:#bcc8d6} footer a:hover{color:#fff}
+  footer .copyright{margin-top:40px;padding-top:24px;border-top:1px solid #1a2840;color:#5a6a80}
+
+  @media (max-width:640px){.hero{padding:48px 0 40px}.checkout{padding:22px}}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+  <div class="wrap">
+    <h1><strong>What If You Could Miss That Call... And Still Get The Job — For $0 Upfront</strong></h1>
+    <p class="sound">🔊 Turn your sound ON (It's a very short video) 🔊</p>
+    <div class="video-slot" aria-label="Intro video"></div>
+    <div class="mascot-slot" aria-label="Mike the plumber mascot"></div>
+
+    <div class="checkout" id="checkout-top">
+      <h3>The Anchor Plan</h3>
+      <div class="lede">Claim your $0 setup today and start catching missed jobs.</div>
+      <label for="company-top">Company Name</label>
+      <input id="company-top" type="text" placeholder="Company Name..." />
+      <label for="name-top">Full Name</label>
+      <input id="name-top" type="text" placeholder="Full Name..." />
+      <label for="email-top">Email Address</label>
+      <input id="email-top" type="email" placeholder="Email Address..." />
+      <label for="phone-top">Phone Number</label>
+      <input id="phone-top" type="tel" placeholder="Phone Number..." />
+      <div class="payment-box">
+        <div class="row"><span><strong>Anchor Zero Plan</strong> × 1</span><span>$0.00</span></div>
+        <div class="row"><span>Order Total</span><span>$0.00</span></div>
+      </div>
+      <div class="payment-placeholder">Payment widget slot — Stripe / GHL embed goes here.</div>
+      <label class="terms">
+        <input type="checkbox" />
+        <span>I agree to the <a href="https://anchorframe.com/tc">terms and conditions</a>.</span>
+      </label>
+      <button class="cta-btn" type="button">
+        Activate My System For $0
+        <small>$0 setup. $0 monthly. Only $75 per job recovered</small>
+      </button>
+      <div class="no-hostage">No hostage contracts. Walk away anytime and keep your website and app. Your first 3 recovered jobs are 100% free.</div>
+    </div>
+  </div>
+</section>
+
+<section class="bottom-line">
+  <div class="wrap-narrow">
+    <h2>The Bottom Line <span class="accent">(Just The Facts, No Fluff)</span></h2>
+    <p>Look, whether you skipped the video because you're slammed, or you watched every second and just want to see the <strong>details in writing before you move forward</strong>... I've got you.</p>
+    <p>And yes, Mike, I'm talking to you.</p>
+    <p>No marketing jargon, no BS, and no blowing smoke. <strong>Just the exact, zero-risk breakdown of what I'm handing you today for $0 down...</strong></p>
+    <div class="own-badge">YOU OWN<br/>IT 100%</div>
+  </div>
+</section>
+
+<section class="whatyouget">
+  <div class="wrap">
+    <div class="lead">
+      <h2>The <span style="color:var(--accent)">"What You Get"</span> Breakdown</h2>
+      <p>You pay $0 to activate this entire system today. My only fee is a flat $75 <em>after</em> this engine catches a missed lead and locks a new paying job onto your calendar.</p>
+    </div>
+    <article class="pillar">
+      <h3>The Leak-Proof Website</h3>
+      <p>Even your best word-of-mouth referrals will Google you before they call. We build a premium, multi-page site designed to rank locally, build instant trust, and <strong>make it dead-simple for homeowners to book before they click on a competitor.</strong></p>
+    </article>
+    <article class="pillar">
+      <h3>The 24/7 Lead Recovery Engine</h3>
+      <p>Stop bleeding profitable jobs just because you were under a sink or asleep. Whether you miss a call or someone fills out a form on your site, <strong>this system instantly texts them back—replying just like you would to lock the job directly onto your calendar.</strong></p>
+    </article>
+    <article class="pillar">
+      <h3>The Command Center</h3>
+      <p>Running a business off sticky notes and scattered texts guarantees you lose money. We put your entire operation into one mobile app, <strong>so you can track every conversation, reply to leads, and book appointments right from the driver's seat.</strong></p>
+    </article>
+    <article class="pillar">
+      <h3>The 5-Star Reputation Shield</h3>
+      <p>One nightmare customer shouldn't ruin the name you spent decades building. This automatically texts homeowners right after you leave the driveway to <strong>intercept angry feedback privately and stack 5-star Google reviews on autopilot.</strong></p>
+    </article>
+  </div>
+</section>
+
+<section class="guarantee">
+  <div class="wrap-narrow">
+    <div class="guarantee-card">
+      <h2><span class="icon">💵</span> The <span style="color:var(--accent)">"First 3 Free"</span> Guarantee</h2>
+      <p><strong>I'm going to prove this works before you ever pay me a dime.</strong></p>
+      <p>Your <strong>first 3 recovered jobs are 100% free.</strong> If your average job is $400, I am literally handing you $1,200 in pure cash just to buy your trust.</p>
+      <p><strong>You are playing with house money.</strong></p>
+      <p><strong>I don't take my cut until you win.</strong></p>
+      <p>I'm just picking your dropped jobs off the floor and handing you the cash.</p>
+    </div>
+
+    <div class="guarantee-card safety">
+      <h2><span class="icon">⚡</span> The <span style="color:var(--accent)">"Small Job"</span> Safety Valve</h2>
+      <p><strong>I never want to eat your profit. I only get paid when you win.</strong></p>
+      <p>Caught a lead... but it was just a cheap $100 quick-fix? You don't pay a $75 fee on that. Upload the invoice, click one button, and the fee vanishes.</p>
+      <div class="jobrow"><span><strong>Standard Job:</strong> You pay $75.</span><span></span></div>
+      <div class="jobrow"><span><strong>Big Job ($5k+):</strong> You pay $75 <strong>(You keep the jackpot).</strong></span><span></span></div>
+      <div class="jobrow"><span><strong>Tiny Job (&lt;$200):</strong></span><span class="tiny">YOU PAY $0</span></div>
+      <p style="margin-top:14px;"><strong>You literally cannot lose money on a booking.</strong></p>
+    </div>
+
+    <div class="guarantee-card hostage">
+      <h2><span class="icon">🔒</span> The <span style="color:var(--accent)">"No-Hostage"</span> Ownership Guarantee</h2>
+      <p><strong>Worried about getting trapped by a long contract? Don't be.</strong></p>
+      <p>I don't believe in handcuffs. If you ever decide to walk away, I simply turn off the Recovery Engine.</p>
+      <p><strong>But you keep the assets.</strong> You own the domain. You own the custom website. You even keep the Command Center app to manage your customers.</p>
+      <p>We part as friends, and you walk away with value... completely free.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>⚓ <span class="accent">FINAL STEP:</span> Claim Your First 3 Free Jobs For $0 Down</h2>
+    <p class="lede"><strong>I am handing you an asset for $0 upfront.</strong></p>
+    <p class="lede">Enter your card below to authorize a <strong>$0.00 identity verification charge.</strong></p>
+    <p class="lede">This securely vaults your card for performance-billing once we start recovering your missed jobs.</p>
+    <p class="you-will-not">You will not be billed a single cent today.</p>
+
+    <div class="checkout" id="checkout-bottom" style="margin-top:40px;">
+      <h3>The Anchor Plan</h3>
+      <div class="lede">Claim your $0 setup today and start catching missed jobs.</div>
+      <label for="company-bot">Company Name</label>
+      <input id="company-bot" type="text" placeholder="Company Name..." />
+      <label for="name-bot">Full Name</label>
+      <input id="name-bot" type="text" placeholder="Full Name..." />
+      <label for="email-bot">Email Address</label>
+      <input id="email-bot" type="email" placeholder="Email Address..." />
+      <label for="phone-bot">Phone Number</label>
+      <input id="phone-bot" type="tel" placeholder="Phone Number..." />
+      <div class="payment-box">
+        <div class="row"><span><strong>Anchor Zero Plan</strong> × 1</span><span>$0.00</span></div>
+        <div class="row"><span>Order Total</span><span>$0.00</span></div>
+      </div>
+      <div class="payment-placeholder">Payment widget slot — Stripe / GHL embed goes here.</div>
+      <label class="terms">
+        <input type="checkbox" />
+        <span>I agree to the <a href="https://anchorframe.com/tc">terms and conditions</a>.</span>
+      </label>
+      <button class="cta-btn" type="button">
+        Activate My System For $0
+        <small>$0 setup. $0 monthly. Only $75 per job recovered</small>
+      </button>
+      <div class="no-hostage">No hostage contracts. Walk away anytime and keep your website and app. Your first 3 recovered jobs are 100% free.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="tagline">
+      <strong>Anchor Frame: The "No-Hostage" Web Builder for Trades.</strong>
+      We don't build brochures; we build Booking Engines. You own the code.
+      You own the domain. You keep the site even if you leave.
+      <strong>Stop renting your reputation. Own it.</strong>
+    </p>
+    <div class="cols">
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="https://anchorframe.com/">Home</a></li>
+          <li><a href="https://anchorframe.com/contact">Contact Us</a></li>
+          <li><a href="https://anchorframe.com/book">Book an Appointment</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>Anchor Frame</li>
+          <li><a href="tel:+15168305254">(516) 830-5254</a></li>
+          <li><a href="mailto:theanchorframe@gmail.com">theanchorframe@gmail.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="https://anchorframe.com/privacy">Privacy Policy</a></li>
+          <li><a href="https://anchorframe.com/tc">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">© Anchor Frame. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>
