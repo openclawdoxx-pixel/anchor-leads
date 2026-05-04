@@ -3,7 +3,7 @@ import leadsJson from "./leads.json";
 
 type Lead = {
   company_name: string;
-  owner_name: string;
+  owner_name?: string | null;
   city: string;
   state: string;
   phone: string;
@@ -21,7 +21,9 @@ export async function generateMetadata({
   if (!lead) return { title: "Anchor Frame" };
   return {
     title: `A new website for ${lead.company_name} — Anchor Frame`,
-    description: `Built in the last 24 hours for ${lead.owner_name} at ${lead.company_name} in ${lead.city}, ${lead.state}.`,
+    description: lead.owner_name
+      ? `Built in the last 24 hours for ${lead.owner_name} at ${lead.company_name} in ${lead.city}, ${lead.state}.`
+      : `Built in the last 24 hours for ${lead.company_name} in ${lead.city}, ${lead.state}.`,
   };
 }
 
@@ -39,7 +41,7 @@ export default async function LandingPage({
       <PersonalizedBanner lead={lead} slug={slug} />
 
       <iframe
-        src="/templates/plumber-homepage.html"
+        src={`/l/${slug}/site`}
         title={`${lead.company_name} — Homepage Preview`}
         style={{
           display: "block",
@@ -95,7 +97,7 @@ function PersonalizedBanner({ lead, slug }: { lead: Lead; slug: string }) {
           letterSpacing: "-0.01em",
         }}
       >
-        {lead.owner_name} at {lead.company_name}
+        {lead.owner_name ? `${lead.owner_name} at ${lead.company_name}` : lead.company_name}
       </h1>
       <p style={{ margin: 0, color: "#cfe8ff", fontSize: 16 }}>
         Serving {lead.city}, {lead.state} · {lead.phone}

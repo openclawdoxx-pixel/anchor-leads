@@ -19,5 +19,11 @@
     "city": "Rochester",
     "state": "NY",
     "phone": "(585) 555-0144"
+  },
+  "demo-no-owner": {
+    "company_name": "Westbrook Plumbing Services",
+    "city": "Albany",
+    "state": "NY",
+    "phone": "(518) 555-0177"
   }
 }

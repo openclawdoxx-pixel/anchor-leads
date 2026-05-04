@@ -93,6 +93,26 @@ export function applyDiffs(template: string, p: PersonalizationOutput): string {
   return out;
 }
 
+export type LeadBasics = {
+  company_name: string;
+  owner_name?: string | null;
+};
+
+export function signatureName(lead: LeadBasics): string {
+  const owner = lead.owner_name?.trim();
+  if (owner) return owner.split(/\s+/)[0];
+  return lead.company_name.split(/\s+/)[0];
+}
+
+export function applyLeadBasics(template: string, lead: LeadBasics): string {
+  const $ = cheerio.load(template, { xml: false });
+  $(".ph-company").each((_, el) => $(el).text(lead.company_name));
+  $(".ph-owner").each((_, el) => $(el).text(signatureName(lead)));
+  // <title> is RCDATA — children aren't real elements. Set text directly.
+  $("title").text(lead.company_name);
+  return $.html();
+}
+
 export async function uploadPersonalizedHtml(slug: string, html: string): Promise<string> {
   const result = await put(`funnel/${slug}.html`, html, {
     access: "public",
