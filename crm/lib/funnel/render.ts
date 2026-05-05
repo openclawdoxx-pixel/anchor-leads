@@ -16,6 +16,10 @@ const REVIEW_BLOCK_OPTS: sanitizeHtml.IOptions = {
 
 let cachedTemplate: string | null = null;
 export function getTemplate(): string {
+  // Skip cache in dev so template edits take effect without restart.
+  if (process.env.NODE_ENV !== "production") {
+    return readFileSync(TEMPLATE_PATH, "utf8");
+  }
   if (cachedTemplate === null) {
     cachedTemplate = readFileSync(TEMPLATE_PATH, "utf8");
   }
@@ -107,7 +111,18 @@ export function signatureName(lead: LeadBasics): string {
 export function applyLeadBasics(template: string, lead: LeadBasics): string {
   const $ = cheerio.load(template, { xml: false });
   $(".ph-company").each((_, el) => $(el).text(lead.company_name));
-  $(".ph-owner").each((_, el) => $(el).text(signatureName(lead)));
+
+  const owner = lead.owner_name?.trim();
+  if (owner) {
+    const firstName = owner.split(/\s+/)[0];
+    $(".ph-owner").each((_, el) => $(el).text(firstName));
+  } else {
+    // No owner — hide the salutation paragraph entirely. Addressing
+    // a letter "Westbrook —" (company first word) reads weird; better
+    // to drop the line so the letter starts at "You earned the referral."
+    $(".ph-owner").each((_, el) => $(el).closest("p").remove());
+  }
+
   // <title> is RCDATA — children aren't real elements. Set text directly.
   $("title").text(lead.company_name);
   return $.html();
